@@ -1,1 +1,21 @@
-npx secretlint '**/*' --maskSecrets
+#!/bin/bash
+
+
+echo "Aguarde! Validando secretlint ..."
+if ! npx secretlint '**/*' --maskSecrets; then
+  echo "❌ error secretlint"
+  exit 1
+else
+  echo "✅ secretlint"
+fi
+
+echo "Aguarde! validando pint ..."
+if ! ./vendor/bin/sail php vendor/bin/pint --test; then
+  echo "❌ error pint"
+  exit 1
+else
+  echo "✅ pint"
+fi
+
+echo "✅ Tudo certo! Commit liberado."
+exit 0

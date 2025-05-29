@@ -10,9 +10,6 @@
         "commit": "cz",
         "update:packages": "ncu -i"
     },
-    "lint-staged": {
-        "*": "secretlint"
-    },
     "devDependencies": {
         "@commitlint/cli": "^19.8.1",
         "@commitlint/config-conventional": "^19.8.1",
