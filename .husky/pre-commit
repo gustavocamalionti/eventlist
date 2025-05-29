@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! npx secretlint '**/*' --maskSecrets; then
+if ! ./vendor/bin/sail npx secretlint '**/*' --maskSecrets; then
   echo "❌ error secretlint"
   exit 1
 else
