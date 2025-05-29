@@ -1,34 +1,36 @@
 {
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint:prettier:check": "prettier --check .",
-    "lint:prettier:fix": "prettier --write .",
-    "prepare": "husky",
-    "commit": "cz",
-    "update:packages": "ncu -i"
-  },
-  "lint-staged": {
-    "*": "secretlint"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@secretlint/secretlint-rule-preset-recommend": "^9.3.3",
-    "axios": "^1.6.4",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^9.1.7",
-    "laravel-vite-plugin": "^1.0.0",
-    "npm-check-updates": "^18.0.1",
-    "prettier": "^3.5.3",
-    "secretlint": "^9.3.3",
-    "vite": "^5.0.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint:prettier:check": "prettier --check .",
+        "lint:prettier:fix": "prettier --write .",
+        "prepare": "husky",
+        "commit": "cz",
+        "update:packages": "ncu -i"
+    },
+    "lint-staged": {
+        "*": "secretlint"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.8.1",
+        "@commitlint/config-conventional": "^19.8.1",
+        "@prettier/plugin-php": "^0.22.4",
+        "@secretlint/secretlint-rule-preset-recommend": "^9.3.3",
+        "axios": "^1.6.4",
+        "cz-conventional-changelog": "^3.3.0",
+        "husky": "^9.1.7",
+        "laravel-vite-plugin": "^1.0.0",
+        "npm-check-updates": "^18.0.1",
+        "prettier": "^3.5.3",
+        "prettier-plugin-blade": "^2.1.21",
+        "secretlint": "^9.3.3",
+        "vite": "^5.0.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
     }
-  }
 }
