@@ -1,0 +1,14 @@
+{
+    "printWidth": 120,
+    "bracketSameLine": true,
+    "tabWidth": 4,
+    "plugins": ["prettier-plugin-blade", "@prettier/plugin-php"],
+    "overrides": [
+        {
+            "files": ["*.blade.php"],
+            "options": {
+                "parser": "blade"
+            }
+        }
+    ]
+}

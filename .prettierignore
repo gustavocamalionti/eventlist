@@ -1,0 +1,10 @@
+/.phpunit.cache
+/node_modules
+/public
+/storage
+/vendor
+.env
+.env.development
+.env.example
+.husky/
+.husky/pre-commit
