@@ -1,8 +1,3 @@
 {
-  "exclude": [
-    "vendor/",
-    "storage/",
-    "bootstrap/cache/",
-    "app/Console/Kernel.php"
-  ]
+    "exclude": ["vendor/", "storage/", "bootstrap/cache/", "app/Console/Kernel.php"]
 }
