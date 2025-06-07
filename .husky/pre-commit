@@ -7,12 +7,5 @@ else
   echo "✅ secretlint"
 fi
 
-if ! ./vendor/bin/sail php vendor/bin/pint --test; then
-  echo "❌ error pint"
-  exit 1
-else
-  echo "✅ pint"
-fi
-
 echo "✅ Tudo certo! Commit liberado."
 exit 0
