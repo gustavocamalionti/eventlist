@@ -16,7 +16,7 @@ use Stancl\Tenancy\Middleware;
 class TenancyServiceProvider extends ServiceProvider
 {
     // By default, no namespace is used to support the callable array syntax.
-    public static string $controllerNamespace = '';
+    public static string $controllerNamespace = "";
 
     public function events()
     {
@@ -31,10 +31,11 @@ class TenancyServiceProvider extends ServiceProvider
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
-
-                ])->send(function (Events\TenantCreated $event) {
-                    return $event->tenant;
-                })->shouldBeQueued(false), // `false` by default, but you probably want to make this `true` for production.
+                ])
+                    ->send(function (Events\TenantCreated $event) {
+                        return $event->tenant;
+                    })
+                    ->shouldBeQueued(false), // `false` by default, but you probably want to make this `true` for production.
             ],
             Events\SavingTenant::class => [],
             Events\TenantSaved::class => [],
@@ -42,11 +43,11 @@ class TenancyServiceProvider extends ServiceProvider
             Events\TenantUpdated::class => [],
             Events\DeletingTenant::class => [],
             Events\TenantDeleted::class => [
-                JobPipeline::make([
-                    Jobs\DeleteDatabase::class,
-                ])->send(function (Events\TenantDeleted $event) {
-                    return $event->tenant;
-                })->shouldBeQueued(false), // `false` by default, but you probably want to make this `true` for production.
+                JobPipeline::make([Jobs\DeleteDatabase::class])
+                    ->send(function (Events\TenantDeleted $event) {
+                        return $event->tenant;
+                    })
+                    ->shouldBeQueued(false), // `false` by default, but you probably want to make this `true` for production.
             ],
 
             // Domain events
@@ -68,14 +69,10 @@ class TenancyServiceProvider extends ServiceProvider
 
             // Tenancy events
             Events\InitializingTenancy::class => [],
-            Events\TenancyInitialized::class => [
-                Listeners\BootstrapTenancy::class,
-            ],
+            Events\TenancyInitialized::class => [Listeners\BootstrapTenancy::class],
 
             Events\EndingTenancy::class => [],
-            Events\TenancyEnded::class => [
-                Listeners\RevertToCentralContext::class,
-            ],
+            Events\TenancyEnded::class => [Listeners\RevertToCentralContext::class],
 
             Events\BootstrappingTenancy::class => [],
             Events\TenancyBootstrapped::class => [],
@@ -83,9 +80,7 @@ class TenancyServiceProvider extends ServiceProvider
             Events\RevertedToCentralContext::class => [],
 
             // Resource syncing
-            Events\SyncedResourceSaved::class => [
-                Listeners\UpdateSyncedResource::class,
-            ],
+            Events\SyncedResourceSaved::class => [Listeners\UpdateSyncedResource::class],
 
             // Fired only when a synced resource is changed in a different DB than the origin DB (to avoid infinite loops)
             Events\SyncedResourceChangedInForeignDatabase::class => [],
@@ -121,9 +116,8 @@ class TenancyServiceProvider extends ServiceProvider
     protected function mapRoutes()
     {
         $this->app->booted(function () {
-            if (file_exists(base_path('routes/tenant.php'))) {
-                Route::namespace(static::$controllerNamespace)
-                    ->group(base_path('routes/tenant.php'));
+            if (file_exists(base_path("routes/tenant.php"))) {
+                Route::namespace(static::$controllerNamespace)->group(base_path("routes/tenant.php"));
             }
         });
     }

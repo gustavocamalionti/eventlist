@@ -15,13 +15,13 @@ class CreateTenantsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenants', function (Blueprint $table) {
-            $table->string('id')->primary();
+        Schema::create("tenants", function (Blueprint $table) {
+            $table->string("id")->primary();
 
             // your custom columns may go here
 
             $table->timestamps();
-            $table->json('data')->nullable();
+            $table->json("data")->nullable();
         });
     }
 
@@ -32,6 +32,6 @@ class CreateTenantsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tenants');
+        Schema::dropIfExists("tenants");
     }
 }
