@@ -134,9 +134,9 @@ abstract class BaseWebhookJob implements ShouldQueue
     {
         $webhook = $this->crudWebhookService->save([
             "buys_id" =>
-            $this->appEnv != null && $this->buysId != null && $this->appEnv == env("APP_ENV")
-                ? $this->buysId
-                : null,
+                $this->appEnv != null && $this->buysId != null && $this->appEnv == env("APP_ENV")
+                    ? $this->buysId
+                    : null,
             "events_id" => $this->object->id,
             "event_type" => $this->eventName,
             "payload" => $this->data,

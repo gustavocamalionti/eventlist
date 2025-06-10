@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 "customizations" => [
                     "styles" =>
-                    "
+                        "
                     <style>
                         :root{
                             " .

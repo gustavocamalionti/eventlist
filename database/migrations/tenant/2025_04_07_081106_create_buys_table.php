@@ -40,8 +40,6 @@ return new class extends Migration {
             $table->timestamp("created_at")->nullable()->comment("Data de criação do registro");
             $table->timestamp("updated_at")->nullable()->comment("Data da última atualização do registro");
 
-
-
             $table
                 ->foreign("method_payments_id", "fk_buys_method_payments_id")
                 ->references("id")
@@ -54,7 +52,6 @@ return new class extends Migration {
                 ->on("users")
                 ->onDelete("restrict")
                 ->onUpdate("restrict");
-
 
             $table->index("method_payments_id", "idx_buys_method_payments_id");
             $table->index("users_id", "idx_buys_users_id");

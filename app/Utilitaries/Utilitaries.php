@@ -115,9 +115,9 @@ class Utilitaries
         return [
             "start" => date("Y-m-d 00:00:00", strtotime("last sunday", $dt)),
             "end" =>
-            date("N", $dt) == 7
-                ? date("Y-m-d 23:59:59", $dt)
-                : date("Y-m-d 23:59:59", strtotime("next saturday", $dt)),
+                date("N", $dt) == 7
+                    ? date("Y-m-d 23:59:59", $dt)
+                    : date("Y-m-d 23:59:59", strtotime("next saturday", $dt)),
         ];
     }
 
