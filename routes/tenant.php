@@ -23,5 +23,10 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
         Route::get("/", function () {
             return "This is your multi-tenant application. The id of the current tenant is " . tenant("id");
         });
+
+        Route::post("/webhooks", [App\Http\Controllers\Tenant\Admin\WebhookController::class, "index"])->middleware(
+            "asaas.ip",
+            "webhook.auth"
+        );
     }
 );

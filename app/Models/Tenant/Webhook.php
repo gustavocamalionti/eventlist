@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Tenant;
 
-use App\Models\Buy;
+use App\Models\Tenant\Buy;
 use Illuminate\Database\Eloquent\Model;
 
 class Webhook extends Model

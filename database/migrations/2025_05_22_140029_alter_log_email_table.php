@@ -10,11 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create("vouchers", function (Blueprint $table) {
-            $table->id();
-            $table->string("name", 155)->comment("Nome do Ingresso");
-            $table->tinyInteger("active")->default(false)->comment("Indica se o Ingresso está ativo ou não");
-            $table->timestamps();
+        Schema::table("log_emails", function (Blueprint $table) {
+            $table
+                ->integer("buys_id")
+                ->nullable()
+                ->comment("Se existir venda, então vincularemos ela a esse disparo de email.")
+                ->after("users_id");
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists("vouchers");
+        //
     }
 };
