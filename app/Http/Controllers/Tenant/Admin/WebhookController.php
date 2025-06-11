@@ -76,10 +76,10 @@ class WebhookController extends Controller
 
             $payment = $body["payment"] ?? [];
             $mapEventToWebhookInfo = EnumStatusBuies::mapEventToWebhookInfo($event);
-            $shouldTreat = $mapEventToWebhookInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
+            $shouldTreatWebhook = $mapEventToWebhookInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
 
             Log::info("entrei5");
-            if ($shouldTreat) {
+            if ($shouldTreatWebhook) {
                 $jobClass = $mapEventToWebhookInfo->jobClass;
                 dispatch(new $jobClass($body));
             } else {

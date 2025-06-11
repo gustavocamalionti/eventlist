@@ -43,7 +43,7 @@ abstract class BaseWebhookJob implements ShouldQueue
     public $webhookId;
     public $mapEventToWebhookInfo;
     public $eventName;
-    public $shouldTreat;
+    public $shouldTreatWebhook;
 
     public function __construct($data)
     {
@@ -60,7 +60,7 @@ abstract class BaseWebhookJob implements ShouldQueue
         $this->gatewayCustomersId = $this->resolveGatewayCustomersId();
         $this->eventName = $this->resolveEventName();
         $this->mapEventToWebhookInfo = $this->resolvemapEventToWebhookInfo();
-        $this->shouldTreat = $this->resolveShouldTreat();
+        $this->shouldTreatWebhook = $this->resolveshouldTreatWebhook();
     }
 
     abstract public function sendMail();
@@ -76,7 +76,7 @@ abstract class BaseWebhookJob implements ShouldQueue
             $this->saveWebhook();
 
             // Validar se existe buys para ser processado, se há permissão para isso e se estamos no ambiente correto.
-            if ($this->shouldTreat && $this->buysId != null && $this->appEnv == env("APP_ENV")) {
+            if ($this->shouldTreatWebhook && $this->buysId != null && $this->appEnv == env("APP_ENV")) {
                 // $this->processWebhook();
                 // $this->sendMail();
                 // $this->extractInfoJson();
@@ -134,13 +134,13 @@ abstract class BaseWebhookJob implements ShouldQueue
     {
         $webhook = $this->crudWebhookService->save([
             "buys_id" =>
-                $this->appEnv != null && $this->buysId != null && $this->appEnv == env("APP_ENV")
-                    ? $this->buysId
-                    : null,
+            $this->appEnv != null && $this->buysId != null && $this->appEnv == env("APP_ENV")
+                ? $this->buysId
+                : null,
             "events_id" => $this->object->id,
             "event_type" => $this->eventName,
             "payload" => $this->data,
-            "should_treat" => $this->shouldTreat,
+            "should_treat" => $this->shouldTreatWebhook,
         ]);
         $this->webhookId = $webhook->id;
     }
@@ -256,9 +256,9 @@ abstract class BaseWebhookJob implements ShouldQueue
     /**
      * Verifica se deveriamos tratar o webhook.
      */
-    private function resolveShouldTreat()
+    private function resolveshouldTreatWebhook()
     {
-        $shouldTreat = $this->mapEventToWebhookInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
-        return $shouldTreat;
+        $shouldTreatWebhook = $this->mapEventToWebhookInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
+        return $shouldTreatWebhook;
     }
 }

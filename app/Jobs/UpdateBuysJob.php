@@ -52,9 +52,9 @@ class UpdateBuysJob implements ShouldQueue
                     $status = $payment->getStatus()->value;
                     $mapStatusToInternalInfo = EnumStatusBuies::mapStatusToInternalInfo($status);
 
-                    $shouldTreat = $mapStatusToInternalInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
+                    $shouldTreatWebhook = $mapStatusToInternalInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
 
-                    if ($shouldTreat) {
+                    if ($shouldTreatWebhook) {
                         // Atualizar informações da compra
                         $buy->status = $mapStatusToInternalInfo->buyStatus;
                         $buy->payment_details = $data;
