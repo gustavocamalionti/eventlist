@@ -1,0 +1,305 @@
+@import url("./base/variables.css");
+@import url("./base/tags.css");
+@import url("./base/header.css");
+@import url("./base/footer.css");
+
+/* General Config */
+.shadow-default {
+    border: solid 1px #e8e8e8 !important;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2) !important;
+}
+
+.section-padding {
+    padding-top: 35px !important;
+    padding-bottom: 35px !important;
+}
+
+/* Elements */
+.action-button {
+    background: var(--white-color) !important;
+    color: var(--primary-color) !important;
+    border-radius: 3px;
+    font-size: 1.1rem !important;
+    position: relative;
+    border: 0;
+    padding: 5px 5px 2px 10px;
+    vertical-align: middle !important;
+    font-family: var(--neoversesans-regular-font) !important;
+    letter-spacing: 5px;
+    text-transform: uppercase !important;
+}
+
+.action-button:hover {
+    color: var(--primary-color) !important;
+    font-size: 1.3rem !important;
+    background-color: var(--white-color) !important;
+}
+
+.btnAside {
+    font-size: 1.7rem !important;
+    background: var(--primary-color) !important;
+    color: var(--secondary-color) !important;
+    border: 5px solid var(--secondary-color) !important;
+}
+.btnAside:hover {
+    font-size: 1.6rem !important;
+    background: var(--primary-color) !important;
+    color: var(--tertiary-color) !important;
+    border: 5px solid var(--tertiary-color) !important;
+}
+
+/* Navbar */
+.navbar-toggler:focus {
+    border: none !important;
+}
+
+.navbar-toggler i {
+    transition: all 0.5s !important;
+    display: inline-block;
+    color: #fff !important;
+}
+
+.navbar-toggler .icon-rotate {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+
+.navbar-toggler {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.navbar-toggler .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease;
+}
+
+/* Forms */
+.modal-content {
+    background-color: var(--white-color) !important;
+    border: 2px solid var(--tertiary-color) !important;
+    border-radius: 0;
+    font-weight: bolder !important;
+    padding-left: 15px !important;
+    font-size: 0.8rem !important;
+    padding-right: 15px !important;
+
+    & h2 {
+        color: var(--primary-color) !important;
+        font-family: var(--neoversesans-bold-font);
+        letter-spacing: 1px !important;
+        font-size: 20px;
+    }
+
+    & h3 {
+        color: rgb(114, 114, 114) !important;
+        font-family: var(--neoversesans-bold-font);
+        letter-spacing: 1px !important;
+        font-size: 12px !important;
+    }
+
+    & p {
+        color: #ce0606 !important;
+        letter-spacing: 1px !important;
+        font-family: var(--neoversesans-light-font);
+        font-size: 12px !important;
+    }
+
+    & label {
+        color: rgb(114, 114, 114) !important;
+        letter-spacing: 1px !important;
+        font-family: var(--neoversesans-light-font);
+        font-size: 12px;
+    }
+
+    & thead tr th {
+        background-color: var(--white-color) !important;
+        color: rgb(114, 114, 114) !important;
+        letter-spacing: 1px !important;
+        font-family: var(--neoversesans-light-font);
+        font-size: 12px !important;
+    }
+
+    & button {
+        font-family: var(--neoversesans-regular-font);
+        letter-spacing: 2px !important;
+        color: var(--white-color) !important;
+        padding: 2px 10px 0px 10px;
+    }
+
+    & .btnCancel {
+        background-color: #ff0000 !important;
+        font-size: 12px;
+        padding: 6px 13px;
+    }
+
+    & .btnNext {
+        background-color: var(--primary-color) !important;
+        font-size: 12px;
+        padding: 6px 13px;
+    }
+
+    & .btnReturnBuy {
+        background-color: var(--tertiary-color) !important;
+        font-size: 12px;
+        padding: 6px 13px;
+    }
+
+    & .btnConfirm {
+        background-color: rgb(29, 126, 29) !important;
+        font-size: 12px;
+        padding: 6px 13px;
+    }
+
+    & .btnAddVoucher {
+        background-color: var(--primary-color) !important;
+        font-size: 12px;
+        padding: 6px 13px;
+    }
+
+    & #paymentPending {
+        font-family: var(--neoversesans-bold-font) !important;
+        letter-spacing: 1px !important;
+        font-size: 14px;
+        border: solid 1px #e8e8e8 !important;
+        box-shadow: 0 3px 10px rgba(51, 16, 16, 0.829) !important;
+        padding-bottom: 0 !important;
+    }
+
+    & .divTable {
+        /* border: 1px solid var(--tertiary-color) !important; */
+
+        & h2 {
+            font-family: var(--neoversesans-regular-font) !important;
+        }
+
+        & td {
+            font-family: var(--neoversesans-regular-font) !important;
+            letter-spacing: 1px !important;
+            font-size: 14px !important;
+        }
+
+        & .btnDeleteVoucher {
+            color: #e74c3c !important;
+        }
+
+        & .fa-info-circle {
+            color: var(--tertiary-color) !important;
+        }
+    }
+
+    & .form-check-input {
+        background-color: #d1d1d149 !important;
+        border-color: var(--primary-color) !important;
+        border-width: 2px !important;
+    }
+
+    & .form-check-input:checked {
+        background-color: var(--primary-color) !important;
+        border-width: 5px !important;
+        border-color: var(--primary-color) !important;
+    }
+}
+
+.modal-footer {
+    padding-top: 0 !important;
+    justify-content: center !important;
+}
+
+.form-control {
+    background-color: #e6e6e6 !important;
+    border: 2px solid var(--tertiary-color) !important;
+    font-family: var(--neoversesans-regular-font) !important;
+    border-radius: 7px !important;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.select2-container--bootstrap-5 .select2-selection {
+    background-color: #e6e6e6 !important;
+    border: 2px solid var(--tertiary-color) !important;
+    border-radius: 7px !important;
+    font-size: 12px !important;
+    font-family: var(--neoversesans-regular-font) !important;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-search .select2-search__field,
+.select2-container--bootstrap-5 .select2-dropdown .select2-search {
+    background-color: var(--white-color) !important;
+    border: 2px solid var(--tertiary-color) !important;
+    font-size: 12px;
+    font-family: var(--neoversesans-regular-font) !important;
+    letter-spacing: 2px !important;
+}
+
+.select2-container--bootstrap-5
+    .select2-dropdown
+    .select2-results__options
+    .select2-results__option.select2-results__option--selected {
+    background-color: var(--primary-color) !important;
+    letter-spacing: 2px !important;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option {
+    font-family: var(--neoversesans-regular-font) !important;
+    letter-spacing: 1px !important;
+    font-size: 14px !important;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options:not(.select2-results__options--nested) {
+    border: 2px solid var(--tertiary-color) !important;
+}
+
+.option-custom,
+.select2-selection__rendered {
+    font-weight: bolder !important;
+    font-family: var(--neoversesans-regular-font) !important;
+    text-align: start !important;
+}
+
+.error-text {
+    color: rgb(181, 2, 2);
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.divClientFeedback {
+    margin-top: 60px;
+    background-color: var(--white-color) !important;
+    border: 2px solid var(--tertiary-color) !important;
+    font-family: var(--neoversesans-regular-font) !important;
+    border-radius: 0px !important;
+    line-height: 16px !important;
+    padding: 60px;
+
+    & h1 {
+        color: var(--primary-color) !important;
+        font-size: 32px;
+    }
+
+    & p {
+        color: var(--primary-color) !important;
+        font-size: 22px;
+    }
+
+    & .btnHome {
+        background-color: var(--primary-color) !important;
+        color: var(--white-color) !important;
+        font-size: 17px;
+    }
+    & .btnHotel {
+        background-color: var(--tertiary-color) !important;
+        color: var(--primary-color) !important;
+        font-size: 17px;
+    }
+}
+
+.carousel-item {
+    transition: transform 0.8s ease-in-out !important;
+}

@@ -1,0 +1,68 @@
+.popup_custom {
+    border-top: 7px solid #3498db !important;
+    font-family: var(--neoversesans-light-font) !important;
+    letter-spacing: 2px !important;
+
+    & .swal2-title {
+        color: #3498db !important;
+        text-transform: uppercase;
+    }
+}
+
+.popup_custom_success {
+    border-top: 7px solid #2ecc71 !important;
+    letter-spacing: 2px !important;
+
+    & .swal2-title {
+        color: #2ecc71 !important;
+        text-transform: uppercase;
+    }
+}
+
+.popup_custom_warning {
+    border-top: 7px solid #fd7e14 !important;
+    letter-spacing: 2px !important;
+
+    & .swal2-title {
+        color: #fd7e14 !important;
+        text-transform: uppercase;
+    }
+}
+
+.popup_custom_error {
+    border-top: 7px solid #e74c3c !important;
+    letter-spacing: 2px !important;
+    & .swal2-title {
+        color: #e74c3c !important;
+        text-transform: uppercase;
+    }
+}
+
+.swal2-popup {
+    font-size: 0.9rem !important;
+    letter-spacing: 2px !important;
+}
+
+.swal2-confirm {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    font-family: var(--neoversesans-bold-font) !important;
+    background-color: var(--primary-color) !important;
+    font-size: 17px;
+    font-family: var(--neoversesans-regular-font);
+    letter-spacing: 2px !important;
+    color: var(--white-color) !important;
+    padding: 2px 10px 0px 10px;
+}
+
+.swal2-cancel,
+.swal2-deny {
+    font-size: 17px;
+    font-family: var(--neoversesans-bold-font) !important;
+    background-color: #e74c3c !important;
+    color: #ffffff !important;
+    font-family: var(--neoversesans-regular-font);
+    letter-spacing: 2px !important;
+    color: var(--white-color) !important;
+    padding: 2px 10px 0px 10px;
+}

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Link;
-use App\Models\User;
+use App\Models\Master\User;
 use App\Models\Store;
 use App\Models\Banner;
 use App\Models\Parameter;

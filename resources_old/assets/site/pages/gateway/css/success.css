@@ -1,0 +1,82 @@
+h1 {
+    font-size: 3rem;
+    font-family: var(--neoversesans-medium-font) !important;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-family: var(--neoversesans-medium-font) !important;
+}
+
+h3 {
+    font-size: 2rem;
+    font-family: var(--neoversesans-medium-font) !important;
+}
+
+h4 {
+    font-size: 2rem;
+    font-family: var(--neoversesans-medium-font) !important;
+}
+
+h5 {
+    font-size: 1.5rem;
+    font-family: var(--neoversesans-medium-font) !important;
+}
+
+h6 {
+    font-size: 1.2rem;
+    font-family: var(--neoversesans-medium-font) !important;
+}
+
+p {
+    font-size: 1rem !important;
+    color: var(--primary-color) !important;
+}
+
+.contentCheckout {
+    font-size: 16px !important;
+    & p {
+        color: #646464 !important;
+    }
+
+    & th {
+        color: #646464 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-responsive table thead {
+        display: none;
+    }
+
+    .table-responsive table,
+    .table-responsive tbody,
+    .table-responsive tr,
+    .table-responsive td {
+        display: block;
+        width: 100%;
+        font-size: 11px !important;
+    }
+
+    .table-responsive tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        background: #f9f9f9;
+    }
+
+    .table-responsive td {
+        text-align: right;
+        padding: 8px 16px;
+        position: relative;
+    }
+
+    .table-responsive td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 16px;
+        font-weight: bold;
+        text-align: left;
+    }
+}

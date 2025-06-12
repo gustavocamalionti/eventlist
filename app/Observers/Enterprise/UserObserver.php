@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Observers\Enterprise;
+namespace App\Observers\Master;
 
 use App\Libs\ViewsModules;
 use App\Observers\BaseObserver;

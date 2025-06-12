@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "NeoverseSansLight";
+    src: url("../NeoverseSans-Light.otf");
+}
+
+@font-face {
+    font-family: "NeoverseSansRegular";
+    src: url("../NeoverseSans-Regular.otf");
+}
+
+@font-face {
+    font-family: "NeoverseSansMedium";
+    src: url("../NeoverseSans-Medium.otf");
+}
+
+@font-face {
+    font-family: "NeoverseSansBold";
+    src: url("../NeoverseSans-Bold.otf");
+}

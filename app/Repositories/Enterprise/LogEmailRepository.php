@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Enterprise;
+namespace App\Repositories\Master;
 
 use App\Models\Tenant\LogEmail;
 use App\Repositories\BaseRepository;
