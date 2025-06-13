@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Systems\Tenant;
 
-use App\Models\Tenant\Parameter;
 use App\Repositories\BaseRepository;
+use App\Models\Systems\Master\Parameter;
 
 class ParameterRepository extends BaseRepository
 {

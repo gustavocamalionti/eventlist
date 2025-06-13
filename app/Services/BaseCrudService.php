@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Bases;
+namespace App\Services;
 
-use App\Libs\Enums\EnumOrderBy;
+use App\Services\BaseRulesService;
 
 class BaseCrudService extends BaseRulesService
 {

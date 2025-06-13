@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Log;
 use App\Jobs\Webhooks\HandleGenericJob;
 use Illuminate\Database\QueryException;
 use App\Http\Controllers\Common\Controller;
-use App\Services\Crud\CrudParameterService;
+use App\Services\Systems\Tenant\Crud\CrudParameterService;
 #endregion
 
 #region Import Models
@@ -33,7 +33,7 @@ use App\Services\Crud\CrudParameterService;
 /**
  * Controller responsible for managing the store page of the site.
  */
-class WebhookController extends Controller
+class TenantAdminWebhookController extends Controller
 {
     #region variables
     protected $crudParameterService;
@@ -61,31 +61,31 @@ class WebhookController extends Controller
     {
         #region content
         try {
-            Log::info("entrei1");
+
             $body = $request->all();
-            Log::info("entrei2");
+
 
             $event = $body["event"] ?? null;
-            Log::info("entrei3");
+
 
             if (!$event) {
                 Log::warning("Evento ausente no payload recebido");
                 return response()->json(["message" => "Evento ausente"], 400);
             }
-            Log::info("entrei4");
+
 
             $payment = $body["payment"] ?? [];
             $mapEventToWebhookInfo = EnumStatusBuies::mapEventToWebhookInfo($event);
             $shouldTreatWebhook = $mapEventToWebhookInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
 
-            Log::info("entrei5");
+
             if ($shouldTreatWebhook) {
                 $jobClass = $mapEventToWebhookInfo->jobClass;
                 dispatch(new $jobClass($body));
             } else {
                 dispatch(new HandleGenericJob($body));
             }
-            Log::info("entrei6");
+
 
             return response()->json(["message" => "Webhook received successfully"], 200);
         } catch (QueryException $e) {

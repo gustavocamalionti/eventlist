@@ -1,17 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Systems\Master\Modules\Auth\PasswordController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\NewPasswordController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\VerifyEmailController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\RegisteredUserController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Systems\Master\Modules\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Common\Auth\PasswordController;
+use App\Http\Controllers\Common\Auth\NewPasswordController;
+use App\Http\Controllers\Common\Auth\VerifyEmailController;
+use App\Http\Controllers\Common\Auth\RegisteredUserController;
+use App\Http\Controllers\Common\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Common\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Common\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Common\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Common\Auth\EmailVerificationNotificationController;
 
 Route::middleware("guest")->group(function () {
+
     Route::get("register", [RegisteredUserController::class, "create"])->name("register");
 
     Route::post("register", [RegisteredUserController::class, "store"]);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Bases;
+namespace App\Services;
 
 use DateTime;
 use Carbon\Carbon;

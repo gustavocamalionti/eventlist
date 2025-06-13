@@ -3,7 +3,7 @@
 namespace App\Services\Common\Rules;
 
 use Carbon\Carbon;
-use App\Services\Bases\BaseRulesService;
+use App\Services\BaseRulesService;
 
 class RulesProductIsActiveService extends BaseRulesService
 {
