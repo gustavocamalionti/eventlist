@@ -3,7 +3,7 @@
 namespace App\Services\Crud;
 
 use App\Services\Bases\BaseCrudService;
-use App\Repositories\Enterprise\LogEmailRepository;
+use App\Repositories\Master\LogEmailRepository;
 
 class CrudLogEmailService extends BaseCrudService
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Enterprise;
+namespace App\Repositories\Master;
 
-use App\Models\Enterprise\LogError;
+use App\Models\Master\LogError;
 use App\Repositories\BaseRepository;
 
 class LogErrorRepository extends BaseRepository

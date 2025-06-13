@@ -1,0 +1,67 @@
+#searchStores {
+    & h2 {
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 50px;
+        & span {
+            font-size: 70px;
+            font-style: italic;
+            font-weight: 800;
+        }
+    }
+
+    & p {
+        color: #f15a40 !important;
+        font-size: 16px;
+    }
+}
+
+#resultStores {
+    background-color: #faf7ed;
+    & h3 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 50px;
+    }
+
+    & p {
+        color: #f15a40 !important;
+        font-size: 14px;
+    }
+
+    & span {
+        font-size: 19px;
+        font-style: italic;
+        font-weight: 800;
+    }
+}
+
+@media (max-width: 710px) {
+    #searchStores {
+        & h2 {
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 37px;
+            & span {
+                font-size: 62px;
+                font-style: italic;
+                font-weight: 800;
+            }
+        }
+    }
+}
+
+@media (min-width: 710px) and (max-width: 1200px) {
+    #searchStores {
+        & h2 {
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 37px;
+            & span {
+                font-size: 45px;
+                font-style: italic;
+                font-weight: 800;
+            }
+        }
+    }
+}

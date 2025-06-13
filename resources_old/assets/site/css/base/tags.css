@@ -1,0 +1,81 @@
+body {
+    font-family: var(--neoversesans-light-font);
+    font-size: 1.3rem;
+    background-color: var(--primary-color) !important;
+    overflow-x: hidden !important;
+}
+
+html {
+    overflow-x: hidden !important;
+}
+
+section {
+    padding-top: 45px !important;
+    padding-bottom: 45px !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    width: 100%;
+    position: relative;
+    /* outline: 2px solid black; */
+}
+
+h1 {
+    font-family: var(--neoversesans-bold-font);
+    font-size: 3rem;
+    line-height: 1 !important;
+    color: var(--white-color) !important;
+}
+
+h2 {
+    color: var(--white-color) !important;
+    font-size: 1.9rem;
+    font-family: var(--neoversesans-regular-font);
+    letter-spacing: 5px !important;
+}
+
+h3 {
+    color: var(--white-color) !important;
+    font-size: 1.55rem;
+    font-family: var(--neoversesans-regular-font);
+    letter-spacing: 2px !important;
+}
+
+p {
+    font-family: SoraLight !important;
+    color: var(--white-color) !important;
+    letter-spacing: 2px !important;
+    font-size: 1.1rem;
+    line-height: 23px;
+}
+
+hr {
+    border: 1px solid white;
+    opacity: 100;
+}
+
+input {
+    font-family: var(--neoversesans-regular-font) !important;
+    font-weight: 700 !important;
+}
+
+fieldset {
+    border: 2px solid var(--blue-bolder-color) !important;
+}
+
+fieldset strong {
+    font-size: 1.3rem !important;
+}
+
+::placeholder {
+    color: black !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    opacity: 1 !important; /* Firefox */
+}
+
+::-ms-input-placeholder {
+    /* Edge 12 -18 */
+    color: black !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}

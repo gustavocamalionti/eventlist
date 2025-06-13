@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Link;
-use App\Models\User;
-use App\Models\LogEmail;
+use App\Models\Master\User;
 use App\Libs\Enums\EnumStatus;
+use App\Models\Common\LogEmail;
 use App\Libs\Enums\EnumLinkFixed;
-use App\Models\Tenant\CustomColor;
+use App\Models\Common\CustomColor;
 use App\Validator\CustomValidator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Queue;

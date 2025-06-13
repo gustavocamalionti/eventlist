@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Tenant;
 
-use App\Models\User;
+use App\Models\Master\User;
 
 class UserRepository extends BaseRepository
 {

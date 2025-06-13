@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "rockebycd";
+    src: url("../rockebycd-bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "rockebycd";
+    src: url("../rockebycd-regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "rockebycd";
+    src: url("../rockebycd-black.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "bwSurco";
+    src: url("../BwSurco-Regular.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "bwSurco";
+    src: url("../BwSurco-Medium.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "bwSurco";
+    src: url("../BwSurco-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
