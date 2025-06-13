@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Mail\Release;
+namespace App\Mail\Systems\Master\Modules\Auth;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Config;
 
-class ReleaseMail extends Mailable
+class SuccessVerifyEmailMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -29,9 +28,9 @@ class ReleaseMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(env("APP_NAME") . " - Notas de Atualização " . Config::get("app.version"))
-            ->from("suporte@halipar.com.br", "Halipar | Desenvolvimento")
-            ->view("emails.intranet.releases-" . $this->data["version"], [
+        return $this->subject(env("APP_NAME") . " | Email Verificado com Sucesso!")
+            ->from(env("MAIL_FROM_ADDRESS", null))
+            ->view("emails.content.auth.success_verify_email", [
                 "data" => $this->data,
             ]);
     }

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Mail\Auth;
+namespace App\Mail\Systems\Master\General;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Config;
 
-class SuccessResetPasswordMail extends Mailable
+class ReleaseMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -28,9 +29,9 @@ class SuccessResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(env("APP_NAME") . " | Senha Alterada com Sucesso!")
-            ->from(env("MAIL_FROM_ADDRESS", null))
-            ->view("emails.content.auth.success_reset_password", [
+        return $this->subject(env("APP_NAME") . " - Notas de Atualização " . Config::get("app.version"))
+            ->from("suporte@amongtech.com.br", "AmongTech | Desenvolvimento")
+            ->view("emails.general.releases-" . $this->data["version"], [
                 "data" => $this->data,
             ]);
     }

@@ -38,7 +38,7 @@ class CreateParametersTable extends Migration
             "page_title" => "Conexão com o Futuro",
             "vouchers_price" => 300,
             "vouchers_limit" => 999,
-            "email_contact" => "suporte@halipar.com.br",
+            "email_contact" => "suporte@amongtech.com.br",
             "gateway_id" => 2,
             "apicep" => 0,
         ]);

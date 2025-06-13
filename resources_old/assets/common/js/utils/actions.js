@@ -220,7 +220,7 @@ export function Filter(dataTable, callMethods, routeName = null) {
         jQuery.ajax({
             method: "post",
             url: routeName + "-filter",
-            data: $("#haliparForm").serialize(),
+            data: $("#amongtechForm").serialize(),
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },

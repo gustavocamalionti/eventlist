@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Mail\Auth;
+namespace App\Mail\Systems\Tenant\Modules\Admin;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SuccessVerifyEmailMail extends Mailable
+class NewConfirmedMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -28,10 +28,8 @@ class SuccessVerifyEmailMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(env("APP_NAME") . " | Email Verificado com Sucesso!")
-            ->from(env("MAIL_FROM_ADDRESS", null))
-            ->view("emails.content.auth.success_verify_email", [
-                "data" => $this->data,
-            ]);
+        return $this->subject(env("APP_NAME") . " | Novo Participante")
+            ->from(env("MAIL_FROM_ADDRESS", null), "AmongTech")
+            ->view("emails.content.payment.new_confirmed", ["data" => $this->data]);
     }
 }

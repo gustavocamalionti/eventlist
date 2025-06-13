@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Mail\Payment;
+namespace App\Mail\Systems\Tenant\General;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Config;
 
-class SuccessVouchersMail extends Mailable
+class ReleaseMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -28,8 +29,10 @@ class SuccessVouchersMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(env("APP_NAME") . " | Ingressos Confirmados")
-            ->from(env("MAIL_FROM_ADDRESS", null), "Halipar")
-            ->view("emails.content.payment.vouchers_success", ["data" => $this->data]);
+        return $this->subject(env("APP_NAME") . " - Notas de Atualização " . Config::get("app.version"))
+            ->from("suporte@amongtech.com.br", "AmongTech | Desenvolvimento")
+            ->view("emails.general.releases-" . $this->data["version"], [
+                "data" => $this->data,
+            ]);
     }
 }

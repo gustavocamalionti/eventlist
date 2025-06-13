@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\Forms;
+namespace App\Mail\Systems\Tenant\Modules\Admin;
 
 use App\Models\FormSubject;
 use App\Services\Crud\CrudFormSubjectService;

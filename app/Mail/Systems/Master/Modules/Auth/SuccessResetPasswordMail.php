@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Mail\Auth;
+namespace App\Mail\Systems\Master\Modules\Auth;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendVerifyEmailMail extends Mailable
+class SuccessResetPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $data;
 
     /**
@@ -29,14 +28,9 @@ class SendVerifyEmailMail extends Mailable
      */
     public function build()
     {
-        $verificationUrl = route("verification.verify", [
-            "id" => $this->data["user_id"],
-            "hash" => sha1($this->data["email"]),
-        ]);
-        $this->data["verificationUrl"] = $verificationUrl;
-        return $this->subject(env("APP_NAME") . " | Confirme seu e-mail")
+        return $this->subject(env("APP_NAME") . " | Senha Alterada com Sucesso!")
             ->from(env("MAIL_FROM_ADDRESS", null))
-            ->view("emails.content.auth.verify_email", [
+            ->view("emails.content.auth.success_reset_password", [
                 "data" => $this->data,
             ]);
     }

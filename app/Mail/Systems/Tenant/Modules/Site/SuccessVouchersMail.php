@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Mail\Auth;
+namespace App\Mail\Systems\Tenant\Modules\Site;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendResetPasswordMail extends Mailable
+class SuccessVouchersMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -28,11 +28,8 @@ class SendResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(env("APP_NAME") . " | Recuperação de Senha")
-            ->from(env("MAIL_FROM_ADDRESS", null))
-            ->view("emails.content.auth.reset_password", [
-                "data" => $this->data,
-                "token" => $this->data["token"],
-            ]);
+        return $this->subject(env("APP_NAME") . " | Ingressos Confirmados")
+            ->from(env("MAIL_FROM_ADDRESS", null), "AmongTech")
+            ->view("emails.content.payment.vouchers_success", ["data" => $this->data]);
     }
 }
