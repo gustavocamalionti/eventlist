@@ -61,23 +61,18 @@ class TenantAdminWebhookController extends Controller
     {
         #region content
         try {
-
             $body = $request->all();
 
-
             $event = $body["event"] ?? null;
-
 
             if (!$event) {
                 Log::warning("Evento ausente no payload recebido");
                 return response()->json(["message" => "Evento ausente"], 400);
             }
 
-
             $payment = $body["payment"] ?? [];
             $mapEventToWebhookInfo = EnumStatusBuies::mapEventToWebhookInfo($event);
             $shouldTreatWebhook = $mapEventToWebhookInfo != null ? EnumStatus::ACTIVE : EnumStatus::INACTIVE;
-
 
             if ($shouldTreatWebhook) {
                 $jobClass = $mapEventToWebhookInfo->jobClass;
@@ -85,7 +80,6 @@ class TenantAdminWebhookController extends Controller
             } else {
                 dispatch(new HandleGenericJob($body));
             }
-
 
             return response()->json(["message" => "Webhook received successfully"], 200);
         } catch (QueryException $e) {

@@ -23,24 +23,28 @@ use App\Http\Controllers\Systems\Tenant\Modules\Admin\TenantAdminWebhookControll
 
 Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(
     function () {
-
         Route::name("tenant.auth.")->group(function () {
             require __DIR__ . "../../../../common/auth/auth.php";
         });
 
         // Route::name("tenant.admin.*")->prefix("admin")->middleware(["tenant.auth", "tenant.verified"])->group(function () {
-        Route::name("tenant.admin.")->prefix("admin")->middleware(["auth", "verified"])->group(function () {
-            // require __DIR__ . "../../../../common/admin/profile.php";
-            Route::controller(TenantAdminController::class)->group(function () {
-                Route::get("/home", "index");
-                Route::get("/dashboard", "index");
-                Route::get("/", "index")->name("dashboard");
-            });
+        Route::name("tenant.admin.")
+            ->prefix("admin")
+            ->middleware(["auth", "verified"])
+            ->group(function () {
+                // require __DIR__ . "../../../../common/admin/profile.php";
+                Route::controller(TenantAdminController::class)->group(function () {
+                    Route::get("/home", "index");
+                    Route::get("/dashboard", "index");
+                    Route::get("/", "index")->name("dashboard");
+                });
 
-            Route::controller(TenantAdminWebhookController::class)->group(function () {
-                Route::post("/webhooks", "index")->middleware(["asaas.ip", "webhook.auth"])->name("webhook");
+                Route::controller(TenantAdminWebhookController::class)->group(function () {
+                    Route::post("/webhooks", "index")
+                        ->middleware(["asaas.ip", "webhook.auth"])
+                        ->name("webhook");
+                });
             });
-        });
 
         Route::name("tenant.site.")->group(function () {
             Route::controller(TenantSiteController::class)->group(function () {

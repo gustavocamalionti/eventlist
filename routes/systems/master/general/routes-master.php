@@ -22,14 +22,17 @@ Route::name("master.auth.")->group(function () {
 Route::name("master.general.")->group(function () {});
 
 // Route::name("master.admin.*")->prefix("admin")->middleware(["master.auth", "master.verified"])->group(function () {
-Route::name("master.admin.")->prefix("admin")->middleware(["auth", "verified"])->group(function () {
-    // require __DIR__ . "../../../../common/admin/profile.php";
-    Route::controller(MasterAdminController::class)->group(function () {
-        Route::get("/home", "index");
-        Route::get("/dashboard", "index");
-        Route::get("/", "index")->name("dashboard");
+Route::name("master.admin.")
+    ->prefix("admin")
+    ->middleware(["auth", "verified"])
+    ->group(function () {
+        // require __DIR__ . "../../../../common/admin/profile.php";
+        Route::controller(MasterAdminController::class)->group(function () {
+            Route::get("/home", "index");
+            Route::get("/dashboard", "index");
+            Route::get("/", "index")->name("dashboard");
+        });
     });
-});
 
 Route::name("master.site.")->group(function () {
     Route::controller(MasterSiteController::class)->group(function () {
