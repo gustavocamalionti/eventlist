@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Systems\Master\Modules\Auth;
+namespace App\Http\Controllers\Common\Auth;
 
 use Inertia\Inertia;
 use Inertia\Response;
@@ -16,6 +16,7 @@ class EmailVerificationPromptController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse|Response
     {
+        dd("oi");
         return $request->user()->hasVerifiedEmail()
             ? redirect()->intended(RouteServiceProvider::HOME)
             : Inertia::render("Auth/VerifyEmail", ["status" => session("status")]);

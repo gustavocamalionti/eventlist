@@ -37,7 +37,10 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         foreach ($this->centralDomains() as $domain) {
-            Route::middleware("web")->domain($domain)->namespace($this->namespace)->group(base_path("routes/web.php"));
+            Route::middleware("web")
+                ->domain($domain)
+                ->namespace($this->namespace)
+                ->group(base_path("routes/systems/master/general/routes-master.php"));
         }
     }
 
@@ -48,7 +51,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->domain($domain)
                 ->middleware("api")
                 ->namespace($this->namespace)
-                ->group(base_path("routes/api.php"));
+                ->group(base_path("routes/common/api.php"));
         }
     }
 

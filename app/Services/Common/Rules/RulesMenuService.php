@@ -2,6 +2,6 @@
 
 namespace App\Services\Common\Rules;
 
-use App\Services\Bases\BaseRulesService;
+use App\Services\BaseRulesService;
 
 class RulesMenuService extends BaseRulesService {}
