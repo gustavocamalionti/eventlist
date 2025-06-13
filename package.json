@@ -2,7 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "npm run build:admin && npm run build:site",
+        "build": "npm run build:react && npm run build:legacy",
         "dev:legacy": "vite --config vite.legacy.config.js",
         "dev:react": "vite --config vite.react.config.js",
         "build:legacy": "vite build --config vite.legacy.config.js",
