@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Tenant\Parameter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Systems\Tenant\Parameter;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 

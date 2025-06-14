@@ -2,9 +2,9 @@
 
 use App\Libs\Enums\EnumStatus;
 use Illuminate\Support\Facades\DB;
-use App\Models\Tenant\MethodPayment;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use App\Models\Systems\Tenant\MethodPayment;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration {
