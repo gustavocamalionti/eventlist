@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+
 
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -48,9 +48,9 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
 
         Route::name("tenant.site.")->group(function () {
             Route::controller(TenantSiteController::class)->group(function () {
-                Route::get("/", "index")->name("dashboard");
                 Route::get("/home", "index");
                 Route::get("/dashboard", "index");
+                Route::get("/", "index")->name("dashboard");
             });
         });
     }
