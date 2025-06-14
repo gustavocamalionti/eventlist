@@ -23,9 +23,9 @@ use App\Http\Controllers\Systems\Tenant\Modules\Admin\TenantAdminWebhookControll
 
 Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(
     function () {
-        Route::name("tenant.auth.")->group(function () {
-            require __DIR__ . "../../../../common/auth/auth.php";
-        });
+        // Route::name("tenant.auth.")->group(function () {
+        //     require __DIR__ . "../../../../common/auth/auth.php";
+        // });
 
         // Route::name("tenant.admin.*")->prefix("admin")->middleware(["tenant.auth", "tenant.verified"])->group(function () {
         Route::name("tenant.admin.")

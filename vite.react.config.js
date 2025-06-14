@@ -5,7 +5,7 @@ import path from "path";
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["resources/views/react/app.jsx"],
+            input: ["resources/views/react/App.jsx"],
             refresh: true,
         }),
         react(),

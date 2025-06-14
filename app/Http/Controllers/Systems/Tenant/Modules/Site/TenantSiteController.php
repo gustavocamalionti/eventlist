@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Systems\Tenant\Modules\Site;
 
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 use App\Http\Controllers\Common\Controller;
 
 class TenantSiteController extends Controller
@@ -10,6 +13,9 @@ class TenantSiteController extends Controller
 
     public function index()
     {
-        dd("TenantSiteController");
+        $text = "Hello World! Estamos em Tenant Site.";
+        return Inertia::render("systems/tenant/modules/site/pages/Welcome", [
+            "text" => $text
+        ]);
     }
 }
