@@ -12,7 +12,9 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "resources/views/react"),
+            "@master": path.resolve(__dirname, "resources/views/react/systems/master"),
+            "@tenant": path.resolve(__dirname, "resources/views/react/systems/tenant"),
+            "@common": path.resolve(__dirname, "resources/views/react/common"),
         },
     },
 });

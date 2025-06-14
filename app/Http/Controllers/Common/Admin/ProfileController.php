@@ -19,7 +19,8 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render("system_master/module_admin/pages/profile/Edit", [
+
+        return Inertia::render("@admin/pages/profile/Edit", [
             "mustVerifyEmail" => $request->user() instanceof MustVerifyEmail,
             "status" => session("status"),
         ]);
