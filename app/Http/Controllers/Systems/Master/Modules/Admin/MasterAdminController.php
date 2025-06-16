@@ -13,9 +13,8 @@ class MasterAdminController extends Controller
 
     public function index()
     {
-        $text = "Hello World! Estamos em Master Site.";
-        return Inertia::render("systems/master/modules/admin/pages/Welcome", [
-            "text" => $text
-        ]);
+        if (tenancy()->tenant == null) {
+            return Inertia::render("systems/master/modules/admin/pages/Dashboard");
+        };
     }
 }

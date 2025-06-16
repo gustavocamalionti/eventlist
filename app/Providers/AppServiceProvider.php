@@ -2,16 +2,12 @@
 
 namespace App\Providers;
 
-use App\Models\Link;
-use App\Models\Master\User;
-use App\Libs\Enums\EnumStatus;
+
 use App\Models\Common\LogEmail;
-use App\Libs\Enums\EnumLinkFixed;
 use App\Models\Common\CustomColor;
 use App\Validator\CustomValidator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Queue;
-use App\Services\Crud\CrudLinkService;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Queue\Events\JobProcessed;
@@ -34,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         // \URL::forceScheme("https");
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new CustomValidator($translator, $data, $rules, $messages);
@@ -70,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 "customizations" => [
                     "styles" =>
-                        "
+                    "
                     <style>
                         :root{
                             " .

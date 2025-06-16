@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
-use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Controllers\Common\Controller;
+use App\Http\Requests\Systems\Master\Modules\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,7 +19,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render("system_master/module_auth/pages/Login", [
+        $pathRender = "systems/master/modules/auth/pages/Login";
+        if (tenancy()->initialized) {
+            $pathRender = "systems/tenant/modules/auth/pages/Login";
+        }
+
+        return Inertia::render($pathRender, [
             "canResetPassword" => Route::has("password.request"),
             "status" => session("status"),
         ]);
