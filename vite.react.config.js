@@ -5,14 +5,16 @@ import path from "path";
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["resources/views/react/app.jsx"],
+            input: ["resources/views/react/App.jsx"],
             refresh: true,
         }),
         react(),
     ],
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "resources/views/react"),
+            "@master": path.resolve(__dirname, "resources/views/react/systems/master"),
+            "@tenant": path.resolve(__dirname, "resources/views/react/systems/tenant"),
+            "@common": path.resolve(__dirname, "resources/views/react/common"),
         },
     },
 });

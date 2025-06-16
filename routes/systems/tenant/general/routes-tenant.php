@@ -1,10 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\Systems\Master\LoginToken;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+use App\Http\Controllers\Common\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Systems\Tenant\Modules\Site\TenantSiteController;
 use App\Http\Controllers\Systems\Tenant\Modules\Admin\TenantAdminController;
 use App\Http\Controllers\Systems\Tenant\Modules\Admin\TenantAdminWebhookController;
@@ -48,9 +50,9 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
 
         Route::name("tenant.site.")->group(function () {
             Route::controller(TenantSiteController::class)->group(function () {
-                Route::get("/", "index")->name("dashboard");
                 Route::get("/home", "index");
                 Route::get("/dashboard", "index");
+                Route::get("/", "index")->name("dashboard");
             });
         });
     }

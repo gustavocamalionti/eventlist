@@ -12,7 +12,7 @@ class HandleInertiaRequests extends Middleware
      *
      * @var string
      */
-    protected $rootView = "react.app";
+    protected $rootView = "react.App";
 
     /**
      * Determine the current asset version.

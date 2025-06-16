@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
-use App\Models\Master\Parameter;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Systems\Master\Parameter;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 

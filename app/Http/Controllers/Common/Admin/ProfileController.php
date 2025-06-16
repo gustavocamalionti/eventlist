@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Common\Controller;
-use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Requests\Systems\Master\Modules\Admin\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -19,7 +19,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render("system_master/module_admin/pages/profile/Edit", [
+        return Inertia::render("systems/master/modules/admin/pages/profile/Edit", [
             "mustVerifyEmail" => $request->user() instanceof MustVerifyEmail,
             "status" => session("status"),
         ]);

@@ -1,8 +1,8 @@
-@extends("site.layouts.master_site")
+@extends("legacy.common.layouts.master_site")
 
 @section("content")
     @include(
-        "site.layouts._content_errors",
+        "legacy.common.layouts._content_errors",
         [
             "title" => "500 - Ocorreu Alguma Falha",
             "icon" => "fas fa-bug",

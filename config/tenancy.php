@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
+use App\Models\Systems\Master\Tenant;
 use Stancl\Tenancy\Database\Models\Domain;
 
 return [
-    "tenant_model" => App\Models\Systems\Master\Tenant::class,
+    "tenant_model" => Tenant::class,
     "id_generator" => Stancl\Tenancy\UUIDGenerator::class,
 
     "domain_model" => Domain::class,

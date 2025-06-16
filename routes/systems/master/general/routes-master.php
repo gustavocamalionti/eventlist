@@ -26,7 +26,7 @@ Route::name("master.admin.")
     ->prefix("admin")
     ->middleware(["auth", "verified"])
     ->group(function () {
-        // require __DIR__ . "../../../../common/admin/profile.php";
+        require __DIR__ . "../../../../common/admin/profile.php";
         Route::controller(MasterAdminController::class)->group(function () {
             Route::get("/home", "index");
             Route::get("/dashboard", "index");

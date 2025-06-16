@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Common\Auth;
 
 use Inertia\Inertia;
 use Inertia\Response;
-use App\Models\Master\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use App\Models\Systems\Master\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render("system_master/module_auth/pages/Register");
+        return Inertia::render("systems/master/modules/auth/pages/Register");
     }
 
     /**
