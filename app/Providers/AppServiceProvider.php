@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-
 use App\Models\Common\LogEmail;
 use App\Models\Common\CustomColor;
 use App\Validator\CustomValidator;
@@ -30,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         // \URL::forceScheme("https");
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new CustomValidator($translator, $data, $rules, $messages);
@@ -67,7 +65,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 "customizations" => [
                     "styles" =>
-                    "
+                        "
                     <style>
                         :root{
                             " .

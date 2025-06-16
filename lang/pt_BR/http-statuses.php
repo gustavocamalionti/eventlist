@@ -1,7 +1,5 @@
 <?php
 
-
-
 return [
     "0" => "Erro Desconhecido",
     "100" => "Continuar",

@@ -15,7 +15,7 @@ class MasterSiteController extends Controller
     {
         $text = "Hello World! Estamos em Master Site.";
         return Inertia::render("systems/master/modules/site/pages/Welcome", [
-            "text" => $text
+            "text" => $text,
         ]);
     }
 }

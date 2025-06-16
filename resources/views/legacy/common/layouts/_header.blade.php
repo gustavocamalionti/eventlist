@@ -1,13 +1,17 @@
 <nav class="navbar navbar-expand-xl navbar-light shadow-sm">
     <div class="container-fluid me-5 ms-5 pt-2 pb-2">
         <!-- Logo com tamanho fixo -->
-        <div class="flex-shrink-0 effect-reveal-to-right">
-
-        </div>
+        <div class="flex-shrink-0 effect-reveal-to-right"></div>
 
         <!-- Botão do menu responsivo -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="{{ __("Toggle navigation") }}">
             <i class="fas fa-bars"></i>
         </button>
 

@@ -15,7 +15,7 @@ class TenantAdminController extends Controller
     {
         $text = "Hello World! Estamos em Tenant Admin.";
         return Inertia::render("systems/tenant/modules/admin/pages/Welcome", [
-            "text" => $text
+            "text" => $text,
         ]);
     }
 }

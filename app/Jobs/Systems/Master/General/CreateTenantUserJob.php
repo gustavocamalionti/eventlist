@@ -15,15 +15,13 @@ class CreateTenantUserJob extends TemplateJob
      */
     public function object($tenant)
     {
-
-
         $password = Str::uuid(Str::random(12));
         Log::info($password);
         $user = User::create([
-            'name' => $tenant->name,
-            'email' => $tenant->email,
-            'password' => Hash::make($password),
-            'tenants_id' => $tenant->id,
+            "name" => $tenant->name,
+            "email" => $tenant->email,
+            "password" => Hash::make($password),
+            "tenants_id" => $tenant->id,
         ]);
 
         // Se quiser enviar e-mail com a senha para o usuário

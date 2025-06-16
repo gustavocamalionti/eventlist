@@ -15,6 +15,6 @@ class MasterAdminController extends Controller
     {
         if (tenancy()->tenant == null) {
             return Inertia::render("systems/master/modules/admin/pages/Dashboard");
-        };
+        }
     }
 }

@@ -5,7 +5,8 @@
                 class="effect-reveal-to-right col-12 col-lg-6 d-flex justify-content-center align-items-start flex-column">
                 <h1 class="text-uppercase text-start">Em caso de dúvidas,</h1>
                 <h1 class="text-uppercase text-start">Estamos a sua disposição!</h1>
-                <p class="text-center align-middle"><i class="far fa-envelope align-middle" aria-hidden="true"></i>
+                <p class="text-center align-middle">
+                    <i class="far fa-envelope align-middle" aria-hidden="true"></i>
                     <strong>contato@amongtech.com.br</strong>
                 </p>
             </div>
@@ -25,17 +26,17 @@
                 data-bs-target="#exampleModal">
                 <strong>Inscreva-se</strong>
                 <div class="triangle-top-btn-blue">
-
+                
                 </div>
                 <div class="triangle-top-btn-transparent">
-
+                
                 </div>
-
+                
                 <div class="triangle-buttom-btn-blue">
-
+                
                 </div>
                 <div class="triangle-buttom-btn-transparent">
-
+                
                 </div>
                 </button>
                 </div>

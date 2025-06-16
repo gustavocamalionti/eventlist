@@ -1,7 +1,5 @@
 <?php
 
-
-
 return [
     "accept" => "Aceitar",
     "action" => "Ação",
