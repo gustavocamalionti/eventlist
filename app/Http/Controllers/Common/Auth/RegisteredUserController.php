@@ -21,7 +21,12 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render("systems/master/modules/auth/pages/Register");
+        $pathRender = "systems/master/modules/auth/pages/Register";
+        if (tenancy()->initialized) {
+            $pathRender = "systems/tenant/modules/auth/pages/Register";
+        }
+
+        return Inertia::render($pathRender);
     }
 
     /**
