@@ -1,5 +1,60 @@
-const Ziggy = {"url":"http:\/\/localhost:6001","port":6001,"defaults":{},"routes":{"sanctum.csrf-cookie":{"uri":"sanctum\/csrf-cookie","methods":["GET","HEAD"]},"ignition.healthCheck":{"uri":"_ignition\/health-check","methods":["GET","HEAD"]},"ignition.executeSolution":{"uri":"_ignition\/execute-solution","methods":["POST"]},"ignition.updateConfig":{"uri":"_ignition\/update-config","methods":["POST"]},"stancl.tenancy.asset":{"uri":"tenancy\/assets\/{path?}","methods":["GET","HEAD"],"wheres":{"path":"(.*)"},"parameters":["path"]},"master.auth.register.create":{"uri":"register","methods":["GET","HEAD"],"domain":"localhost"},"master.auth.register.store":{"uri":"register","methods":["POST"],"domain":"localhost"},"master.auth.login.create":{"uri":"login","methods":["GET","HEAD"],"domain":"localhost"},"master.auth.login.store":{"uri":"login","methods":["POST"],"domain":"localhost"},"master.auth.password.request":{"uri":"forgot-password","methods":["GET","HEAD"],"domain":"localhost"},"master.auth.password.email":{"uri":"forgot-password","methods":["POST"],"domain":"localhost"},"master.auth.password.reset":{"uri":"reset-password\/{token}","methods":["GET","HEAD"],"domain":"localhost","parameters":["token"]},"master.auth.password.store":{"uri":"reset-password","methods":["POST"],"domain":"localhost"},"master.auth.verification.notice":{"uri":"verify-email","methods":["GET","HEAD"],"domain":"localhost"},"master.auth.verification.verify":{"uri":"verify-email\/{id}\/{hash}","methods":["GET","HEAD"],"domain":"localhost","parameters":["id","hash"]},"master.auth.verification.send":{"uri":"email\/verification-notification","methods":["POST"],"domain":"localhost"},"master.auth.password.confirm":{"uri":"confirm-password","methods":["GET","HEAD"],"domain":"localhost"},"master.auth.":{"uri":"confirm-password","methods":["POST"],"domain":"localhost"},"master.auth.password.update":{"uri":"password","methods":["PUT"],"domain":"localhost"},"master.auth.logout":{"uri":"logout","methods":["POST"],"domain":"localhost"},"master.admin.profile.edit":{"uri":"admin\/profile","methods":["GET","HEAD"],"domain":"localhost"},"master.admin.profile.update":{"uri":"admin\/profile","methods":["PATCH"],"domain":"localhost"},"master.admin.profile.destroy":{"uri":"admin\/profile","methods":["DELETE"],"domain":"localhost"},"master.admin.":{"uri":"admin\/dashboard","methods":["GET","HEAD"],"domain":"localhost"},"master.admin.dashboard":{"uri":"admin","methods":["GET","HEAD"],"domain":"localhost"},"master.site.":{"uri":"dashboard","methods":["GET","HEAD"],"domain":"localhost"},"master.site.dashboard":{"uri":"\/","methods":["GET","HEAD"],"domain":"localhost"},"tenant.auth.":{"uri":"logout","methods":["POST"]},"tenant.admin.":{"uri":"admin\/webhooks","methods":["POST"]},"tenant.site.":{"uri":"\/","methods":["GET","HEAD"]}}};
-if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
-  Object.assign(Ziggy.routes, window.Ziggy.routes);
+const Ziggy = {
+    url: "http:\/\/localhost:6001",
+    port: 6001,
+    defaults: {},
+    routes: {
+        "sanctum.csrf-cookie": { uri: "sanctum\/csrf-cookie", methods: ["GET", "HEAD"] },
+        "ignition.healthCheck": { uri: "_ignition\/health-check", methods: ["GET", "HEAD"] },
+        "ignition.executeSolution": { uri: "_ignition\/execute-solution", methods: ["POST"] },
+        "ignition.updateConfig": { uri: "_ignition\/update-config", methods: ["POST"] },
+        "stancl.tenancy.asset": {
+            uri: "tenancy\/assets\/{path?}",
+            methods: ["GET", "HEAD"],
+            wheres: { path: "(.*)" },
+            parameters: ["path"],
+        },
+        "master.auth.register.create": { uri: "register", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.auth.register.store": { uri: "register", methods: ["POST"], domain: "localhost" },
+        "master.auth.login.create": { uri: "login", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.auth.login.store": { uri: "login", methods: ["POST"], domain: "localhost" },
+        "master.auth.password.request": { uri: "forgot-password", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.auth.password.email": { uri: "forgot-password", methods: ["POST"], domain: "localhost" },
+        "master.auth.password.reset": {
+            uri: "reset-password\/{token}",
+            methods: ["GET", "HEAD"],
+            domain: "localhost",
+            parameters: ["token"],
+        },
+        "master.auth.password.store": { uri: "reset-password", methods: ["POST"], domain: "localhost" },
+        "master.auth.verification.notice": { uri: "verify-email", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.auth.verification.verify": {
+            uri: "verify-email\/{id}\/{hash}",
+            methods: ["GET", "HEAD"],
+            domain: "localhost",
+            parameters: ["id", "hash"],
+        },
+        "master.auth.verification.send": {
+            uri: "email\/verification-notification",
+            methods: ["POST"],
+            domain: "localhost",
+        },
+        "master.auth.password.confirm": { uri: "confirm-password", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.auth.": { uri: "confirm-password", methods: ["POST"], domain: "localhost" },
+        "master.auth.password.update": { uri: "password", methods: ["PUT"], domain: "localhost" },
+        "master.auth.logout": { uri: "logout", methods: ["POST"], domain: "localhost" },
+        "master.admin.profile.edit": { uri: "admin\/profile", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.admin.profile.update": { uri: "admin\/profile", methods: ["PATCH"], domain: "localhost" },
+        "master.admin.profile.destroy": { uri: "admin\/profile", methods: ["DELETE"], domain: "localhost" },
+        "master.admin.": { uri: "admin\/dashboard", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.admin.dashboard": { uri: "admin", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.site.": { uri: "dashboard", methods: ["GET", "HEAD"], domain: "localhost" },
+        "master.site.dashboard": { uri: "\/", methods: ["GET", "HEAD"], domain: "localhost" },
+        "tenant.auth.": { uri: "logout", methods: ["POST"] },
+        "tenant.admin.": { uri: "admin\/webhooks", methods: ["POST"] },
+        "tenant.site.": { uri: "\/", methods: ["GET", "HEAD"] },
+    },
+};
+if (typeof window !== "undefined" && typeof window.Ziggy !== "undefined") {
+    Object.assign(Ziggy.routes, window.Ziggy.routes);
 }
 export { Ziggy };
