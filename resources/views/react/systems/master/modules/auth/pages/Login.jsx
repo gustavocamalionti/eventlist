@@ -23,7 +23,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("master.auth.login.store"));
+        post(route("master.auth.login"));
     };
 
     return (

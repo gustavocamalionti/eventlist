@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import Checkbox from "@master/general/components/Checkbox";
-import GuestLayout from "@master/general/layouts/GuestLayout";
-import InputError from "@master/general/components/InputError";
-import InputLabel from "@master/general/components/InputLabel";
-import PrimaryButton from "@master/general/components/PrimaryButton";
-import TextInput from "@master/general/components/TextInput";
+import Checkbox from "@tenant/general/components/Checkbox";
+import GuestLayout from "@tenant/general/layouts/GuestLayout";
+import InputError from "@tenant/general/components/InputError";
+import InputLabel from "@tenant/general/components/InputLabel";
+import PrimaryButton from "@tenant/general/components/PrimaryButton";
+import TextInput from "@tenant/general/components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Login({ status, canResetPassword }) {
@@ -23,7 +23,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("tenant.auth.login.store"));
+        post(route("tenant.auth.login"));
     };
 
     return (
