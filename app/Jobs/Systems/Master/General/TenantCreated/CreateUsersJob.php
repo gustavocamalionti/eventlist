@@ -4,7 +4,8 @@ namespace App\Jobs\Systems\Master\General\TenantCreated;
 
 use App\Jobs\TemplateJob;
 use Illuminate\Support\Str;
-use App\Models\Systems\Master\User;
+
+use App\Models\Systems\Tenant\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,15 +16,28 @@ class CreateUsersJob extends TemplateJob
      */
     public function object($tenant)
     {
-        $password = Str::uuid(Str::random(12));
+        $passwordAdmin = Str::uuid(Str::random(12));
+        $passwordOwner = Str::uuid(Str::random(12));
 
-        $user = User::create([
-            "name" => $tenant->name,
-            "email" => $tenant->email,
-            "password" => Hash::make($password),
-            "tenants_id" => $tenant->id,
-        ]);
+        Log::info("Tenant: " . $tenant->name . " | Senha Admin: " . $passwordAdmin);
+        Log::info("Tenant: " . $tenant->name . " | Senha Owner: " . $passwordOwner);
+        $tenant->run(function ($tenant) use ($passwordAdmin, $passwordOwner) {
+            $userAdmin = User::create([
+                "name" => "Eventlist",
+                "email" => "suporte@eventlist.com.br",
+                "password" => Hash::make($passwordAdmin),
+                "tenants_id" => $tenant->id,
+            ]);
 
+            $userOwner = User::create([
+                "name" => $tenant->name,
+                "email" => $tenant->email,
+                "password" => Hash::make($passwordOwner),
+                "tenants_id" => $tenant->id,
+            ]);
+            Log::info($userAdmin);
+            Log::info($userOwner);
+        });
         // Se quiser enviar e-mail com a senha para o usuário
         // Mail::to($user->email)->send(new TenantUserCreated($user, $password));
     }

@@ -10,8 +10,6 @@ use Stancl\JobPipeline\JobPipeline;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use App\Jobs\Systems\Master\General\CreateTenantUser;
-use App\Jobs\Systems\Master\General\CreateTenantUserJob;
 use App\Jobs\Systems\Master\General\TenantCreated\CreateUsersJob;
 
 class TenancyServiceProvider extends ServiceProvider
@@ -29,7 +27,7 @@ class TenancyServiceProvider extends ServiceProvider
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
                     // Jobs\SeedDatabase::class,
-                    dispatch(CreateUsersJob::class),
+                    CreateUsersJob::class,
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
