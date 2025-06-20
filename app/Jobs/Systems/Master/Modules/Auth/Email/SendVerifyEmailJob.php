@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Jobs\Email\Auth;
+namespace App\Jobs\Systems\Master\Modules\Auth\Email;
 
-use App\Jobs\Email\BaseEmailJob;
-use App\Mail\Auth\SendVerifyEmailMail;
+use App\Jobs\Common\BaseEmailJob;
+use App\Mail\Systems\Master\Modules\Auth\SendVerifyEmailMail;
 
 class SendVerifyEmailJob extends BaseEmailJob
 {

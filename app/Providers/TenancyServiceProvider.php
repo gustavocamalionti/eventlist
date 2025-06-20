@@ -9,7 +9,12 @@ use Stancl\Tenancy\Middleware;
 use Stancl\JobPipeline\JobPipeline;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Stancl\Tenancy\Events\TenancyEnded;
+use App\Models\Systems\Master\MasterUser;
+use App\Models\Systems\Tenant\TenantUser;
+use Stancl\Tenancy\Events\TenancyBootstrapped;
 use App\Jobs\Systems\Master\General\TenantCreated\CreateUsersJob;
 
 class TenancyServiceProvider extends ServiceProvider
@@ -96,8 +101,15 @@ class TenancyServiceProvider extends ServiceProvider
     {
         $this->bootEvents();
         $this->mapRoutes();
-
         $this->makeTenancyMiddlewareHighestPriority();
+
+        Event::listen(TenancyBootstrapped::class, function () {
+            Config::set('auth.providers.users.model', TenantUser::class);
+        });
+
+        Event::listen(TenancyEnded::class, function () {
+            Config::set('auth.providers.users.model', MasterUser::class);
+        });
     }
 
     protected function bootEvents()

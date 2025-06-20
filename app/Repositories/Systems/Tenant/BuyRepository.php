@@ -2,13 +2,13 @@
 
 namespace App\Repositories\Systems\Tenant;
 
-use App\Models\Tenant\Buy;
 use App\Repositories\BaseRepository;
+use App\Models\Systems\Tenant\TenantBuy;
 
 class BuyRepository extends BaseRepository
 {
     public function entity()
     {
-        return Buy::class;
+        return TenantBuy::class;
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Jobs\Email\Auth;
+namespace App\Jobs\Systems\Master\Modules\Auth\Email;
 
-use App\Jobs\Email\BaseEmailJob;
-use App\Mail\Auth\SuccessResetPasswordMail;
-use App\Mail\Auth\SuccessChangePasswordMail;
+use App\Jobs\Common\BaseEmailJob;
+use App\Mail\Systems\Master\Modules\Auth\SuccessResetPasswordMail;
 
 class SuccessResetPasswordJob extends BaseEmailJob
 {

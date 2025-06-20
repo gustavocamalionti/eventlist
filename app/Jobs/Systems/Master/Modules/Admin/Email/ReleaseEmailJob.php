@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Jobs\Email\Release;
+namespace App\Jobs\Systems\Master\Modules\Admin\Email;
 
-use App\Mail\ReleaseMail;
-use App\Jobs\Email\BaseEmailJob;
+use App\Jobs\Common\BaseEmailJob;
+use App\Mail\Systems\Master\General\ReleaseMail;
 
 class ReleaseEmailJob extends BaseEmailJob
 {

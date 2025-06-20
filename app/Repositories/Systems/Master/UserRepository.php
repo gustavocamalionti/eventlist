@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Systems\Master;
 
-use App\Models\Systems\Master\User;
+use App\Models\Systems\Master\MasterUser;
+use App\Repositories\BaseRepository;
 
 class UserRepository extends BaseRepository
 {

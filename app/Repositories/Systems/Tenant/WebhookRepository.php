@@ -2,13 +2,13 @@
 
 namespace App\Repositories\Systems\Tenant;
 
-use App\Models\Tenant\Webhook;
 use App\Repositories\BaseRepository;
+use App\Models\Systems\Tenant\TenantWebhook;
 
 class WebhookRepository extends BaseRepository
 {
     public function entity()
     {
-        return Webhook::class;
+        return TenantWebhook::class;
     }
 }

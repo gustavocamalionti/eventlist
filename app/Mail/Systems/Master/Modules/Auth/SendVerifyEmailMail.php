@@ -29,7 +29,7 @@ class SendVerifyEmailMail extends Mailable
      */
     public function build()
     {
-        $verificationUrl = route("verification.verify", [
+        $verificationUrl = route("master.auth.verification.verify", [
             "id" => $this->data["user_id"],
             "hash" => sha1($this->data["email"]),
         ]);

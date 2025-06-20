@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Systems\Tenant;
 
-use App\Models\MethodPayment;
+use App\Repositories\BaseRepository;
+use App\Models\Systems\Tenant\MethodPayment;
 
 class MethodPaymentRepository extends BaseRepository
 {

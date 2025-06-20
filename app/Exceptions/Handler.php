@@ -2,8 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Stancl\Tenancy\Contracts\TenantCouldNotBeIdentifiedException;
 
 class Handler extends ExceptionHandler
 {
@@ -21,6 +22,10 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (TenantCouldNotBeIdentifiedException $e, $request) {
+            return response()->view('errors.404', [], 404);
         });
     }
 }

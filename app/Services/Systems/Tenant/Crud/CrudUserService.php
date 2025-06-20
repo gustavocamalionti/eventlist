@@ -5,7 +5,7 @@ namespace App\Services\Systems\Tenant\Crud;
 use App\Libs\Enums\EnumStatus;
 use App\Libs\Enums\EnumOrderBy;
 use App\Repositories\UserRepository;
-use App\Services\Bases\BaseCrudService;
+use App\Services\BaseCrudService;
 use App\Libs\Enums\EnumPermissionsLevel;
 
 class CrudUserService extends BaseCrudService

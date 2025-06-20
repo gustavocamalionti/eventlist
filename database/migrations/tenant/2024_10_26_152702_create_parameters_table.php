@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Systems\Tenant\Parameter;
+use App\Models\Systems\Tenant\TenantParameter;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -30,12 +30,12 @@ class CreateParametersTable extends Migration
             $table->timestamp("updated_at")->nullable()->comment("Data da última atualização do registro");
         });
 
-        Parameter::create([
+        TenantParameter::create([
             "id" => 1,
             "official_site" => "https://www.example.com",
             "facebook_link" => "https://www.facebook.com/example",
             "instagram_link" => "https://www.instagram.com/example",
-            "page_title" => "Conexão com o Futuro",
+            "page_title" => "Costela na Braza",
             "vouchers_price" => 300,
             "vouchers_limit" => 999,
             "email_contact" => "suporte@amongtech.com.br",

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Jobs\Email;
+namespace App\Jobs\Common;
 
 use Illuminate\Bus\Queueable;
+use App\Models\Common\LogEmail;
 use App\Exceptions\NotEntityDefined;
-use App\Models\LogEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,6 +34,7 @@ class BaseEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
+
         $event_exists = LogEmail::where("uuid", $this->job->payload()["uuid"]);
         if ($event_exists->count() == 0) {
             $logEvent = new LogEmail();

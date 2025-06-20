@@ -2,18 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Link;
-use App\Models\Systems\Master\User;
-use App\Models\Store;
-use App\Models\Banner;
-use App\Models\Parameter;
-use App\Models\FormConfig;
-use App\Observers\LinkObserver;
-use App\Observers\UserObserver;
-use App\Observers\StoreObserver;
-use App\Observers\BannerObserver;
-use App\Observers\ParameterObserver;
-use App\Observers\FormConfigObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

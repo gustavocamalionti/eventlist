@@ -15,6 +15,10 @@ use App\Http\Controllers\Systems\Master\Modules\Admin\MasterAdminController;
 |
 */
 
+Route::get('/teste-user-model', function () {
+    return auth()->user()::class;
+})->middleware('auth');
+
 Route::name("master.auth.")->group(function () {
     require __DIR__ . "../../../../common/auth/auth.php";
 });

@@ -13,27 +13,6 @@ const common = [
     "common/js/utils/filters.js",
 ];
 
-const auth = ["auth/css/autentication.css", "auth/js/autentication.js"];
-
-const site = ["site/css/app_site.css", "site/js/app_site.js", "site/js/plugins_site.js"];
-
-const site_especific = [
-    "site/fonts/css/fonts_site.css",
-
-    "site/pages/home/css/home.css",
-    "site/pages/home/js/home.js",
-
-    "site/pages/contact/css/contact.css",
-    "site/pages/contact/js/contact.js",
-
-    "site/pages/stores/css/stores.css",
-    "site/pages/stores/js/stores.js",
-
-    "site/pages/gateway/css/cancel.css",
-    "site/pages/gateway/css/success.css",
-    "site/pages/gateway/js/success.js",
-];
-
 const panel = ["panel/css/app_panel.css", "panel/js/app_panel.js", "panel/js/plugins_panel.js"];
 
 const panel_especific = [
@@ -76,9 +55,7 @@ const panel_especific = [
 export default defineConfig({
     plugins: [
         laravel({
-            input: [...common, ...auth, ...site, ...site_especific, ...panel, ...panel_especific].map((file) =>
-                path.resolve(`resources/assets/${file}`),
-            ),
+            input: [...common, ...panel, ...panel_especific].map((file) => path.resolve(`resources/assets/${file}`)),
             refresh: true,
         }),
     ],

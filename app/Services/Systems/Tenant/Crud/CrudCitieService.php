@@ -4,7 +4,7 @@ namespace App\Services\Systems\Tenant\Crud;
 
 use App\Libs\Enums\EnumStatus;
 use App\Repositories\CitieRepository;
-use App\Services\Bases\BaseCrudService;
+use App\Services\BaseCrudService;
 
 class CrudCitieService extends BaseCrudService
 {

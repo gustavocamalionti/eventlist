@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Systems\Tenant;
 
-use App\Models\LogAction;
-use App\Models\LogAudits;
+use App\Models\Common\LogAudits;
+use App\Repositories\BaseRepository;
 
 class LogAuditRepository extends BaseRepository
 {

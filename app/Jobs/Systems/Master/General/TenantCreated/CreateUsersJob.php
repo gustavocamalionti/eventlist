@@ -5,9 +5,9 @@ namespace App\Jobs\Systems\Master\General\TenantCreated;
 use App\Jobs\TemplateJob;
 use Illuminate\Support\Str;
 
-use App\Models\Systems\Tenant\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Systems\Tenant\TenantUser;
 use App\Libs\Enums\Systems\Tenant\EnumTenantRoles;
 
 class CreateUsersJob extends TemplateJob
@@ -17,13 +17,13 @@ class CreateUsersJob extends TemplateJob
      */
     public function object($tenant)
     {
-        $passwordAdmin = Str::uuid(Str::random(12));
-        $passwordOwner = Str::uuid(Str::random(12));
+        $passwordAdmin = Str::random(12);
+        $passwordOwner = Str::random(12);
 
         Log::info("Tenant: " . $tenant->name . " | Senha Admin: " . $passwordAdmin);
         Log::info("Tenant: " . $tenant->name . " | Senha Owner: " . $passwordOwner);
         $tenant->run(function ($tenant) use ($passwordAdmin, $passwordOwner) {
-            $userAdmin = User::create([
+            $userAdmin = TenantUser::create([
                 "name" => "Eventlist",
                 "email" => "suporte@eventlist.com.br",
                 "password" => Hash::make($passwordAdmin),
@@ -31,7 +31,7 @@ class CreateUsersJob extends TemplateJob
                 "roles_id" => EnumTenantRoles::ADMIN,
             ]);
 
-            $userOwner = User::create([
+            $userOwner = TenantUser::create([
                 "name" => $tenant->name,
                 "email" => $tenant->email,
                 "password" => Hash::make($passwordOwner),

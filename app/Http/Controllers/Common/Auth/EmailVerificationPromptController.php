@@ -16,8 +16,12 @@ class EmailVerificationPromptController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse|Response
     {
+        $pathVerifyEmail = "systems/master/modules/auth/pages/VerifyEmail";
+        if (tenancy()->initialized) {
+            $pathVerifyEmail = "systems/tenant/modules/auth/pages/VerifyEmail";
+        }
         return $request->user()->hasVerifiedEmail()
             ? redirect()->intended(RouteServiceProvider::HOME)
-            : Inertia::render("systems/master/modules/auth/pages/VerifyEmail", ["status" => session("status")]);
+            : Inertia::render($pathVerifyEmail, ["status" => session("status")]);
     }
 }
