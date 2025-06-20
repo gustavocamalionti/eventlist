@@ -40,8 +40,7 @@ return new class extends Migration {
             [
                 "id" => EnumTenantRoles::OWNER,
                 "name" => "Proprietário",
-                "label" =>
-                "Acesso integral a todas funcionalidades da plataforma (Não está incluído analise de log)",
+                "label" => "Acesso integral a todas funcionalidades da plataforma (Não está incluído analise de log)",
                 "dashboard_rel" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),

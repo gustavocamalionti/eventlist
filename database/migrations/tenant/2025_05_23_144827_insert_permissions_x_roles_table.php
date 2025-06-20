@@ -12,7 +12,6 @@ return new class extends Migration {
         DB::table("permissions_x_roles")->insert([
             // Administrador
             ["permissions_id" => 32, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_log_webhooks
-
         ]);
     }
 

@@ -41,7 +41,7 @@ return new class extends Migration {
                 "id" => EnumMasterRoles::MANAGER,
                 "name" => "Gerente",
                 "label" =>
-                "Usuário responsável com todos os acessos do analista e com CRUD de usuários e histórico de auditoria.",
+                    "Usuário responsável com todos os acessos do analista e com CRUD de usuários e histórico de auditoria.",
                 "dashboard_rel" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),

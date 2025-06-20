@@ -19,8 +19,6 @@ return new class extends Migration {
             // Gestor (sem acesso a logs)
             ["permissions_id" => 30, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_buys
             ["permissions_id" => 31, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_vouchers
-
-
         ]);
     }
 

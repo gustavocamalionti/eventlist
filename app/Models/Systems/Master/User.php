@@ -22,13 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail, ShouldQueue
      * @var array
      */
 
-    protected $fillable = [
-        "name",
-        "email",
-        "roles_id",
-        "password",
-        "active",
-    ];
+    protected $fillable = ["name", "email", "roles_id", "password", "active"];
 
     /**
      * The attributes that should be hidden for arrays.

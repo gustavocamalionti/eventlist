@@ -28,7 +28,7 @@ class CreateUsersJob extends TemplateJob
                 "email" => "suporte@eventlist.com.br",
                 "password" => Hash::make($passwordAdmin),
                 "tenants_id" => $tenant->id,
-                "roles_id" => EnumTenantRoles::ADMIN
+                "roles_id" => EnumTenantRoles::ADMIN,
             ]);
 
             $userOwner = User::create([
@@ -36,7 +36,7 @@ class CreateUsersJob extends TemplateJob
                 "email" => $tenant->email,
                 "password" => Hash::make($passwordOwner),
                 "tenants_id" => $tenant->id,
-                "roles_id" => EnumTenantRoles::OWNER
+                "roles_id" => EnumTenantRoles::OWNER,
             ]);
             // Log::info($userAdmin);
             // Log::info($userOwner);

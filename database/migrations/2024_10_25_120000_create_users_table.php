@@ -39,7 +39,7 @@ return new class extends Migration {
                 "name" => "Mariana Gomes",
                 "email" => "marianagomes@eventlist.com.br",
                 "roles_id" => EnumMasterRoles::ADMIN,
-                "password" => Hash::make($passwordAdmin)
+                "password" => Hash::make($passwordAdmin),
             ],
             [
                 "name" => "Flávia Nunes",
