@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Tenant;
+namespace App\Models\Systems\Tenant;
 
 use App\Models\Tenant\Buy;
 use Illuminate\Database\Eloquent\Model;

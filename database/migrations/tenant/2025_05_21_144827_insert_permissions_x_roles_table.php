@@ -20,8 +20,7 @@ return new class extends Migration {
             ["permissions_id" => 30, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_buys
             ["permissions_id" => 31, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_vouchers
 
-            // Analista (sem acesso ao CRUD de usuários e aos audits de cada CRUD)
-            ["permissions_id" => 31, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // read_event_vouchers
+
         ]);
     }
 

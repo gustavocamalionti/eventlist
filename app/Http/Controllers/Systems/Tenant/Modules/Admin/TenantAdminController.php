@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\Common\Controller;
 
 class TenantAdminController extends Controller

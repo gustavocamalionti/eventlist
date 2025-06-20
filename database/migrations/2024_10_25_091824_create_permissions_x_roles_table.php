@@ -86,21 +86,6 @@ return new class extends Migration {
             ["permissions_id" => 24, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // update_stores
             ["permissions_id" => 25, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // delete_stores
             ["permissions_id" => 26, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_stores_audit
-
-            // Analista (sem acesso ao CRUD de usuários e aos audits de cada CRUD)
-            ["permissions_id" => 6, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // create_banners
-            ["permissions_id" => 7, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // read_banners
-            ["permissions_id" => 8, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // update_banners
-            ["permissions_id" => 9, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // delete_banners
-            ["permissions_id" => 11, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // create_links
-            ["permissions_id" => 12, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // read_links
-            ["permissions_id" => 13, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // update_links
-            ["permissions_id" => 14, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // delete_links
-            ["permissions_id" => 16, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // read_form_contents_contact
-            ["permissions_id" => 22, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // create_stores
-            ["permissions_id" => 23, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // read_stores
-            ["permissions_id" => 24, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // update_stores
-            ["permissions_id" => 25, "roles_id" => 3, "created_at" => now(), "updated_at" => now()], // delete_stores
         ]);
     }
 

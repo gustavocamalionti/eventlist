@@ -1,5 +1,6 @@
 <?php
 
+use App\Libs\Enums\Systems\Tenant\EnumTenantRoles;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -29,6 +30,7 @@ return new class extends Migration {
 
         DB::table("roles")->insert([
             [
+                "id" => EnumTenantRoles::ADMIN,
                 "name" => "Administrador",
                 "label" => "Usuário com acesso total ao sistema.",
                 "dashboard_rel" => 1,
@@ -36,16 +38,26 @@ return new class extends Migration {
                 "updated_at" => now(),
             ],
             [
-                "name" => "Gestor",
+                "id" => EnumTenantRoles::OWNER,
+                "name" => "Proprietário",
                 "label" =>
-                    "Usuário responsável com todos os acessos do analista e com CRUD de usuários e histórico de auditoria.",
+                "Acesso integral a todas funcionalidades da plataforma (Não está incluído analise de log)",
                 "dashboard_rel" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
             ],
             [
-                "name" => "Analista",
-                "label" => "Usuário com acesso analítico, relatórios e CRUD.",
+                "id" => EnumTenantRoles::OPERATOR,
+                "name" => "Operador",
+                "label" => "Usuário com acesso a alguns CRUD",
+                "dashboard_rel" => 1,
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+            [
+                "id" => EnumTenantRoles::PROMOTER,
+                "name" => "Promoter",
+                "label" => "Usuário com acesso limitado a funções específicas",
                 "dashboard_rel" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),

@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string("name");
             $table->string("email")->unique();
+            $table->unsignedInteger("roles_id")->index("users_roles_id_foreign")->comment("Chave estrangeira");
+            $table->tinyInteger("active")->default(1)->comment("Indica se o usuário está ativo ou inativo");
             $table->timestamp("email_verified_at")->nullable();
             $table->string("password");
             $table->rememberToken();
@@ -21,11 +23,11 @@ return new class extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists("users");
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  */
+    // public function down(): void
+    // {
+    //     Schema::dropIfExists("users");
+    // }
 };

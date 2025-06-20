@@ -28,6 +28,15 @@ return new class extends Migration {
                 "created_at" => now(),
                 "updated_at" => now(),
             ],
+
+            [
+                "name" => "read_log_webhooks",
+                "label" => "Permissão para visualizar logs de webhooks do sistema",
+                "order" => 4,
+                "flag" => "logs",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
         ]);
     }
 
