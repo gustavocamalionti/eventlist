@@ -12,10 +12,12 @@
             </td>
             <td class="text-start align-middle">
                 @php
-                    $emails = explode(';', $item->email);
+                    $emails = explode(";", $item->email);
                 @endphp
+
                 @foreach ($emails as $email)
-                    {{ $email }} <br>
+                    {{ $email }}
+                    <br />
                 @endforeach
             </td>
             <td class="text-center align-middle">
@@ -26,7 +28,7 @@
                 {{ $item->details }}
             </td>
             <td class="text-center align-middle">
-                {{ date('d/m/Y H:i:s', strtotime($item->created_at)) }}
+                {{ date("d/m/Y H:i:s", strtotime($item->created_at)) }}
             </td>
         </tr>
     @endforeach

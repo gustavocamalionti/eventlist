@@ -62,7 +62,6 @@ class TenantUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function sendEmailVerificationNotification()
     {
-
         SendVerifyEmailJob::dispatch(
             [$this->email],
             [

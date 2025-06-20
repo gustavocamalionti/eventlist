@@ -144,14 +144,22 @@ class PanelController extends Controller
                 ["updated_at" => EnumOrderBy::DESC]
             );
 
-            $qtdStores = Store::whereHas('vouchers', function ($query) {
-                $query->where('active', EnumStatus::ACTIVE);
+            $qtdStores = Store::whereHas("vouchers", function ($query) {
+                $query->where("active", EnumStatus::ACTIVE);
             })->count();
-
 
             return view(
                 "panel.pages.dashboard.dashboard",
-                compact("pageTitle", "parameters", "user", "buysReceived", "buysConfirmed", "buysAwaiting", "vouchers", "qtdStores")
+                compact(
+                    "pageTitle",
+                    "parameters",
+                    "user",
+                    "buysReceived",
+                    "buysConfirmed",
+                    "buysAwaiting",
+                    "vouchers",
+                    "qtdStores"
+                )
             );
         } catch (QueryException $e) {
             Log::info($e);

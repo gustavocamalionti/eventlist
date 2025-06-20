@@ -11,7 +11,7 @@
         @endforeach
     </select>
 </div>
-<div class="form-group col-12 col-md-2 mt-2 ">
+<div class="form-group col-12 col-md-2 mt-2">
     <label style="font-weight: normal" for="selFilterSubscribe">Confirmada</label>
     <select class="form-select form-select-sm select2" name="selFilterSubscribe" id="selFilterSubscribe">
         <option value="" selected>Todos</option>

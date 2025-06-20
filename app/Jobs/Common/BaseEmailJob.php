@@ -34,7 +34,6 @@ class BaseEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-
         $event_exists = LogEmail::where("uuid", $this->job->payload()["uuid"]);
         if ($event_exists->count() == 0) {
             $logEvent = new LogEmail();

@@ -25,7 +25,7 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(function (TenantCouldNotBeIdentifiedException $e, $request) {
-            return response()->view('errors.404', [], 404);
+            return response()->view("errors.404", [], 404);
         });
     }
 }

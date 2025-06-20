@@ -1,12 +1,13 @@
-@extends('panel.layouts.master_panel')
+@extends("panel.layouts.master_panel")
 
-@section('styles')
+@section("styles")
+    
 @endsection
 
-@section('content')
+@section("content")
     <div class="card card-default mt-4">
         <div class="card-header">
-            {{ $pageTitle . ' | ' }}
+            {{ $pageTitle . " | " }}
             Listagem
         </div>
         <div class="card-body">
@@ -14,7 +15,10 @@
             <div class="divFilters mt-2 mb-2 glass">
                 <div class="divFiltersTitle pt-2 pb-2">
                     <div style="font-size: inherit; max-width: 100%">
-                        <a data-bs-toggle="collapse" href="#divFiltersContent" aria-expanded="false"
+                        <a
+                            data-bs-toggle="collapse"
+                            href="#divFiltersContent"
+                            aria-expanded="false"
                             aria-controls="divFiltersContent">
                             <i id="iconFilter" class="fas fa-minus-square"></i>
                             <i class="fa fa-filter" style="margin-left: 10px"></i>
@@ -26,7 +30,7 @@
                     <form method="post" class="form-filters row pt-2 pb-3" id="haliparForm">
                         {{ csrf_field() }}
 
-                        @include('panel.pages.logs._partials._log_webhooks_filters')
+                        @include("panel.pages.logs._partials._log_webhooks_filters")
 
                         <div class="col-12 col-md-2 ps-md-0 d-flex justify-content-start align-items-center">
                             <button id="btnFilter" type="button" class="btn btn-sm btn-primary">
@@ -43,7 +47,7 @@
                 <div class="card mb-0 border-top">
                     <div class="card-body table-responsive divElementGridFather">
                         <table id="zero_config" class="table table-sm table-striped table-hover align-middle">
-                            @include('panel.pages.logs._partials._log_webhooks_grid')
+                            @include("panel.pages.logs._partials._log_webhooks_grid")
                         </table>
                     </div>
                 </div>
@@ -52,6 +56,6 @@
     </div>
 @endsection
 
-@section('scripts')
-    @vite(['resources/assets/panel/pages/logs/js/log_webhooks_list.js', 'resources/assets/common/js/utils/filters.js'])
+@section("scripts")
+    @vite(["resources/assets/panel/pages/logs/js/log_webhooks_list.js", "resources/assets/common/js/utils/filters.js"])
 @endsection

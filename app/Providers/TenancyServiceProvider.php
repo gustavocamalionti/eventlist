@@ -104,11 +104,11 @@ class TenancyServiceProvider extends ServiceProvider
         $this->makeTenancyMiddlewareHighestPriority();
 
         Event::listen(TenancyBootstrapped::class, function () {
-            Config::set('auth.providers.users.model', TenantUser::class);
+            Config::set("auth.providers.users.model", TenantUser::class);
         });
 
         Event::listen(TenancyEnded::class, function () {
-            Config::set('auth.providers.users.model', MasterUser::class);
+            Config::set("auth.providers.users.model", MasterUser::class);
         });
     }
 
