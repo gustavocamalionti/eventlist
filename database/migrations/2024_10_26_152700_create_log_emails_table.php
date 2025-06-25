@@ -19,6 +19,9 @@ class CreateLogEmailsTable extends Migration
             $table->string("job_title", 100)->nullable()->comment("Título do trabalho associado ao envio de email");
             $table->string("email", 150)->nullable()->comment("Endereço de email do destinatário");
             $table->integer("users_id")->nullable()->comment("ID do usuário que recebeu o email");
+            $table->integer("buys_id")
+                ->nullable()
+                ->comment("Se existir venda, então vincularemos ela a esse disparo de email.");
             $table->integer("customers_id")->nullable()->comment("ID do cliente que recebeu o email");
             $table->string("status", 50)->nullable()->comment("Status do envio do email");
             $table->string("details", 500)->nullable()->comment("Detalhes adicionais sobre o envio do email");
