@@ -31,15 +31,10 @@ class TenantMailSendVerifyEmail extends Mailable
      */
     public function build()
     {
-
-        $verificationUrl = URL::temporarySignedRoute(
-            "tenant.auth.verification.verify",
-            Carbon::now()->addMinutes(60),
-            [
-                "id" => $this->data["user_id"],
-                "hash" => sha1($this->data["email"]),
-            ]
-        );
+        $verificationUrl = URL::temporarySignedRoute("tenant.auth.verification.verify", Carbon::now()->addMinutes(60), [
+            "id" => $this->data["user_id"],
+            "hash" => sha1($this->data["email"]),
+        ]);
 
         $this->data["verificationUrl"] = $verificationUrl;
 

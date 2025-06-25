@@ -50,7 +50,6 @@ class VerificationController extends Controller
      */
     public function __construct(CrudParameterService $crudParameterService)
     {
-
         $this->middleware("auth");
         $this->middleware("throttle:6,1")->only("verify");
         $this->crudParameterService = $crudParameterService;
@@ -63,7 +62,6 @@ class VerificationController extends Controller
      */
     public function verify($id, $hash)
     {
-
         #region content
         $user = null;
         $isTenant = tenancy()->initialized;
@@ -72,7 +70,6 @@ class VerificationController extends Controller
         } else {
             $user = MasterUser::findOrFail($id);
         }
-
 
         if (hash_equals($hash, sha1($user->email))) {
             $user->email_verified_at = now();

@@ -101,18 +101,16 @@ class TenancyServiceProvider extends ServiceProvider
     protected function overrideUrlInTenantContext(): void
     {
         RootUrlBootstrapper::$rootUrlOverride = function (Tenant $tenant, string $originalRootUrl) {
-            $tenantDomain = $tenant instanceof SingleDomainTenant
-                ? $tenant->domain
-                : $tenant->domains->first()->domain;
+            $tenantDomain = $tenant instanceof SingleDomainTenant ? $tenant->domain : $tenant->domains->first()->domain;
 
             // Parse a URL usando parse_url
             $parsedUrl = parse_url($originalRootUrl);
-            $scheme = $parsedUrl['scheme'] ?? 'http';
-            $host = $parsedUrl['host'] ?? '';
-            $port = isset($parsedUrl['port']) ? ':' . $parsedUrl['port'] : '';
-            $path = $parsedUrl['path'] ?? '/';
+            $scheme = $parsedUrl["scheme"] ?? "http";
+            $host = $parsedUrl["host"] ?? "";
+            $port = isset($parsedUrl["port"]) ? ":" . $parsedUrl["port"] : "";
+            $path = $parsedUrl["path"] ?? "/";
 
-            if (str_contains($tenantDomain, '.')) {
+            if (str_contains($tenantDomain, ".")) {
                 // Domínio direto (ex: empresa.com)
                 return "{$scheme}://{$tenantDomain}{$port}/";
             } else {

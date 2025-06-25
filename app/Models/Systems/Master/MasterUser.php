@@ -12,7 +12,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendVerifyEmail;
 use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendResetPassword;
 
-
 class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 {
     use HasFactory, Notifiable;

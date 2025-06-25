@@ -1,61 +1,70 @@
-@extends('legacy.systems.tenant.general.layouts.email_master')
+@extends("legacy.systems.tenant.general.layouts.email_master")
 
-@section('content')
+@section("content")
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
-            27 de Janeiro de 2025 <br style="padding:0; margin:0;">
+            27 de Janeiro de 2025
+            <br style="padding: 0; margin: 0" />
         </td>
     </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 3])
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
-            Santo Antônio, Indaiatuba SP <br style="padding:0; margin:0;">
+            Santo Antônio, Indaiatuba SP
+            <br style="padding: 0; margin: 0" />
         </td>
     </tr>
-    {{-- @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
-    <tr>
+    {{--
+        @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+        <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
-            Das 08h00 às 22h00 <br style="padding:0; margin:0;">
+        Das 08h00 às 22h00 <br style="padding:0; margin:0;">
         </td>
-    </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
-    <tr>
+        </tr>
+        @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+        <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
-            Traje: Casual
+        Traje: Casual
         </td>
-    </tr> --}}
+        </tr>
+    --}}
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 12])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 12])
     <tr>
         <td align="center" style="font-size: 24px; font-weight: bold; color: #fff; text-align: center">
             Ingressos Confirmados
         </td>
     </tr>
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 24])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 24])
 
     <tr>
-        <td style="font-size: 16px; color: #fff; text-align: left">Olá, {{ $data['buy']->customers->name }}</td>
+        <td style="font-size: 16px; color: #fff; text-align: left">Olá, {{ $data["buy"]->customers->name }}</td>
     </tr>
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 12])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 12])
 
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">Segue abaixo todos os seus ingressos:</td>
     </tr>
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 20])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 20])
 
     <tr>
         <td>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" border="0"
+            <table
+                width="100%"
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                border="0"
                 style="font-family: Arial, sans-serif; font-size: 14px">
                 <tbody>
                     @php
                         $count = 0;
                     @endphp
 
-                    @foreach ($data['vouchers'] as $voucher)
+                    @foreach ($data["vouchers"] as $voucher)
                         @php
                             $count += 1;
                         @endphp
@@ -63,7 +72,11 @@
                         <!-- Caixa externa simulando um card -->
                         <tr>
                             <td bgcolor="#F8FAFC">
-                                <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#F9F9F9"
+                                <table
+                                    width="100%"
+                                    cellspacing="0"
+                                    cellpadding="0"
+                                    bgcolor="#F9F9F9"
                                     style="
                                         font-family: Arial, sans-serif;
                                         font-size: 14px;
@@ -107,7 +120,7 @@
                                         <td width="20"></td>
                                         <td style="font-weight: bold; text-align: left">Valor:</td>
                                         <td style="text-align: right">
-                                            R$ {{ number_format($voucher->value / 100, 2, ',', '.') }}
+                                            R$ {{ number_format($voucher->value / 100, 2, ",", ".") }}
                                         </td>
                                         <td width="20"></td>
                                     </tr>
@@ -122,28 +135,35 @@
                         </tr>
 
                         <!-- Espaço entre cards -->
-                        @include('legacy.systems.tenant.general.includes._email_space_height', [
-                            'height' => 20,
-                        ])
+                        @include(
+                            "legacy.systems.tenant.general.includes._email_space_height",
+                            [
+                                "height" => 20,
+                            ]
+                        )
                     @endforeach
                 </tbody>
             </table>
         </td>
     </tr>
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 20])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 20])
 
     <tr>
-        <td align="center" style="font-size: 24px; font-weight: bold; color: #fff; text-align: center">Parabéns! Nos
-            encontramos em breve!</td>
+        <td align="center" style="font-size: 24px; font-weight: bold; color: #fff; text-align: center">
+            Parabéns! Nos encontramos em breve!
+        </td>
     </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 12])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 12])
 
     <tr>
-        <td style="font-size: 16px; color: #fff; text-align: center">Em caso de dúvidas é só entrar em contato com nosso
-            time <br>
-            através do e-mail: <b>eventos@halipar.com.br</b></td>
+        <td style="font-size: 16px; color: #fff; text-align: center">
+            Em caso de dúvidas é só entrar em contato com nosso time
+            <br />
+            através do e-mail:
+            <b>eventos@halipar.com.br</b>
+        </td>
     </tr>
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 20])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 20])
 @endsection

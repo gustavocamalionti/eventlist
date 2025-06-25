@@ -27,7 +27,6 @@ class AuthenticatedSessionController extends Controller
             $routePrefix = "tenant.auth";
         }
 
-
         return Inertia::render($pathRender, [
             "canResetPassword" => Route::has($routePrefix . "." . "password.request"),
             "status" => session("status"),

@@ -2,7 +2,6 @@
 
 namespace App\Models\Systems\Tenant;
 
-
 use Illuminate\Support\Carbon;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Systems\Master\MasterRole;

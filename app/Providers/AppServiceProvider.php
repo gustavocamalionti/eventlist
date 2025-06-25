@@ -33,9 +33,9 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
             $isTenant = tenancy()->initialized;
             $routePrefix = $isTenant ? "tenant.auth" : "master.auth";
-            return URL::route($routePrefix . '.' . 'password.reset', [
-                'token' => $token,
-                'email' => $notifiable->getEmailForPasswordReset(),
+            return URL::route($routePrefix . "." . "password.reset", [
+                "token" => $token,
+                "email" => $notifiable->getEmailForPasswordReset(),
             ]);
         });
         // \URL::forceScheme("https");
@@ -74,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 "customizations" => [
                     "styles" =>
-                    "
+                        "
                     <style>
                         :root{
                             " .

@@ -44,16 +44,15 @@ class RegisteredUserController extends Controller
 
         $request->validate([
             "name" => "required|string|max:255",
-            "email" => "required|string|lowercase|email|max:255|unique:" . ($isTenant ? TenantUser::class : MasterUser::class),
+            "email" =>
+                "required|string|lowercase|email|max:255|unique:" . ($isTenant ? TenantUser::class : MasterUser::class),
             "password" => ["required", "confirmed", Rules\Password::defaults()],
         ]);
         $data = [
-
             "name" => $request->name,
             "email" => $request->email,
-            "roles_id" => ($isTenant ? EnumMasterRoles::MANAGER : EnumTenantRoles::PROMOTER),
+            "roles_id" => $isTenant ? EnumMasterRoles::MANAGER : EnumTenantRoles::PROMOTER,
             "password" => Hash::make($request->password),
-
         ];
 
         if ($isTenant) {
@@ -61,7 +60,6 @@ class RegisteredUserController extends Controller
         } else {
             $user = MasterUser::create($data);
         }
-
 
         event(new Registered($user));
 

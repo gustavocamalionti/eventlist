@@ -22,7 +22,9 @@ class NewPasswordController extends Controller
     public function create(Request $request): Response
     {
         $isTenant = tenancy()->initialized;
-        $pathRender = $isTenant ? "systems/tenant/modules/auth/pages/ResetPassword" : "systems/master/modules/auth/pages/ResetPassword";
+        $pathRender = $isTenant
+            ? "systems/tenant/modules/auth/pages/ResetPassword"
+            : "systems/master/modules/auth/pages/ResetPassword";
         return Inertia::render($pathRender, [
             "email" => $request->email,
             "token" => $request->route("token"),
@@ -64,7 +66,9 @@ class NewPasswordController extends Controller
         $isTenant = tenancy()->initialized;
         $routePrefix = $isTenant ? "tenant.auth" : "master.auth";
         if ($status == Password::PASSWORD_RESET) {
-            return redirect()->route($routePrefix . "." . "login")->with("status", __($status));
+            return redirect()
+                ->route($routePrefix . "." . "login")
+                ->with("status", __($status));
         }
 
         throw ValidationException::withMessages([

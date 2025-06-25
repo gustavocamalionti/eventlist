@@ -1,70 +1,83 @@
-@extends('legacy.systems.tenant.general.layouts.email_master')
+@extends("legacy.systems.tenant.general.layouts.email_master")
 
-@section('content')
+@section("content")
     <tr>
         <td align="center" style="font-size: 24px; font-weight: bold; color: #fff; text-align: center">
             Informações de Venda
         </td>
     </tr>
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 24])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 24])
 
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
             <b>Nome:</b>
-            {{ $data['buy']->customers->name }}
-            <br style="padding:0; margin:0;">
+            {{ $data["buy"]->customers->name }}
+            <br style="padding: 0; margin: 0" />
         </td>
     </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 3])
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
             <b>Email:</b>
-            {{ $data['buy']->customers->email }} <br style="padding:0; margin:0;">
+            {{ $data["buy"]->customers->email }}
+            <br style="padding: 0; margin: 0" />
         </td>
     </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 3])
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
             <b>Telefone:</b>
-            {{ App\Libs\Utils::MaskPhone($data['buy']->customers->phone_cell) }}<br style="padding:0; margin:0;">
+            {{ App\Libs\Utils::MaskPhone($data["buy"]->customers->phone_cell) }}
+            <br style="padding: 0; margin: 0" />
         </td>
     </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 3])
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
-            <b>Método de Pagamento:</b> {{ $data['buy']->methodPayment->name }} <br style="padding:0; margin:0;">
+            <b>Método de Pagamento:</b>
+            {{ $data["buy"]->methodPayment->name }}
+            <br style="padding: 0; margin: 0" />
         </td>
     </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 3])
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
-            <b>Valor da Venda:</b> {{ $data['buy']->value }} <br style="padding:0; margin:0;">
+            <b>Valor da Venda:</b>
+            {{ $data["buy"]->value }}
+            <br style="padding: 0; margin: 0" />
         </td>
     </tr>
-    {{-- @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
-    <tr>
+    {{--
+        @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 3])
+        <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">
-            <b>Valor Líquido:</b> {{ $data['buy']->net_value }} <br style="padding:0; margin:0;">
+        <b>Valor Líquido:</b> {{ $data['buy']->net_value }} <br style="padding:0; margin:0;">
         </td>
-    </tr> --}}
+        </tr>
+    --}}
 
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 12])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 12])
     <tr>
         <td style="font-size: 16px; color: #fff; text-align: left">Ingressos</td>
     </tr>
-    @include('legacy.systems.tenant.general.includes._email_space_height', ['height' => 20])
+    @include("legacy.systems.tenant.general.includes._email_space_height", ["height" => 20])
 
     <tr>
         <td>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" border="0"
+            <table
+                width="100%"
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                border="0"
                 style="font-family: Arial, sans-serif; font-size: 14px">
                 <tbody>
                     @php
                         $count = 0;
                     @endphp
 
-                    @foreach ($data['vouchers'] as $voucher)
+                    @foreach ($data["vouchers"] as $voucher)
                         @php
                             $count += 1;
                         @endphp
@@ -72,7 +85,11 @@
                         <!-- Caixa externa simulando um card -->
                         <tr>
                             <td bgcolor="#F8FAFC">
-                                <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#F9F9F9"
+                                <table
+                                    width="100%"
+                                    cellspacing="0"
+                                    cellpadding="0"
+                                    bgcolor="#F9F9F9"
                                     style="
                                         font-family: Arial, sans-serif;
                                         font-size: 14px;
@@ -116,7 +133,7 @@
                                         <td width="20"></td>
                                         <td style="font-weight: bold; text-align: left">Valor:</td>
                                         <td style="text-align: right">
-                                            R$ {{ number_format($voucher->value / 100, 2, ',', '.') }}
+                                            R$ {{ number_format($voucher->value / 100, 2, ",", ".") }}
                                         </td>
                                         <td width="20"></td>
                                     </tr>
@@ -131,9 +148,12 @@
                         </tr>
 
                         <!-- Espaço entre cards -->
-                        @include('legacy.systems.tenant.general.includes._email_space_height', [
-                            'height' => 20,
-                        ])
+                        @include(
+                            "legacy.systems.tenant.general.includes._email_space_height",
+                            [
+                                "height" => 20,
+                            ]
+                        )
                     @endforeach
                 </tbody>
             </table>

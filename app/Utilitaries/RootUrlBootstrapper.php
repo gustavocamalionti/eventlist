@@ -43,10 +43,7 @@ class RootUrlBootstrapper implements TenancyBootstrapper
      */
     public static bool $rootUrlOverrideInTests = true;
 
-    public function __construct(
-        protected Repository $config,
-        protected Application $app,
-    ) {}
+    public function __construct(protected Repository $config, protected Application $app) {}
 
     public function bootstrap(Tenant $tenant): void
     {
@@ -54,27 +51,27 @@ class RootUrlBootstrapper implements TenancyBootstrapper
             return;
         }
 
-        if (! $this->app->runningInConsole()) {
+        if (!$this->app->runningInConsole()) {
             return;
         }
 
-        if ($this->app->runningUnitTests() && ! static::$rootUrlOverrideInTests) {
+        if ($this->app->runningUnitTests() && !static::$rootUrlOverrideInTests) {
             return;
         }
 
-        $this->originalRootUrl = $this->app['url']->to('/');
+        $this->originalRootUrl = $this->app["url"]->to("/");
 
         $newRootUrl = (static::$rootUrlOverride)($tenant, $this->originalRootUrl);
 
-        $this->app['url']->forceRootUrl($newRootUrl);
-        $this->config->set('app.url', $newRootUrl);
+        $this->app["url"]->forceRootUrl($newRootUrl);
+        $this->config->set("app.url", $newRootUrl);
     }
 
     public function revert(): void
     {
         if ($this->originalRootUrl) {
-            $this->app['url']->forceRootUrl($this->originalRootUrl);
-            $this->config->set('app.url', $this->originalRootUrl);
+            $this->app["url"]->forceRootUrl($this->originalRootUrl);
+            $this->config->set("app.url", $this->originalRootUrl);
         }
     }
 }
