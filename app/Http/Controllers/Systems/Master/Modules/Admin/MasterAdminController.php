@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Systems\Master\Modules\Admin;
 
-use Inertia\Inertia;
 use App\Http\Controllers\Common\Controller;
 
 class MasterAdminController extends Controller
