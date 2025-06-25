@@ -11,9 +11,7 @@ class MasterAdminController extends Controller
 
     public function index()
     {
-        dd("oi");
-        if (tenancy()->tenant == null) {
-            return Inertia::render("systems/master/modules/admin/pages/Dashboard");
-        }
+        $text = "Hello World! Estamos em Master Admin.";
+        return $text;
     }
 }

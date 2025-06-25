@@ -21,7 +21,9 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): Response
     {
-        return Inertia::render("systems/master/modules/auth/pages/ResetPassword", [
+        $isTenant = tenancy()->initialized;
+        $pathRender = $isTenant ? "systems/tenant/modules/auth/pages/ResetPassword" : "systems/master/modules/auth/pages/ResetPassword";
+        return Inertia::render($pathRender, [
             "email" => $request->email,
             "token" => $request->route("token"),
         ]);
@@ -59,8 +61,10 @@ class NewPasswordController extends Controller
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
+        $isTenant = tenancy()->initialized;
+        $routePrefix = $isTenant ? "tenant.auth" : "master.auth";
         if ($status == Password::PASSWORD_RESET) {
-            return redirect()->route("login")->with("status", __($status));
+            return redirect()->route($routePrefix . "." . "login")->with("status", __($status));
         }
 
         throw ValidationException::withMessages([

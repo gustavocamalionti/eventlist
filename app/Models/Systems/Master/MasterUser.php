@@ -9,7 +9,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Jobs\Systems\Master\Modules\Auth\Email\SendVerifyEmailJob;
+use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendVerifyEmail;
+use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendResetPassword;
+
 
 class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 {
@@ -60,13 +62,26 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function sendEmailVerificationNotification()
     {
-        dd("verificação Master");
-        SendVerifyEmailJob::dispatch(
+        MasterJobSendVerifyEmail::dispatch(
             [$this->email],
             [
                 "user_id" => $this->id,
                 "name" => $this->name,
                 "users_id" => $this->id,
+                "email" => $this->email,
+            ]
+        );
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        // Aqui você pode disparar um job ou usar sua própria lógica
+        MasterJobSendResetPassword::dispatch(
+            [$this->email],
+            [
+                "token" => $token,
+                "user_id" => $this->id,
+                "name" => $this->name,
                 "email" => $this->email,
             ]
         );

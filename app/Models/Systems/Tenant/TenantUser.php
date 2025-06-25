@@ -2,7 +2,6 @@
 
 namespace App\Models\Systems\Tenant;
 
-use App\Models\Common\Role;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Jobs\Systems\Tenant\Modules\Auth\Email\SendVerifyEmailJob;
+use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendVerifyEmail;
+use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendResetPassword;
 
 class TenantUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 {
@@ -62,12 +62,26 @@ class TenantUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function sendEmailVerificationNotification()
     {
-        SendVerifyEmailJob::dispatch(
+        TenantJobSendVerifyEmail::dispatch(
             [$this->email],
             [
                 "user_id" => $this->id,
                 "name" => $this->name,
                 "users_id" => $this->id,
+                "email" => $this->email,
+            ]
+        );
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        // Aqui você pode disparar um job ou usar sua própria lógica
+        TenantJobSendResetPassword::dispatch(
+            [$this->email],
+            [
+                "token" => $token,
+                "user_id" => $this->id,
+                "name" => $this->name,
                 "email" => $this->email,
             ]
         );

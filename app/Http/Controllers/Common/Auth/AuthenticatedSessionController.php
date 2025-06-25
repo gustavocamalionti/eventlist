@@ -19,13 +19,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
+        $isTenant = tenancy()->initialized;
         $pathRender = "systems/master/modules/auth/pages/Login";
-        if (tenancy()->initialized) {
+        $routePrefix = "master.auth";
+        if ($isTenant) {
             $pathRender = "systems/tenant/modules/auth/pages/Login";
+            $routePrefix = "tenant.auth";
         }
 
+
         return Inertia::render($pathRender, [
-            "canResetPassword" => Route::has("password.request"),
+            "canResetPassword" => Route::has($routePrefix . "." . "password.request"),
             "status" => session("status"),
         ]);
     }
