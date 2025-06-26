@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Common\Auth;
 
 use Inertia\Inertia;
-use Inertia\Response;
+use Inertia\Response as InertiaResponse;
+use Illuminate\Http\Response as BladeResponse;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
@@ -19,7 +20,7 @@ class NewPasswordController extends Controller
     /**
      * Display the password reset view.
      */
-    public function create(Request $request): Response
+    public function create(Request $request): InertiaResponse
     {
         $isTenant = tenancy()->initialized;
         $pathRender = $isTenant
@@ -36,7 +37,7 @@ class NewPasswordController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse|BladeResponse
     {
         $request->validate([
             "token" => "required",

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import GuestLayout from "@master/general/components/GuestLayout";
+import GuestLayout from "@master/general/layouts/GuestLayout";
 import InputError from "@master/general/components/InputError";
 import InputLabel from "@master/general/components/InputLabel";
 import PrimaryButton from "@master/general/components/PrimaryButton";

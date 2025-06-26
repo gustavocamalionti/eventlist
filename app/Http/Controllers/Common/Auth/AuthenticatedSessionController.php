@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Common\Auth;
 
 use Inertia\Inertia;
-use Inertia\Response;
+use Inertia\Response as InertiaResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as BladeResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): Response
+    public function create(): InertiaResponse
     {
         $isTenant = tenancy()->initialized;
         $pathRender = "systems/master/modules/auth/pages/Login";
@@ -36,13 +37,13 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request): BladeResponse|RedirectResponse
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return Inertia::location(route(RouteServiceProvider::homeRoute()));
     }
 
     /**

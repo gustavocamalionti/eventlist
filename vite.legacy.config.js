@@ -3,8 +3,9 @@ import laravel from "laravel-vite-plugin";
 import path from "path";
 
 const common = [
+    "common/scss/common_app.scss",
     "common/fonts/common_fonts.css",
-    "common/css/LegacyApp.css",
+    "common/css/common_app.css",
     "common/js/common_app.js",
     "common/plugins/js/common_plugins.js",
     "common/plugins/js/common_datatables.js",
@@ -59,15 +60,20 @@ const common = [
 //     ],
 
 export default defineConfig({
-    server: {
-        port: 5173,
-    },
     plugins: [
         laravel({
             input: [...common].map((file) => path.resolve(`resources/assets/${file}`)),
             refresh: true,
+            buildDirectory: "legacy",
         }),
     ],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                includePaths: ["node_modules/@fortawesome/fontawesome-free/scss"],
+            },
+        },
+    },
     resolve: {
         alias: {
             $: "jQuery",

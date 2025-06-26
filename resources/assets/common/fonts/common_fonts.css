@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "SoraLight";
+    src: url("./content/sora-light.ttf");
+}
+
+@font-face {
+    font-family: "SoraRegular";
+    src: url("./content/sora-regular.ttf");
+}
+
+@font-face {
+    font-family: "SoraMedium";
+    src: url("./content/sora-medium.ttf");
+}
+
+@font-face {
+    font-family: "SoraBold";
+    src: url("./content/sora-bold.ttf");
+}

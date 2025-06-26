@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Common\Auth;
 
 use Inertia\Inertia;
-use Inertia\Response;
+use Inertia\Response as InertiaResponse;
+use Illuminate\Http\Response as BladeResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): Response
+    public function create(): InertiaResponse
     {
         $pathRender = "systems/master/modules/auth/pages/Register";
         if (tenancy()->initialized) {
@@ -37,7 +38,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse|BladeResponse
     {
         $user = null;
         $isTenant = tenancy()->initialized;
@@ -45,7 +46,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             "name" => "required|string|max:255",
             "email" =>
-                "required|string|lowercase|email|max:255|unique:" . ($isTenant ? TenantUser::class : MasterUser::class),
+            "required|string|lowercase|email|max:255|unique:" . ($isTenant ? TenantUser::class : MasterUser::class),
             "password" => ["required", "confirmed", Rules\Password::defaults()],
         ]);
         $data = [
@@ -65,6 +66,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return Inertia::location(route(RouteServiceProvider::homeRoute()));
     }
 }

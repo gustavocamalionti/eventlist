@@ -1,0 +1,99 @@
+// // Font Size PIXELS
+// .hp_f_size_px_ {
+//     @for $i from 1 through 60 {
+//         &#{$i} {
+//             font-size: #{$i}px;
+//         }
+//     }
+// }
+
+// // Font Size PERCENT
+// .hp_f_size_pc_ {
+//     @for $i from 1 through 100 {
+//         &#{$i} {
+//             font-size: #{$i + "%"};
+//         }
+//     }
+// }
+
+// // Z-Index
+// .hp_z_index_ {
+//     @for $i from 1 through 30 {
+//         &#{$i} {
+//             z-index: #{$i};
+//         }
+//     }
+// }
+
+// // Space X
+// .hp_space_x {
+//     @for $i from 0 through 15 {
+//         &#{$i} {
+//             padding: #{$i}vmax 0;
+//         }
+//     }
+// }
+
+// // Padding and Margin
+// @each $elm_p_m in padding, margin {
+//     .#{"hp_" + $elm_p_m}_ {
+//         @for $i from 0 through 100 {
+//             &#{$i} {
+//                 #{$elm_p_m}: #{$i}px !important;
+//             }
+//         }
+//     }
+// }
+
+// // Padding Top, Left, Right and Bottom
+// .hp_p_ {
+//     @each $p_elm in top, left, right, bottom {
+//         @for $i from 0 through 100 {
+//             &#{$p_elm}_#{$i} {
+//                 padding-#{$p_elm}: #{$i}px !important;
+//             }
+//         }
+//     }
+// }
+
+// // Marging Top, Left, Right and Bottom
+// .hp_m_ {
+//     @each $p_elm in top, left, right, bottom {
+//         @for $i from 0 through 100 {
+//             &#{$p_elm}_#{$i} {
+//                 margin-#{$p_elm}: #{$i}px !important;
+//             }
+//         }
+//     }
+// }
+
+// // Colors
+// .hp_c_white {
+//     color: #fff;
+// }
+
+// .hp_c_black {
+//     color: #000;
+// }
+
+// // Links Colors
+// .hp_link_c_white,
+// .hp_link_c_white:active,
+// .hp_link_c_white:focus,
+// .hp_link_c_white:hover {
+//     color: #fff;
+//     text-decoration: none;
+// }
+
+// // Cursors
+// .hp_cursor_default {
+//     cursor: default !important;
+// }
+
+// .hp_cursor_move {
+//     cursor: move !important;
+// }
+
+// .hp_cursor_pointer {
+//     cursor: pointer !important;
+// }
