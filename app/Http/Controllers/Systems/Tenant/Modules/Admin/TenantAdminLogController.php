@@ -8,18 +8,18 @@ use App\Libs\Utils;
 use App\Libs\Errors;
 use App\Libs\Actions;
 use App\Models\Webhook;
-use App\Models\LogEmail;
 use App\Models\LogError;
 use App\Models\LogAudits;
 use App\Libs\ViewsModules;
 use Illuminate\Http\Request;
+use App\Libs\Enums\EnumOrderBy;
 #endregion
 
 #region Import Requests
 #endregion
 
 #region Import Services
-use App\Libs\Enums\EnumOrderBy;
+use App\Models\Common\LogEmail;
 use Yajra\DataTables\DataTables;
 use App\Libs\Enums\EnumErrorsType;
 #endregion
@@ -28,11 +28,11 @@ use App\Libs\Enums\EnumErrorsType;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
-use App\Services\Crud\CrudWebhookService;
-use App\Services\Crud\CrudLogAuditService;
-use App\Services\Crud\CrudLogEmailService;
-use App\Services\Crud\CrudLogErrorService;
-use App\Services\Crud\CrudParameterService;
+use App\Services\Systems\Tenant\Crud\CrudWebhookService;
+use App\Services\Systems\Tenant\Crud\CrudLogAuditService;
+use App\Services\Systems\Tenant\Crud\CrudLogEmailService;
+use App\Services\Systems\Tenant\Crud\CrudLogErrorService;
+use App\Services\Systems\Tenant\Crud\CrudParameterService;
 #endregion
 
 #region Import Jobs
@@ -42,7 +42,7 @@ use App\Services\Crud\CrudParameterService;
  * Controller for managing log-related actions such as displaying logs for emails, audits, and errors.
  * Handles the filtering and viewing of log data with proper access control and error handling.
  */
-class LogController extends Controller
+class TenantAdminLogController extends Controller
 {
     #region variables
     protected $crudParameterService;

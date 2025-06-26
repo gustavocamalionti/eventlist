@@ -24,7 +24,7 @@
         "axios": "^1.6.4",
         "bootstrap": "^5.3.7",
         "bootstrap-datepicker": "^1.10.0",
-        "bootstrap5-toggle": "^5.0.6",
+        "bootstrap5-toggle": "^5.1.2",
         "chart.js": "^4.4.7",
         "datatables.net": "^1.13.8",
         "datatables.net-bs5": "^1.13.11",

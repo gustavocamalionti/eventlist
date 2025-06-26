@@ -1,8 +1,8 @@
-@extends('legacy.systems.tenant.modules.admin.layouts.tenant_panel_main')
+@extends('legacy.systems.tenant.modules.admin.layouts.main')
 
-{{-- @section('styles')
-    @vite(['resources/assets/panel/pages/dashboard/css/dashboard.css'])
-@endsection --}}
+@section('styles')
+    @vite(['resources/assets/systems/tenant/modules/admin/pages/dashboard/css/dashboard.css'], 'legacy')
+@endsection
 @section('content')
     <div class="row g-4">
         <!-- Card: Compras Recebidas -->
@@ -83,6 +83,6 @@
     </div>
 @endsection
 
-{{-- @section('scripts')
-    @vite(["resources/assets/panel/pages/dashboard/js/dashboard.js"])
-@endsection --}}
+@section('scripts')
+    @vite(['resources/assets/systems/tenant/modules/admin/pages/dashboard/js/dashboard.js'], 'legacy')
+@endsection

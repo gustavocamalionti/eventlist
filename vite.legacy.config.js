@@ -13,9 +13,14 @@ const common = [
     "common/js/utils/filters.js",
 ];
 
-// const panel = ["panel/css/app_panel.css", "panel/js/app_panel.js", "panel/js/plugins_panel.js"];
+const tenant_admin = [
+    "systems/tenant/modules/admin/fonts/tenant_admin_fonts.css",
+    "systems/tenant/modules/admin/css/tenant_admin.css",
+    "systems/tenant/modules/admin/js/tenant_admin.js",
+    "systems/tenant/modules/admin/plugins/tenant_admin_plugins.js",
+];
 
-// const panel_especific = [
+// const especific = [
 //     "panel/fonts/css/fonts_panel.css",
 
 //     "panel/pages/auth/js/users.js",
@@ -52,6 +57,10 @@ const common = [
 //     "panel/pages/users/js/users_maintenance.js",
 // ];
 
+const especific = [
+    "systems/tenant/modules/admin/pages/dashboard/css/dashboard.css",
+    "systems/tenant/modules/admin/pages/dashboard/js/dashboard.js",
+];
 //  plugins: [
 //         laravel({
 //             input: [...common, ...panel, ...panel_especific].map((file) => path.resolve(`resources/assets/${file}`)),
@@ -62,7 +71,7 @@ const common = [
 export default defineConfig({
     plugins: [
         laravel({
-            input: [...common].map((file) => path.resolve(`resources/assets/${file}`)),
+            input: [...common, ...tenant_admin, ...especific].map((file) => path.resolve(`resources/assets/${file}`)),
             refresh: true,
             buildDirectory: "legacy",
         }),
@@ -77,6 +86,9 @@ export default defineConfig({
     resolve: {
         alias: {
             $: "jQuery",
+            "@assetsMaster": path.resolve(__dirname, "resources/assets/systems/master"),
+            "@assetsTenant": path.resolve(__dirname, "resources/assets/systems/tenant"),
+            "@assetsCommon": path.resolve(__dirname, "resources/assets/common"),
         },
     },
 });

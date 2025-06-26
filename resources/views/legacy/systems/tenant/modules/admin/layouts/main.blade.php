@@ -20,11 +20,11 @@
             'resources/assets/common/css/common_app.css',
             'resources/assets/common/fonts/common_fonts.css',
 
-            // /**
-            //  * PANEL GENERAL/ESPECIFIC CSS
-            //  */
-            // 'resources/assets/panel/fonts/css/fonts_panel.css',
-            // 'resources/assets/panel/css/app_panel.css',
+            /**
+             * PANEL GENERAL/ESPECIFIC CSS
+             */
+            'resources/assets/systems/tenant/modules/admin/fonts/tenant_admin_fonts.css',
+            'resources/assets/systems/tenant/modules/admin/css/tenant_admin.css',
         ],
         'legacy'
     )
@@ -34,23 +34,17 @@
 </head>
 
 <body>
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div>
 
     <header>
-        @include('legacy.systems.tenant.modules.admin.layouts.tenant_panel_header')
+        @include('legacy.systems.tenant.modules.admin.layouts.header')
     </header>
 
-    <main class="container mt-4 mb-4">
+    <main class="container mt-5 mb-4">
         @yield('content')
     </main>
 
     <footer>
-        @include('legacy.systems.tenant.modules.admin.layouts.tenant_panel_footer')
+        @include('legacy.systems.tenant.modules.admin.layouts.footer')
     </footer>
 
     @vite(
@@ -64,8 +58,8 @@
             /**
              * PANEL GENERAL/ESPECIFIC JS
              */
-            // 'resources/assets/panel/js/app_panel.js',
-            // 'resources/assets/panel/js/plugins_panel.js',
+            'resources/assets/systems/tenant/modules/admin/js/tenant_admin.js',
+            'resources/assets/systems/tenant/modules/admin/plugins/tenant_admin_plugins.js',
         ],
         'legacy'
     )

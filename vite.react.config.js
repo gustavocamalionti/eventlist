@@ -13,9 +13,13 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            "@master": path.resolve(__dirname, "resources/views/react/systems/master"),
-            "@tenant": path.resolve(__dirname, "resources/views/react/systems/tenant"),
-            "@common": path.resolve(__dirname, "resources/views/react/common"),
+            "@reactMaster": path.resolve(__dirname, "resources/views/react/systems/master"),
+            "@reactTenant": path.resolve(__dirname, "resources/views/react/systems/tenant"),
+            "@reactCommon": path.resolve(__dirname, "resources/views/react/common"),
+
+            "@assetsMaster": path.resolve(__dirname, "resources/assets/systems/master"),
+            "@assetsTenant": path.resolve(__dirname, "resources/assets/systems/tenant"),
+            "@assetsCommon": path.resolve(__dirname, "resources/assets/common"),
         },
     },
 });

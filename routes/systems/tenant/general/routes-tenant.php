@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Panel\TenantAdminLogController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\Systems\Tenant\Modules\Site\TenantSiteController;
@@ -97,6 +98,23 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
                 // });
 
                 // LOGS
+                Route::controller(TenantAdminLogController::class)->group(function () {
+                    // Log Emails
+                    Route::get("/log-emails", "logEmailsList")->name("log.emails.list");
+                    Route::post("/log-emails-filter", "logEmailsFilters")->name("log.emails.filter");
+
+                    // Log Audits
+                    Route::get("/log-audits", "logAuditsList")->name("log.audits.list");
+                    Route::post("/log-audits-filter", "logAuditsFilters")->name("log.audits.filter");
+                    Route::get("/log-audits-history/{logId?}", "getLogAuditHistory")->name("log.audits.history");
+
+                    // Log Errors
+                    Route::get("/log-errors", "logErrorsList")->name("log.errors.list");
+                    Route::post("/log-errors-filter", "logErrorsFilters")->name("log.errors.filter");
+
+                    Route::get("/log-webhooks", "logWebhooksList")->name("log.webhooks.list");
+                    Route::post("/log-webhooks-filter", "logWebhooksFilters")->name("log.webhooks.filter");
+                });
                 // Route::controller(App\Http\Controllers\Panel\LogController::class)->group(function () {
                 //     // Log Emails
                 //     Route::get("/log-emails", "logEmailsList")->name("log.emails.list");
