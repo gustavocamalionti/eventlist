@@ -22,10 +22,10 @@ class RouteServiceProvider extends ServiceProvider
     public static function homeRoute(): string
     {
         if (tenancy()->initialized) {
-            return 'tenant.admin.dashboard';
+            return "tenant.admin.dashboard";
         }
 
-        return 'master.admin.dashboard';
+        return "master.admin.dashboard";
     }
 
     /**

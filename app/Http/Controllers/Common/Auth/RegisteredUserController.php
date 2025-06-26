@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             "name" => "required|string|max:255",
             "email" =>
-            "required|string|lowercase|email|max:255|unique:" . ($isTenant ? TenantUser::class : MasterUser::class),
+                "required|string|lowercase|email|max:255|unique:" . ($isTenant ? TenantUser::class : MasterUser::class),
             "password" => ["required", "confirmed", Rules\Password::defaults()],
         ]);
         $data = [

@@ -29,7 +29,16 @@ class TenantAdminController extends Controller
             $parameters = MasterParameter::find(1);
             return view(
                 "legacy.systems.tenant.modules.admin.pages.dashboard.dashboard",
-                compact("pageTitle", "parameters", "user", "buysReceived", "buysConfirmed", "buysAwaiting", "vouchers", "qtdStores")
+                compact(
+                    "pageTitle",
+                    "parameters",
+                    "user",
+                    "buysReceived",
+                    "buysConfirmed",
+                    "buysAwaiting",
+                    "vouchers",
+                    "qtdStores"
+                )
             );
         } catch (QueryException $e) {
             Log::info($e);
