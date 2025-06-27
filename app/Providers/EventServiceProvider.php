@@ -15,6 +15,9 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [SendEmailVerificationNotification::class],
+        \Stancl\Tenancy\Events\TenancyBootstrapped::class => [
+            \App\Listeners\RegisterTenantPermissions::class,
+        ],
     ];
 
     /**

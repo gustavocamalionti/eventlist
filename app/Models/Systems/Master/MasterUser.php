@@ -5,6 +5,7 @@ namespace App\Models\Systems\Master;
 use Illuminate\Support\Carbon;
 
 use Illuminate\Notifications\Notifiable;
+use App\Models\Systems\Master\MasterRole;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -112,7 +113,7 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function roles()
     {
-        return $this->belongsTo(Role::class, "roles_id");
+        return $this->belongsTo(MasterRole::class, "roles_id");
     }
 
     public function hasPermission($permission)

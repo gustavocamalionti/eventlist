@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-dark shadow-default" data-bs-theme="dark">
+<nav class="navbar navbar-expand-md navbar-light bg-dark shadow-default" data-bs-theme="dark" style="z-index:999">
     <div class="container">
         {{--
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -6,14 +6,8 @@
             style="max-width: 90px" />
             </a>
         --}}
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="{{ __("Toggle navigation") }}">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -21,9 +15,8 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto w-100 d-flex justify-content-evenly align-items-center flex-grow-1 flex-wrap">
                 <li class="nav-item effect-reveal-opacity">
-                    <a
-                        class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is("tenant.admin.dashboard") ? "active" : "" }}"
-                        href="{{ route("tenant.admin.dashboard") }}">
+                    <a class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is('tenant.admin.dashboard') ? 'active' : '' }}"
+                        href="{{ route('tenant.admin.dashboard') }}">
                         <i class="fas fa-chart-bar"></i>
                         Dashboard
                     </a>
@@ -68,7 +61,7 @@
                     <i class="fas fa-envelope"></i>
                     Formulários
                     </a>
-                    
+
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLog">
                     @can('read_form_contents_contact', Auth::user())
                     <a
@@ -77,7 +70,7 @@
                     Fale Conosco
                     </a>
                     @endcan
-                    
+
                     @can('read_form_configs', Auth::user())
                     <a
                     class="dropdown-item {{ Route::is("form.configs.list") ? "active" : "" }}"
@@ -90,7 +83,7 @@
                     @endcan
                 --}}
 
-                @can("read_event_buys", Auth::user())
+                {{-- @can('read_event_buys', Auth::user())
                     <li class="nav-item dropdown effect-reveal-opacity">
                         <a
                             id="navbarDropdownLog"
@@ -106,7 +99,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLog">
-                            @can("read_event_buys", Auth::user())
+                            @can('read_event_buys', Auth::user())
                                 <a
                                     class="dropdown-item {{ Route::is("event.buys.list") ? "active" : "" }}"
                                     href="{{ route("event.buys.list") }}">
@@ -114,7 +107,7 @@
                                 </a>
                             @endcan
 
-                            @can("read_event_vouchers", Auth::user())
+                            @can('read_event_vouchers', Auth::user())
                                 <a
                                     class="dropdown-item {{ Route::is("event.vouchers.list") ? "active" : "" }}"
                                     href="{{ route("event.vouchers.list") }}">
@@ -125,7 +118,7 @@
                     </li>
                 @endcan
 
-                @can("read_stores", Auth::user())
+                @can('read_stores', Auth::user())
                     <li class="nav-item effect-reveal-opacity">
                         <a
                             class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is("stores.*") ? "active" : "" }}"
@@ -136,7 +129,7 @@
                     </li>
                 @endcan
 
-                @can("read_users", Auth::user())
+                @can('read_users', Auth::user())
                     <li class="nav-item effect-reveal-opacity">
                         <a
                             class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is("users.*") || Route::is("users.*") ? "active" : "" }}"
@@ -145,52 +138,43 @@
                             Usuários
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
-                @can("read_log_emails", Auth::user())
+                @can('read_log_emails', Auth::user())
                     <li class="nav-item dropdown effect-reveal-opacity">
-                        <a
-                            id="navbarDropdownLog"
-                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle {{ Route::is("log.*") ? "active" : "" }}"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            v-pre>
+                        <a id="navbarDropdownLog"
+                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle {{ Route::is('log.*') ? 'active' : '' }}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" v-pre>
                             <i class="fas fa-exclamation-triangle"></i>
                             Log
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLog">
-                            @can("read_log_emails", Auth::user())
-                                <a
-                                    class="dropdown-item {{ Route::is("log.emails.list") ? "active" : "" }}"
-                                    href="{{ route("log.emails.list") }}">
+                            @can('read_log_emails', Auth::user())
+                                <a class="dropdown-item {{ Route::is('tenant.admin.log.emails.list') ? 'active' : '' }}"
+                                    href="{{ route('tenant.admin.log.emails.list') }}">
                                     Envio de Emails
                                 </a>
                             @endcan
 
-                            @can("read_log_audits", Auth::user())
-                                <a
-                                    class="dropdown-item {{ Route::is("log.audits.list") ? "active" : "" }}"
-                                    href="{{ route("log.audits.list") }}">
+                            @can('read_log_audits', Auth::user())
+                                <a class="dropdown-item {{ Route::is('log.audits.list') ? 'active' : '' }}"
+                                    href="{{ route('tenant.admin.log.audits.list') }}">
                                     Auditoria
                                 </a>
                             @endcan
 
-                            @can("read_log_errors", Auth::user())
-                                <a
-                                    class="dropdown-item {{ Route::is("log.errors.list") ? "active" : "" }}"
-                                    href="{{ route("log.errors.list") }}">
+                            @can('read_log_errors', Auth::user())
+                                <a class="dropdown-item {{ Route::is('log.errors.list') ? 'active' : '' }}"
+                                    href="{{ route('tenant.admin.log.errors.list') }}">
                                     Erros
                                 </a>
                             @endcan
 
-                            @can("read_log_webhooks", Auth::user())
-                                <a
-                                    class="dropdown-item {{ Route::is("log.webhooks.list") ? "active" : "" }}"
-                                    href="{{ route("log.webhooks.list") }}">
+                            @can('read_log_webhooks', Auth::user())
+                                <a class="dropdown-item {{ Route::is('log.webhooks.list') ? 'active' : '' }}"
+                                    href="{{ route('tenant.admin.log.webhooks.list') }}">
                                     Webhooks
                                 </a>
                             @endcan
@@ -204,36 +188,27 @@
                 class="navbar-nav d-flex flex-row justify-content-center align-items-center gap-3 flex-shrink-0 effect-reveal-to-left">
                 <!-- Authentication Links -->
                 @guest
-                    @if (Route::has("login"))
+                    @if (Route::has('login'))
                         <li class="nav-item">
-                            <a
-                                class="nav-link text-nowrap text-truncate text-decoration-none"
-                                href="{{ route("login") }}">
-                                {{ __("Login") }}
+                            <a class="nav-link text-nowrap text-truncate text-decoration-none" href="{{ route('login') }}">
+                                {{ __('Login') }}
                             </a>
                         </li>
                     @endif
 
-                    @if (Route::has("register"))
+                    @if (Route::has('register'))
                         <li class="nav-item">
-                            <a
-                                class="nav-link text-nowrap text-truncate text-decoration-none"
-                                href="{{ route("register") }}">
-                                {{ __("Registrar-se") }}
+                            <a class="nav-link text-nowrap text-truncate text-decoration-none"
+                                href="{{ route('register') }}">
+                                {{ __('Registrar-se') }}
                             </a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a
-                            id="navbarDropdown"
-                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            v-pre>
+                        <a id="navbarDropdown"
+                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -244,18 +219,13 @@
                                 </a>
                             --}}
 
-                            <a
-                                class="dropdown-item"
-                                href="{{ route("tenant.auth.logout") }}"
+                            <a class="dropdown-item" href="{{ route('tenant.auth.logout') }}"
                                 onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ __("Sair") }}
+                                {{ __('Sair') }}
                             </a>
 
-                            <form
-                                id="logout-form"
-                                action="{{ route("tenant.auth.logout") }}"
-                                method="POST"
+                            <form id="logout-form" action="{{ route('tenant.auth.logout') }}" method="POST"
                                 class="d-none">
                                 @csrf
                             </form>

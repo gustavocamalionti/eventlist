@@ -14,6 +14,6 @@ class MasterPermission extends Model
 
     public function roles()
     {
-        return $this->belongsToMany("App\Models\Role", "users", "id", "roles_id");
+        return $this->belongsToMany("App\Models\Systems\Master\MasterRole", "users", "id", "roles_id");
     }
 }
