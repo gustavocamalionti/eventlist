@@ -30,7 +30,7 @@ class TenantMailSuccessResetPassword extends Mailable
     {
         return $this->subject(env("APP_NAME") . " | Senha Alterada com Sucesso!")
             ->from(env("MAIL_FROM_ADDRESS", null))
-            ->view("emails.content.auth.success_reset_password", [
+            ->view("legacy.systems.tenant.modules.auth.pages.email.success_reset_password", [
                 "data" => $this->data,
             ]);
     }

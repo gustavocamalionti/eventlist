@@ -30,7 +30,7 @@ class TenantMailSuccessVerifyEmail extends Mailable
     {
         return $this->subject(env("APP_NAME") . " | Email Verificado com Sucesso!")
             ->from(env("MAIL_FROM_ADDRESS", null))
-            ->view("emails.content.auth.success_verify_email", [
+            ->view("legacy.systems.tenant.modules.auth.pages.email.success_verify_email", [
                 "data" => $this->data,
             ]);
     }
