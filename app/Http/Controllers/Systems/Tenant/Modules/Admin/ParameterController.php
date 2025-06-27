@@ -1,41 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Database\QueryException;
 use App\Libs\Errors;
 use App\Libs\Actions;
 use App\Libs\ViewsModules;
 use App\Libs\Enums\EnumErrorsType;
-#endregion
 
-#region Import Requests
 use App\Http\Requests\Panel\ParametersRequest;
-#endregion
 
-#region Import Services
 use App\Services\Crud\CrudParameterService;
-#endregion
-
-#region Import Models
-#endregion
-
-#region Import Jobs
-#endregion
 
 /**
  * Controller responsible for handling the parameters page in the admin panel.
  */
 class ParameterController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $linkService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services.
      *
@@ -46,7 +31,6 @@ class ParameterController extends Controller
     {
         $this->crudParameterService = $crudParameterService;
     }
-    #endregion
 
     /**
      * Displays the parameters page with the current configuration.
@@ -55,7 +39,6 @@ class ParameterController extends Controller
      */
     public function parametersList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_PARAMETERS;
             $parameters = $this->crudParameterService->findById(1);
@@ -81,7 +64,6 @@ class ParameterController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -92,7 +74,6 @@ class ParameterController extends Controller
      */
     public function parametersUpdate(ParametersRequest $request)
     {
-        #region content
         try {
             $this->crudParameterService->update(1, $request->all());
             return response()->json(["status" => 1]);
@@ -117,6 +98,5 @@ class ParameterController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

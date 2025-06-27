@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Panel;
+namespace App\Http\Requests\Systems\Tenant\Modules\Admin;
 
 use App\Models\User;
 use App\Libs\Enums\EnumLinkType;

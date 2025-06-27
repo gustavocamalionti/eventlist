@@ -6,7 +6,7 @@ import { msgDefault, msgError, MSG_ERROR_GENERAL } from "#common/js/utils/messag
 $(document).ready(function () {
     //LIST
 
-    var vDataTable = new DataTablesCustom("#zero_config", ".divElementGridFather", true, "/panel/log-audits-filter");
+    var vDataTable = new DataTablesCustom("#zero_config", ".divElementGridFather", true, "/admin/log-audits-filter");
     vDataTable.DivFatherTableClass = "#divGrid";
     vDataTable.Info = true;
     vDataTable.ScrollX = true;
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     function history(id) {
         $.ajax({
-            url: "/panel/log-audits-history/" + id,
+            url: "/admin/log-audits-history/" + id,
             type: "GET",
             dataType: "json",
             beforeSender: loadingBodyStart(),

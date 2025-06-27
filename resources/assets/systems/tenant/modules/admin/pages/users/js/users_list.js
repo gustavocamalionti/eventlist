@@ -4,7 +4,7 @@ import { history } from "#common/js/utils/actions.js";
 $(document).ready(function () {
     //LIST
 
-    var vDataTable = new DataTablesCustom("#zero_config", ".divElementGridFather", true, "/panel/users-filter");
+    var vDataTable = new DataTablesCustom("#zero_config", ".divElementGridFather", true, "/admin/users-filter");
     vDataTable.DivFatherTableClass = "#divGrid";
     vDataTable.Info = true;
     vDataTable.Columns.Defs = [{ orderable: false, targets: [0, 5] }];
@@ -51,7 +51,7 @@ $(document).ready(function () {
         {
             objNameClass: ".btn-history",
             function: function (id) {
-                history("panel/users-history", id);
+                history("admin/users-history", id);
             },
         },
     ];

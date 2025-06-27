@@ -23,7 +23,25 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
      * @var array
      */
 
-    protected $fillable = ["name", "email", "roles_id", "password", "active"];
+    protected $fillable = [
+        "name",
+        "cpf",
+        "email",
+        "phone_cell",
+        "gender",
+        "date_birth",
+        "zipcode",
+        "address",
+        "number",
+        "district",
+        "complement",
+        "cities_id",
+        "roles_id",
+        "permission_accept",
+        "news_accept",
+        "password",
+        "active",
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -87,6 +105,11 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
         );
     }
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes["password"] = bcrypt($value);
+    }
+
     public function setImportedAtAttribute($value)
     {
         if ($value == "") {
@@ -108,7 +131,7 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function cities()
     {
-        return $this->hasOne("App\Models\Citie", "id", "cities_id");
+        return $this->hasOne("App\Models\Common\Citie", "id", "cities_id");
     }
 
     public function roles()

@@ -1,4 +1,4 @@
-@extends("panel.layouts.master_panel")
+@extends("legacy.systems.tenant.modules.admin.layouts.main")
 
 @section("styles")
     
@@ -12,7 +12,11 @@
         <div class="card-body">
             <div id="bar_buttons" class="inline mb-3">
                 <button id="btnSave" type="button" class="btn btn-success btn-sm">Salvar</button>
-                <a id="btnCancel" href="{{ route("users.list") }}" type="button" class="btn btn-secondary btn-sm">
+                <a
+                    id="btnCancel"
+                    href="{{ route("tenant.admin.users.list") }}"
+                    type="button"
+                    class="btn btn-secondary btn-sm">
                     Cancelar
                 </a>
             </div>
@@ -22,15 +26,15 @@
                     <form
                         id="userForm"
                         class="form-horizontal"
-                        attr-save="{{ $user != null ? route("users.update", ["id" => $user->id]) : route("users.store") }}"
-                        attr-list="{{ route("users.list") }}">
+                        attr-save="{{ $user != null ? route("tenant.admin.users.update", ["id" => $user->id]) : route("tenant.admin.users.store") }}"
+                        attr-list="{{ route("tenant.admin.users.list") }}">
                         <div class="card-body">
                             {{ csrf_field() }}
                             <input type="hidden" value="{{ $parameters->apicep }}" id="apicep" />
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="mb-4">
-                                        <label for="cpf" class="form-label">CPF *</label>
+                                        <label for="cpf" class="form-label">CPF</label>
                                         <input
                                             type="text"
                                             name="cpf"
@@ -75,13 +79,13 @@
                                 <div class="col-lg-4">
                                     <!-- Campo Data de Nascimento -->
                                     <div class="mb-4 form-group">
-                                        <label for="date_birth" class="form-label">Data de Nascimento *</label>
+                                        <label for="date_birth" class="form-label">Data de Nascimento</label>
 
                                         <div id="datepicker" class="input-group" style="float: left">
                                             <input
                                                 id="date_birth"
                                                 type="text"
-                                                value="{{ isset($user) ? date("d/m/Y", strtotime($user->date_birth)) : "" }}"
+                                                value="{{ isset($user->date_birth) ? date("d/m/Y", strtotime($user->date_birth)) : "" }}"
                                                 class="form-control @error("date_birth") is-invalid @enderror"
                                                 name="date_birth"
                                                 data-mask-date
@@ -91,7 +95,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="mb-4">
-                                        <label for="phone_cell" class="form-label">Telefone *</label>
+                                        <label for="phone_cell" class="form-label">Telefone</label>
                                         <input
                                             id="phone_cell"
                                             type="text"
@@ -109,7 +113,7 @@
                                 <div class="col-lg-4">
                                     <!-- Campo CEP -->
                                     <div class="mb-4">
-                                        <label for="zipcode" class="form-label">CEP *</label>
+                                        <label for="zipcode" class="form-label">CEP</label>
                                         <input
                                             id="zipcode"
                                             type="text"
@@ -122,7 +126,7 @@
                                 <!-- Campo Endereço -->
                                 <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <label for="address" class="form-label">Endereço *</label>
+                                        <label for="address" class="form-label">Endereço</label>
                                         <input
                                             id="address"
                                             type="text"
@@ -135,7 +139,7 @@
                                 <div class="col-lg-2">
                                     <!-- Campo Número -->
                                     <div class="mb-4">
-                                        <label for="number" class="form-label">Número *</label>
+                                        <label for="number" class="form-label">Número</label>
                                         <input
                                             id="number"
                                             type="text"
@@ -151,7 +155,7 @@
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="mb-4">
-                                        <label for="district" class="form-label">Bairro *</label>
+                                        <label for="district" class="form-label">Bairro</label>
                                         <input
                                             id="district"
                                             type="text"
@@ -180,11 +184,11 @@
                                 <div class="col-lg-5">
                                     <!-- Campo Estado -->
                                     <div class="mb-4">
-                                        <label for="states_id" class="form-label">Estado *</label>
+                                        <label for="states_id" class="form-label">Estado</label>
                                         <select name="states_id" id="states_id" class="select2 form-select">
                                             <option value="">Selecione...</option>
                                             @foreach ($states as $state)
-                                                @if (isset($user) && $state->id == $user->cities->states_id)
+                                                @if (isset($user->cities) && $state->id == $user->cities->states_id)
                                                     <option value="{{ $state->id }}" selected>
                                                         {{ $state->initials }}
                                                     </option>
@@ -201,10 +205,10 @@
                                 <div class="col-lg-7">
                                     <!-- Campo Cidade -->
                                     <div class="mb-4">
-                                        <label for="cities_id" class="form-label">Cidade *</label>
+                                        <label for="cities_id" class="form-label">Cidade</label>
                                         <select name="cities_id" id="cities_id" class="select2 form-select">
                                             <option value="">Selecione...</option>
-                                            @if (isset($user))
+                                            @if (isset($user->cities))
                                                 @foreach ($cities as $citie)
                                                     @if (isset($user) && $citie->id == $user->cities_id)
                                                         <option value="{{ $citie->id }}" selected>
@@ -225,7 +229,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="mb-2">
-                                        <label for="password" class="form-label">Senha *</label>
+                                        <label for="password" class="form-label">Senha</label>
                                         <input
                                             id="password"
                                             type="password"
@@ -236,7 +240,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="mb-2">
-                                        <label for="password-confirm" class="form-label">Confirmar Senha *</label>
+                                        <label for="password-confirm" class="form-label">Confirmar Senha</label>
                                         <input
                                             id="password-confirm"
                                             type="password"
@@ -257,23 +261,15 @@
                                                 class="select2 form-control"
                                                 style="width: 100%; height: 36px">
                                                 <option value="" selected>Selecione...</option>
-
-                                                <option value="3" {{ isset($user) ? "selected" : "" }}>
-                                                    Analista
-                                                </option>
-
-                                                @if (auth()->user()->roles->id != App\Libs\Enums\EnumPermissionsLevel::MANAGER)
-                                                    <option
-                                                        value="2"
-                                                        {{ isset($user) && $user->roles->id == App\Libs\Enums\EnumPermissionsLevel::MANAGER ? "selected" : "" }}>
-                                                        Gestor
-                                                    </option>
-                                                    <option
-                                                        value="1"
-                                                        {{ isset($user) && $user->roles->id == App\Libs\Enums\EnumPermissionsLevel::ADMIN ? "selected" : "" }}>
-                                                        Administrador
-                                                    </option>
-                                                @endif
+                                                @foreach ($roles as $item)
+                                                    @if (auth()->user()->roles->id != App\Libs\Enums\Systems\Tenant\EnumTenantRoles::OWNER)
+                                                        <option
+                                                            value="{{ $item->id }}"
+                                                            {{ isset($user->roles_id) && $user->roles_id == $item->id ? "selected" : "" }}>
+                                                            {{ $item->name }}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -317,7 +313,9 @@
                                                 {{ isset($user) && $user->permission_accept ? "checked" : "" }} />
                                             <label class="form-check-label" for="permission_accept">
                                                 Concordo com a coleta e o uso dos meus dados pessoais conforme a
-                                                <a href="{{ route("privacy.policy") }}">Política de Privacidade.</a>
+                                                <a href="{{ route("tenant.site.privacy.policy") }}">
+                                                    Política de Privacidade.
+                                                </a>
                                             </label>
                                         </div>
                                     </div>
@@ -349,5 +347,5 @@
 @endsection
 
 @section("scripts")
-    @vite(["resources/assets/panel/pages/users/js/users_maintenance.js"])
+    @vite(["resources/assets/systems/tenant/modules/admin/pages/users/js/users_maintenance.js"], "legacy")
 @endsection

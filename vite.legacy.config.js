@@ -60,6 +60,14 @@ const tenant_admin = [
 const especific = [
     "systems/tenant/modules/admin/pages/dashboard/css/dashboard.css",
     "systems/tenant/modules/admin/pages/dashboard/js/dashboard.js",
+
+    "systems/tenant/modules/admin/pages/logs/js/log_audits_list.js",
+    "systems/tenant/modules/admin/pages/logs/js/log_emails_list.js",
+    "systems/tenant/modules/admin/pages/logs/js/log_webhooks_list.js",
+    "systems/tenant/modules/admin/pages/logs/js/log_errors_list.js",
+
+    "systems/tenant/modules/admin/pages/users/js/users_list.js",
+    "systems/tenant/modules/admin/pages/users/js/users_maintenance.js",
 ];
 //  plugins: [
 //         laravel({

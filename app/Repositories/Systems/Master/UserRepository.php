@@ -9,7 +9,7 @@ class UserRepository extends BaseRepository
 {
     public function entity()
     {
-        return User::class;
+        return MasterUser::class;
     }
 
     public function saveExceptionPassword($user, $request)

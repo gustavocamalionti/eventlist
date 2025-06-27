@@ -12,7 +12,7 @@
             </td>
 
             <td class="text-start align-middle">
-                @include("panel.layouts._details_audit", $item)
+                @include("legacy.systems.tenant.modules.admin.layouts._details_audit", $item)
             </td>
 
             <td class="text-center align-middle">

@@ -4,7 +4,7 @@ namespace App\Services\Systems\Tenant\Crud;
 
 use App\Services\BaseCrudService;
 use App\Repositories\BannerRepository;
-use App\Services\Panel\Rules\RulesFilesService;
+use App\Services\Common\Rules\RulesFilesService;
 
 class CrudBannerService extends BaseCrudService
 {

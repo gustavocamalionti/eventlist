@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -13,12 +12,7 @@ use App\Libs\Actions;
 use App\Libs\ViewsModules;
 use App\Libs\Enums\EnumForms;
 use App\Libs\Enums\EnumErrorsType;
-#endregion
 
-#region Import Requests
-#endregion
-
-#region Import Services
 use App\Services\Crud\CrudLinkService;
 use App\Services\Crud\CrudCitieService;
 use App\Services\Crud\CrudStateService;
@@ -27,26 +21,18 @@ use App\Services\Crud\CrudLogAuditService;
 use App\Services\Crud\CrudParameterService;
 use App\Services\Panel\Rules\RulesFilesService;
 use App\Services\Panel\Rules\RulesMaintenanceService;
-#endregion
 
-#region Import Models
 use App\Models\Citie;
 use App\Models\State;
 use App\Models\Store;
 use App\Models\FormContent;
 use App\Services\Crud\CrudFormSubjectService;
 
-#endregion
-
-#region Import Jobs
-#endregion
-
 /**
  * Controller responsible for managing the contact form content in the administration panel.
  */
 class FormContentContactController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudLinkService;
     protected $crudStoreService;
@@ -57,9 +43,7 @@ class FormContentContactController extends Controller
     protected $rulesArchivedService;
     protected $rulesFilesService;
     protected $rulesMaintenanceService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services and sets up permission middlewares.
      *
@@ -94,7 +78,6 @@ class FormContentContactController extends Controller
 
         $this->middleware("can:read_form_contents_contact")->only(["formContactsList", "formContactsFilters"]);
     }
-    #endregion
 
     /**
      * Lists all available contact form contents.
@@ -103,7 +86,6 @@ class FormContentContactController extends Controller
      */
     public function formContactsList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::FORM_CONTACT;
             $parameters = $this->crudParameterService->findById(1);
@@ -130,7 +112,6 @@ class FormContentContactController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -141,7 +122,6 @@ class FormContentContactController extends Controller
      */
     public function formContactsFilters(Request $request)
     {
-        #region content
         try {
             $query = FormContent::with(["formSubject.form"]) // Corrigido o relacionamento
                 ->whereHas("formSubject.form", function ($q) {
@@ -260,6 +240,5 @@ class FormContentContactController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

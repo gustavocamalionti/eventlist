@@ -1,4 +1,4 @@
-@extends("panel.layouts.master_panel")
+@extends("legacy.systems.tenant.modules.admin.layouts.main")
 
 @section("styles")
     
@@ -17,7 +17,7 @@
                         id="btnNew"
                         type="button"
                         class="btn btn-sm btn-primary mb-1"
-                        href="{{ url("/panel/users-manut") }}">
+                        href="{{ url("/admin/users-manut") }}">
                         <span class="fas fa-plus"></span>
                         Novo
                     </a>
@@ -43,7 +43,7 @@
                     <form method="post" class="form-filters row pt-2 pb-3" id="haliparForm">
                         {{ csrf_field() }}
 
-                        @include("panel.pages.users._partials._filters")
+                        @include("legacy.systems.tenant.modules.admin.pages.users._partials._filters")
 
                         <div class="col-12 col-md-2 ps-md-0 d-flex justify-content-start align-items-center">
                             <button id="btnFilter" type="button" class="btn btn-sm btn-primary">
@@ -60,7 +60,7 @@
                 <div class="card mb-0 border-top">
                     <div class="card-body table-responsive divElementGridFather">
                         <table id="zero_config" class="table table-sm table-striped table-hover align-middle">
-                            @include("panel.pages.users._partials._grid")
+                            @include("legacy.systems.tenant.modules.admin.pages.users._partials._grid")
                         </table>
                     </div>
                 </div>
@@ -70,5 +70,5 @@
 @endsection
 
 @section("scripts")
-    @vite(["resources/assets/panel/pages/users/js/users_list.js", "resources/assets/common/js/utils/filters.js"])
+    @vite(["resources/assets/systems/tenant/modules/admin/pages/users/js/users_list.js", "resources/assets/common/js/utils/filters.js"], "legacy")
 @endsection

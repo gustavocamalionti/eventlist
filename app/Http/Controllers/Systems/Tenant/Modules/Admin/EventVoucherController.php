@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Libs\Utils;
 use App\Models\Buy;
 use App\Libs\Errors;
@@ -13,12 +12,7 @@ use App\Models\Store;
 use App\Models\Voucher;
 use App\Libs\ViewsModules;
 use App\Models\FormContent;
-#endregion
 
-#region Import Requests
-#endregion
-
-#region Import Services
 use Illuminate\Http\Request;
 use App\Libs\Enums\EnumForms;
 use App\Libs\Enums\EnumOrderBy;
@@ -27,9 +21,7 @@ use App\Libs\Enums\EnumErrorsType;
 use App\Libs\Enums\EnumStatusBuies;
 use Illuminate\Support\Facades\Log;
 use App\Services\Crud\CrudBuyService;
-#endregion
 
-#region Import Models
 use App\Services\Crud\CrudLinkService;
 use App\Services\Crud\CrudBrandService;
 use App\Services\Crud\CrudCitieService;
@@ -46,17 +38,11 @@ use App\Services\Panel\Rules\RulesFilesService;
 use App\Http\Controllers\Controller as Controller;
 use App\Services\Panel\Rules\RulesMaintenanceService;
 
-#endregion
-
-#region Import Jobs
-#endregion
-
 /**
  * Controller responsible for managing the contact form content in the administration panel.
  */
 class EventVoucherController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudBuyService;
     protected $crudVoucherService;
@@ -71,9 +57,7 @@ class EventVoucherController extends Controller
     protected $rulesArchivedService;
     protected $rulesFilesService;
     protected $rulesMaintenanceService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services and sets up permission middlewares.
      *
@@ -120,7 +104,6 @@ class EventVoucherController extends Controller
 
         $this->middleware("can:read_event_vouchers")->only(["eventVouchersList", "eventVouchersFilters"]);
     }
-    #endregion
 
     /**
      * Lists all available contact form contents.
@@ -129,7 +112,6 @@ class EventVoucherController extends Controller
      */
     public function eventVouchersList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::EVENT_VOUCHER;
             $parameters = $this->crudParameterService->findById(1);
@@ -156,7 +138,6 @@ class EventVoucherController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -167,7 +148,6 @@ class EventVoucherController extends Controller
      */
     public function eventVouchersFilters(Request $request)
     {
-        #region content
         // dd("oi");
         try {
             /**
@@ -270,6 +250,5 @@ class EventVoucherController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

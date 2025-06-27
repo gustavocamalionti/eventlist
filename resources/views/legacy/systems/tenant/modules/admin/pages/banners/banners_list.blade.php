@@ -1,4 +1,4 @@
-@extends("panel.layouts.master_panel")
+@extends("legacy.systems.tenant.modules.admin.layouts.main")
 
 @section("content")
     <div class="card card-default mt-4">

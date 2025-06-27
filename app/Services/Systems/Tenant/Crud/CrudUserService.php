@@ -4,9 +4,9 @@ namespace App\Services\Systems\Tenant\Crud;
 
 use App\Libs\Enums\EnumStatus;
 use App\Libs\Enums\EnumOrderBy;
-use App\Repositories\UserRepository;
 use App\Services\BaseCrudService;
-use App\Libs\Enums\EnumPermissionsLevel;
+use App\Libs\Enums\Systems\Tenant\EnumTenantRoles;
+use App\Repositories\Systems\Tenant\UserRepository;
 
 class CrudUserService extends BaseCrudService
 {
@@ -24,11 +24,11 @@ class CrudUserService extends BaseCrudService
 
     public function getUsersByLevel($user, $columnName = null, $order = EnumOrderBy::ASC)
     {
-        if ($user->roles->id == EnumPermissionsLevel::ADMIN) {
+        if ($user->roles->id == EnumTenantRoles::ADMIN) {
             return $this->repository->getAll([], [$columnName => $order]);
         }
-        if ($user->roles->id == EnumPermissionsLevel::MANAGER) {
-            return $this->repository->getAll(["roles_id" => EnumPermissionsLevel::CLIENT], [$columnName => $order]);
+        if ($user->roles->id == EnumTenantRoles::OWNER) {
+            return $this->repository->getAll(["roles_id" => EnumTenantRoles::CLIENT], [$columnName => $order]);
         }
     }
 

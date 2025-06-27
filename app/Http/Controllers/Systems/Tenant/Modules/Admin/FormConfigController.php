@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -13,14 +12,10 @@ use App\Libs\Actions;
 use App\Libs\ViewsModules;
 use App\Libs\Enums\EnumOrderBy;
 use App\Libs\Enums\EnumErrorsType;
-#endregion
 
-#region Import Requests
 use App\Http\Requests\Panel\SaveFormConfigsRequest;
 use App\Http\Requests\Panel\UpdateFormConfigsRequest;
-#endregion
 
-#region Import Services
 use App\Services\Crud\CrudFormService;
 use App\Services\Crud\CrudCitieService;
 use App\Services\Crud\CrudStateService;
@@ -29,23 +24,14 @@ use App\Services\Crud\CrudParameterService;
 use App\Services\Crud\CrudFormConfigService;
 use App\Services\Crud\CrudFormSubjectService;
 use App\Services\Panel\Rules\RulesMaintenanceService;
-#endregion
 
-#region Import Models
 use App\Models\FormConfig;
-
-#endregion
-
-#region Import Jobs
-
-#endregion
 
 /**
  * Controller responsible for managing the email trigger settings for forms in the administration panel.
  */
 class FormConfigController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudFormConfigService;
     protected $crudFormService;
@@ -56,9 +42,7 @@ class FormConfigController extends Controller
 
     protected $rulesArchivedService;
     protected $rulesMaintenanceService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services and sets up permission middlewares.
      *
@@ -97,7 +81,6 @@ class FormConfigController extends Controller
         $this->middleware("can:update_form_configs")->only(["formConfigsMaintenance", "formConfigsUpdate"]);
         $this->middleware("can:delete_form_configs")->only(["formConfigsDelete"]);
     }
-    #endregion
 
     /**
      * Lists all available form configurations.
@@ -106,7 +89,6 @@ class FormConfigController extends Controller
      */
     public function formConfigsList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::FORM_CONFIG;
             $parameters = $this->crudParameterService->findById(1);
@@ -133,7 +115,6 @@ class FormConfigController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -145,7 +126,6 @@ class FormConfigController extends Controller
 
     public function formConfigsFilters(Request $request)
     {
-        #region content
         try {
             $query = FormConfig::query();
 
@@ -211,7 +191,6 @@ class FormConfigController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -222,7 +201,6 @@ class FormConfigController extends Controller
      */
     public function getFormConfigsHistory($formConfigsId)
     {
-        #region content
         try {
             Utils::maxOptimizations();
             $formConfigAudit = $this->crudLogAuditService->getAll(
@@ -256,7 +234,6 @@ class FormConfigController extends Controller
                 $e->getMessage()
             );
         }
-        #endregion
     }
 
     /**
@@ -267,7 +244,6 @@ class FormConfigController extends Controller
      */
     public function formConfigsMaintenance($id = 0)
     {
-        #region content
         try {
             $pageTitle = ViewsModules::FORM_CONFIG;
 
@@ -308,7 +284,6 @@ class FormConfigController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -319,7 +294,6 @@ class FormConfigController extends Controller
      */
     public function formConfigsStore(SaveFormConfigsRequest $request)
     {
-        #region content
         try {
             $this->crudFormConfigService->save($request->all());
             return response()->json(["status" => 1]);
@@ -344,7 +318,6 @@ class FormConfigController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -356,7 +329,6 @@ class FormConfigController extends Controller
      */
     public function formConfigsUpdate(UpdateFormConfigsRequest $request, $id)
     {
-        #region content
         try {
             $this->crudFormConfigService->update($id, $request->all());
             return response()->json(["status" => 1]);
@@ -381,7 +353,6 @@ class FormConfigController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -392,7 +363,6 @@ class FormConfigController extends Controller
      */
     public function formConfigsDelete($id)
     {
-        #region content
         try {
             $this->crudFormConfigService->delete($id);
 
@@ -420,6 +390,5 @@ class FormConfigController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

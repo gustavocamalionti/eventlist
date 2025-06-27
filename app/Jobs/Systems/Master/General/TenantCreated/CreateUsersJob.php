@@ -26,7 +26,7 @@ class CreateUsersJob extends TemplateJob
             $userAdmin = TenantUser::create([
                 "name" => "Eventlist",
                 "email" => "suporte@eventlist.com.br",
-                "password" => Hash::make($passwordAdmin),
+                "password" => $passwordAdmin,
                 "tenants_id" => $tenant->id,
                 "roles_id" => EnumTenantRoles::ADMIN,
             ]);
@@ -34,7 +34,7 @@ class CreateUsersJob extends TemplateJob
             $userOwner = TenantUser::create([
                 "name" => $tenant->name,
                 "email" => $tenant->email,
-                "password" => Hash::make($passwordOwner),
+                "password" => $passwordOwner,
                 "tenants_id" => $tenant->id,
                 "roles_id" => EnumTenantRoles::OWNER,
             ]);

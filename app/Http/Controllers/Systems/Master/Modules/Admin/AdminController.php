@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Http\Controllers\Systems\Master\Modules\Admin;
+
+use App\Http\Controllers\Common\Controller;
+
+class AdminController extends Controller
+{
+    public function __construct() {}
+
+    public function index()
+    {
+        $text = "Hello World! Estamos em Master Admin.";
+        return $text;
+    }
+}

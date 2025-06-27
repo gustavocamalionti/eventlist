@@ -96,7 +96,7 @@ $(document).ready(function () {
         {
             objNameClass: ".btn-history",
             function: function (id) {
-                history("panel/event-buys-history", id, [
+                history("admin/event-buys-history", id, [
                     {
                         datatable: "#zero_config_voucher",
                         modal: "#tbodyVoucherModal",

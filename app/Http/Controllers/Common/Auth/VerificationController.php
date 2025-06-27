@@ -2,27 +2,16 @@
 
 namespace App\Http\Controllers\Common\Auth;
 
-#region Import Libraries
+use Inertia\Inertia;
+
+use App\Providers\RouteServiceProvider;
+
 use App\Models\Systems\Master\MasterUser;
-#endregion
-
-#region Import Requests
-#endregion
-
-#region Import Services
 use App\Models\Systems\Tenant\TenantUser;
-#endregion
-
-#region Import Models
 use App\Http\Controllers\Common\Controller;
 use App\Services\Systems\Tenant\Crud\CrudParameterService;
 use App\Jobs\Systems\Tenant\Modules\Auth\Email\SuccessVerifyEmailJob;
 use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSuccessVerifyEmail;
-#endregion
-
-#region Import Jobs
-
-#endregion
 
 /**
  * Controller responsible for handling user email verification.
@@ -31,7 +20,6 @@ use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSuccessVerifyEmail;
  */
 class VerificationController extends Controller
 {
-    #region variables
     /**
      * Where to redirect users after verification.
      *
@@ -39,9 +27,7 @@ class VerificationController extends Controller
      */
     protected $redirectTo = "/";
     protected $crudParameterService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services and sets up Reset Password.
      *
@@ -54,7 +40,6 @@ class VerificationController extends Controller
         $this->middleware("throttle:6,1")->only("verify");
         $this->crudParameterService = $crudParameterService;
     }
-    #endregion
 
     /**
      * Mark the authenticated user's email address as verified.
@@ -62,7 +47,6 @@ class VerificationController extends Controller
      */
     public function verify($id, $hash)
     {
-        #region content
         $user = null;
         $isTenant = tenancy()->initialized;
         if ($isTenant) {
@@ -79,17 +63,14 @@ class VerificationController extends Controller
                     "email" => $user->email,
                     "users_id" => $user->id,
                 ]);
-                return redirect(route("tenant.admin.dashboard"));
+                return Inertia::location(route(RouteServiceProvider::homeRoute()));
             }
 
             TenantJobSuccessVerifyEmail::dispatch($user->email, [
                 "email" => $user->email,
                 "users_id" => $user->id,
             ]);
-            return redirect(route("master.admin.dashboard"));
+            return Inertia::location(route(RouteServiceProvider::homeRoute()));
         }
-
-        return redirect("/login");
-        #endregion
     }
 }

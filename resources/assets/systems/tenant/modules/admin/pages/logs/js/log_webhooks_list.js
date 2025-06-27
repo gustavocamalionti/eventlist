@@ -3,7 +3,7 @@ import { DataTablesCustom } from "#common/js/utils/datatables.js";
 $(document).ready(function () {
     //LIST
 
-    var vDataTable = new DataTablesCustom("#zero_config", ".divElementGridFather", true, "/panel/log-webhooks-filter");
+    var vDataTable = new DataTablesCustom("#zero_config", ".divElementGridFather", true, "/admin/log-webhooks-filter");
     vDataTable.DivFatherTableClass = "#divGrid";
     vDataTable.Info = true;
     vDataTable.Columns.Defs = [{ orderable: false, targets: [0, 4] }];

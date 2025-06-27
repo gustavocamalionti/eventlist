@@ -15,7 +15,7 @@
                 </button>
 
                 <!-- Modal -->
-                @include("panel.layouts._modal_history", $item)
+                @include("legacy.systems.tenant.modules.admin.layouts._modal_history", $item)
             </div>
         @endcan
 
@@ -23,8 +23,7 @@
             $canReadAudit = Auth::user()->can("read_users_audit");
         @endphp
 
-        <div
-            class="{{ ! $canReadAudit ? "offset-2" : "" }} col-4 d-flex justify-content-center align-items-center p-0">
+        <div class="{{ ! $canReadAudit ? "offset-2" : "" }} col-4 d-flex justify-content-center align-items-center p-0">
             <div class="dropdown h-100 w-100">
                 <a
                     class="btn-menu-dropdown dropdown-toggle d-flex justify-content-center align-items-center"
@@ -38,7 +37,7 @@
                         <li>
                             <a
                                 class="dropdown-item link-dropdown-item text-dark"
-                                href="{{ url("/panel/users-manut/" . $item->id) }}"
+                                href="{{ url("/admin/users-manut/" . $item->id) }}"
                                 target="_blank"
                                 style="text-decoration: none"
                                 data-bs-toggle="tooltip"
@@ -66,7 +65,7 @@
                                 data-placement="top"
                                 title="Excluir"
                                 style="text-decoration: none"
-                                data-url="{{ url("/panel/users-delete/" . $item->id) }}">
+                                data-url="{{ url("/admin/users-delete/" . $item->id) }}">
                                 <div class="d-flex">
                                     <div style="width: 17px">
                                         <i class="fas fa-trash-alt text-primary" aria-hidden="true"></i>

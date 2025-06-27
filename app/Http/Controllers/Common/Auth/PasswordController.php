@@ -14,7 +14,6 @@ use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendResetPassword;
 
 class PasswordController extends Controller
 {
-
     /**
      * Update the user's password.
      */

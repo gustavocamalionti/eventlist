@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -14,14 +13,10 @@ use App\Libs\ViewsModules;
 use App\Libs\Enums\EnumOrderBy;
 use App\Libs\Enums\EnumLinkType;
 use App\Libs\Enums\EnumErrorsType;
-#endregion
 
-#region Import Requests
 use App\Http\Requests\Panel\SaveLinksRequest;
 use App\Http\Requests\Panel\UpdateLinksRequest;
-#endregion
 
-#region Import Services
 use App\Services\Crud\CrudLinkService;
 use App\Services\Crud\CrudCitieService;
 use App\Services\Crud\CrudStateService;
@@ -30,21 +25,14 @@ use App\Services\Crud\CrudLogAuditService;
 use App\Services\Crud\CrudParameterService;
 use App\Services\Panel\Rules\RulesFilesService;
 use App\Services\Panel\Rules\RulesMaintenanceService;
-#endregion
 
-#region Import Models
 use App\Models\Link;
-#endregion
-
-#region Import Jobs
-#endregion
 
 /**
  * LinkController is responsible for managing link-related actions in the administration panel.
  */
 class LinkController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudLinkService;
     protected $crudStoreService;
@@ -55,9 +43,7 @@ class LinkController extends Controller
     protected $rulesArchivedService;
     protected $rulesFilesService;
     protected $rulesMaintenanceService;
-    #endregion
 
-    #region _construct
     /**
      * Constructor to initialize necessary services and set permission middlewares.
      *
@@ -96,7 +82,6 @@ class LinkController extends Controller
         $this->middleware("can:update_links")->only(["linksMaintenance", "linksUpdate"]);
         $this->middleware("can:delete_links")->only(["linksDelete"]);
     }
-    #endregion
 
     /**
      * Lists all available links.
@@ -105,7 +90,6 @@ class LinkController extends Controller
      */
     public function linksList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_LINKS;
             $parameters = $this->crudParameterService->findById(1);
@@ -132,7 +116,6 @@ class LinkController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -143,7 +126,6 @@ class LinkController extends Controller
      */
     public function LinksFilters(Request $request)
     {
-        #region content
         try {
             $query = Link::query();
             if ($request->selFilterStatus != 2) {
@@ -238,7 +220,6 @@ class LinkController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -249,7 +230,6 @@ class LinkController extends Controller
      */
     public function getLinkHistory($linkId)
     {
-        #region content
         try {
             Utils::maxOptimizations();
             $linkAudit = $this->crudLogAuditService->getAll(
@@ -280,7 +260,6 @@ class LinkController extends Controller
                 $e->getMessage()
             );
         }
-        #endregion
     }
 
     /**
@@ -291,7 +270,6 @@ class LinkController extends Controller
      */
     public function linksMaintenance($id = 0)
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_LINKS;
 
@@ -328,7 +306,6 @@ class LinkController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -339,7 +316,6 @@ class LinkController extends Controller
      */
     public function linksStore(SaveLinksRequest $request)
     {
-        #region content
         try {
             $dataRequest = $request->all();
             $data = [];
@@ -394,7 +370,6 @@ class LinkController extends Controller
                 $e->getMessage()
             );
         }
-        #endregion
     }
 
     /**
@@ -406,7 +381,6 @@ class LinkController extends Controller
      */
     public function linksUpdate(UpdateLinksRequest $request, $id)
     {
-        #region content
         try {
             $link = $this->crudLinkService->findById($id);
             $isFixed = $link->is_fixed;
@@ -451,7 +425,6 @@ class LinkController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -462,7 +435,6 @@ class LinkController extends Controller
      */
     public function linksDelete($id)
     {
-        #region content
         try {
             $link = $this->crudLinkService->findById($id);
 
@@ -500,6 +472,5 @@ class LinkController extends Controller
                 $e->getMessage()
             );
         }
-        #endregion
     }
 }

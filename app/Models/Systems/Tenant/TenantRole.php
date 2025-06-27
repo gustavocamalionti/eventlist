@@ -14,7 +14,12 @@ class TenantRole extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany("App\Models\Systems\Tenant\TenantPermission", "permissions_x_roles", "roles_id", "permissions_id")
+        return $this->belongsToMany(
+            "App\Models\Systems\Tenant\TenantPermission",
+            "permissions_x_roles",
+            "roles_id",
+            "permissions_id"
+        )
             ->orderBy("roles_id")
             ->orderBy("permissions_id");
     }

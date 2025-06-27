@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Panel;
+namespace App\Http\Requests\Systems\Tenant\Modules\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,18 +24,18 @@ class UpdateUsersRequest extends FormRequest
     public function rules()
     {
         $validations = [
-            "cpf" => "required|cpf|unique:users,cpf," . $this->id,
+            // "cpf" => "required|cpf|unique:users,cpf," . $this->id,
             "email" => "required|email|max:255|unique:users,email," . $this->id,
             "name" => "required|string|max:255",
-            "date_birth" => "required",
-            "zipcode" => "required",
-            "number" => "required",
-            "phone_cell" => "required",
-            "address" => "required|string|max:255",
-            "district" => "required|string|max:255",
-            "complement" => "max:255",
-            "cities_id" => "required",
-            "states_id" => "required",
+            // "date_birth" => "required",
+            // "zipcode" => "required",
+            // "number" => "required",
+            // "phone_cell" => "required",
+            // "address" => "required|string|max:255",
+            // "district" => "required|string|max:255",
+            // "complement" => "max:255",
+            // "cities_id" => "required",
+            // "states_id" => "required",
             "roles_id" => "required",
             "permission_accept" => "required|accepted",
         ];

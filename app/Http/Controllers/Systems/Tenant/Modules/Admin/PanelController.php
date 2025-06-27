@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Libs\Errors;
 use App\Libs\Actions;
 use App\Models\Store;
@@ -12,12 +11,7 @@ use App\Libs\Enums\EnumStatus;
 use App\Libs\Enums\EnumOrderBy;
 use App\Libs\Enums\EnumErrorsType;
 use Illuminate\Support\Facades\DB;
-#endregion
 
-#region Import Requests
-#endregion
-
-#region Import Services
 use App\Libs\Enums\EnumStatusBuies;
 use Illuminate\Support\Facades\Log;
 use App\Services\Crud\CrudBuyService;
@@ -30,20 +24,12 @@ use App\Services\Crud\CrudVoucherService;
 use App\Services\Crud\CrudParameterService;
 use App\Services\Crud\CrudFormSubjectService;
 use App\Http\Controllers\Controller as Controller;
-#endregion
-
-#region Import Models
-#endregion
-
-#region Import Jobs
-#endregion
 
 /**
  * Controller responsible for handling various dashboard and related operations in the panel.
  */
 class PanelController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudCitieService;
     protected $crudStoreService;
@@ -52,9 +38,7 @@ class PanelController extends Controller
     protected $crudBuyService;
     protected $crudVoucherService;
     protected $baseRulesService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services.
      *
@@ -91,7 +75,6 @@ class PanelController extends Controller
 
         $this->baseRulesService = $baseRulesService;
     }
-    #endregion
 
     /**
      * Displays the dashboard page.
@@ -100,7 +83,6 @@ class PanelController extends Controller
      */
     public function index()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_DASHBOARD;
             $parameters = $this->crudParameterService->findById(1);
@@ -182,7 +164,6 @@ class PanelController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -193,7 +174,6 @@ class PanelController extends Controller
      */
     public function cities($statesId = null)
     {
-        #region content
         $cities = [];
         if ($statesId != null) {
             $cities = $this->crudCitieService->getAllByColumn("states_id", $statesId, EnumStatus::ALL);
@@ -201,7 +181,6 @@ class PanelController extends Controller
         }
 
         return $cities;
-        #endregion
     }
 
     /**
@@ -212,7 +191,6 @@ class PanelController extends Controller
      */
     public function stores($citiesId = null)
     {
-        #region content
         $stores = [];
         if ($citiesId != null) {
             $stores = $this->crudStoreService->getAllByColumn("cities_id", $citiesId, EnumStatus::ALL);
@@ -220,7 +198,6 @@ class PanelController extends Controller
             $stores = $this->crudStoreService->orderCollection($stores, "name", EnumOrderBy::ASC);
         }
         return $stores;
-        #endregion
     }
     /**
      * Retrieves a list of stores for a given city.
@@ -260,7 +237,6 @@ class PanelController extends Controller
             }
         }
         return $stores;
-        #endregion
     }
 
     /**
@@ -271,7 +247,6 @@ class PanelController extends Controller
      */
     public function statesExistStores($statesId = null)
     {
-        #region content
         $listStores = [];
         if ($statesId != null) {
             $query = Store::select("stores.*")
@@ -287,7 +262,6 @@ class PanelController extends Controller
             $listStores = $query->orderBy("stores.name", EnumOrderBy::ASC)->get();
         }
         return $listStores;
-        #endregion
     }
 
     /**
@@ -300,7 +274,6 @@ class PanelController extends Controller
      */
     public function filterStoreCard($statesId, $citiesId, $storesId)
     {
-        #region content
         $statesId = $statesId == "false" ? null : $statesId;
         $citiesId = $citiesId == "false" ? null : $citiesId;
         $storesId = $storesId == "false" ? null : $storesId;
@@ -328,7 +301,6 @@ class PanelController extends Controller
             "status" => 1,
             "grid" => view("site.includes.store_info", compact("listStores"))->render(),
         ]);
-        #endregion
     }
 
     /**
@@ -339,13 +311,11 @@ class PanelController extends Controller
      */
     public function cascadeFormSubjects($formId)
     {
-        #region content
         $formSubjects = $this->crudFormSubjectService->getAllByColumn("forms_id", $formId, EnumStatus::ALL);
 
         $formSubjects = $this->crudFormSubjectService->orderCollection($formSubjects, "name", EnumOrderBy::ASC);
 
         return $formSubjects;
-        #endregion
     }
 
     /**
@@ -356,10 +326,8 @@ class PanelController extends Controller
      */
     public function updateFieldLinks($id)
     {
-        #region content
         $links = $this->crudLinkService->getAll([], ["name" => "ASC"]);
 
         return $links;
-        #endregion
     }
 }

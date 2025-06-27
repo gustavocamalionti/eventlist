@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Panel\TenantAdminLogController;
+use App\Http\Controllers\Common\Admin\LogController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+use App\Http\Controllers\Systems\Tenant\Modules\Site\SiteController;
+use App\Http\Controllers\Systems\Tenant\Modules\Admin\UserController;
+use App\Http\Controllers\Systems\Tenant\Modules\Admin\AdminController;
+use App\Http\Controllers\Systems\Tenant\Modules\Admin\WebhookController;
 use App\Http\Controllers\Systems\Tenant\Modules\Site\TenantSiteController;
 use App\Http\Controllers\Systems\Tenant\Modules\Admin\TenantAdminController;
 use App\Http\Controllers\Systems\Tenant\Modules\Admin\TenantAdminWebhookController;
@@ -22,6 +26,7 @@ use App\Http\Controllers\Systems\Tenant\Modules\Admin\TenantAdminWebhookControll
 
 Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(
     function () {
+        require __DIR__ . "../../../../common/routes-common.php";
         Route::name("tenant.auth.")->group(function () {
             require __DIR__ . "../../../../common/auth/auth.php";
         });
@@ -32,13 +37,13 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
             ->middleware(["auth", "verified"])
             ->group(function () {
                 // require __DIR__ . "../../../../common/admin/profile.php";
-                Route::controller(TenantAdminController::class)->group(function () {
+                Route::controller(AdminController::class)->group(function () {
                     Route::get("/home", "index");
                     Route::get("/dashboard", "index");
                     Route::get("/", "index")->name("dashboard");
                 });
 
-                Route::controller(TenantAdminWebhookController::class)->group(function () {
+                Route::controller(WebhookController::class)->group(function () {
                     Route::post("/webhooks", "index")
                         ->middleware(["asaas.ip", "webhook.auth"])
                         ->name("webhook");
@@ -98,7 +103,7 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
                 // });
 
                 // LOGS
-                Route::controller(TenantAdminLogController::class)->group(function () {
+                Route::controller(LogController::class)->group(function () {
                     // Log Emails
                     Route::get("/log-emails", "logEmailsList")->name("log.emails.list");
                     Route::post("/log-emails-filter", "logEmailsFilters")->name("log.emails.filter");
@@ -114,6 +119,16 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
 
                     Route::get("/log-webhooks", "logWebhooksList")->name("log.webhooks.list");
                     Route::post("/log-webhooks-filter", "logWebhooksFilters")->name("log.webhooks.filter");
+                });
+                Route::controller(UserController::class)->group(function () {
+                    // Log Emails
+                    Route::get("/users", "usersList")->name("users.list");
+                    Route::post("/users-filter", "usersFilters")->name("users.filter");
+                    Route::get("/users-manut/{id?}", "usersMaintenance")->name("users.maintenance");
+                    Route::post("/users-store", "usersStore")->name("users.store");
+                    Route::post("/users-update/{id}", "usersUpdate")->name("users.update");
+                    Route::delete("/users-delete/{id}", "usersDelete")->name("users.delete");
+                    Route::get("/users-history/{userId?}", "getUserHistory")->name("users.history");
                 });
                 // Route::controller(App\Http\Controllers\Panel\LogController::class)->group(function () {
                 //     // Log Emails
@@ -135,10 +150,11 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
             });
 
         Route::name("tenant.site.")->group(function () {
-            Route::controller(TenantSiteController::class)->group(function () {
+            Route::controller(SiteController::class)->group(function () {
                 Route::get("/home", "index");
                 Route::get("/dashboard", "index");
                 Route::get("/", "index")->name("dashboard");
+                Route::get("/politica-privacidade", "politicaPrivacidade")->name("privacy.policy");
             });
         });
     }

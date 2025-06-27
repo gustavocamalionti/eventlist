@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Panel;
+namespace App\Http\Requests\Systems\Tenant\Modules\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,21 +24,22 @@ class SaveUsersRequest extends FormRequest
     public function rules()
     {
         $validations = [
-            "cpf" => "required|cpf|unique:users,cpf",
+            // "cpf" => "required|cpf|unique:users,cpf",
             "email" => "required|email|max:255|unique:users,email",
             "name" => "required|string|max:255",
-            "date_birth" => "required",
-            "zipcode" => "required",
-            "number" => "required",
-            "phone_cell" => "required",
-            "address" => "required|string|max:255",
-            "district" => "required|string|max:255",
-            "complement" => "max:255",
-            "cities_id" => "required",
+            // "date_birth" => "required",
+            // "zipcode" => "required",
+            // "number" => "required",
+            // "phone_cell" => "required",
+            // "address" => "required|string|max:255",
+            // "district" => "required|string|max:255",
+            // "complement" => "max:255",
+            // "cities_id" => "required",
+            // "states_id" => "required",
             "roles_id" => "required",
-            "states_id" => "required",
             "password" => "required|confirmed",
             "password_confirmation" => "required",
+            "permission_accept" => "required|accepted",
         ];
 
         if (!array_key_exists("news_accept", $this->request->all())) {

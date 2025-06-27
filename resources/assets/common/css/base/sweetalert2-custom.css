@@ -6,6 +6,7 @@
     & .swal2-title {
         color: #3498db !important;
         text-transform: uppercase;
+        font-size: 17px;
     }
 }
 
@@ -48,7 +49,7 @@
     color: #ffffff !important;
     font-family: var(--neoversesans-bold-font) !important;
     background-color: var(--primary-color) !important;
-    font-size: 17px;
+    font-size: 13px;
     font-family: var(--neoversesans-regular-font);
     letter-spacing: 2px !important;
     color: var(--white-color) !important;
@@ -57,7 +58,7 @@
 
 .swal2-cancel,
 .swal2-deny {
-    font-size: 17px;
+    font-size: 13px;
     font-family: var(--neoversesans-bold-font) !important;
     background-color: #e74c3c !important;
     color: #ffffff !important;

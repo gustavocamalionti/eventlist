@@ -56,7 +56,7 @@ $(document).ready(function () {
         {
             objNameClass: ".btn-history",
             function: function (id) {
-                history("panel/form-configs-history", id);
+                history("admin/form-configs-history", id);
             },
         },
     ];

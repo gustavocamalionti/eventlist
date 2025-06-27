@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Libs\Utils;
 use App\Libs\Errors;
 use App\Libs\Actions;
@@ -13,14 +12,9 @@ use App\Libs\Enums\EnumOrderBy;
 use App\Libs\Enums\EnumDecision;
 use App\Libs\Enums\EnumErrorsType;
 
-#endregion
-
-#region Import Requests
 use Illuminate\Database\QueryException;
 use App\Services\Crud\CrudBannerService;
-#endregion
 
-#region Import Services
 use App\Services\Crud\CrudLogAuditService;
 use App\Services\Crud\CrudParameterService;
 use App\Http\Requests\Panel\SaveBannersRequest;
@@ -32,20 +26,12 @@ use App\Services\Panel\Rules\RulesMaintenanceService;
 use App\Services\Common\Rules\RulesBannerIsActiveService;
 use App\Services\Crud\CrudLinkService;
 use App\Services\Crud\CrudStoreService;
-#endregion
-
-#region Import Models
-#endregion
-
-#region Import Jobs
-#endregion
 
 /**
  * Controller responsible for managing the banners in the administration panel.
  */
 class BannerController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudBannerService;
     protected $crudLogAuditService;
@@ -57,9 +43,7 @@ class BannerController extends Controller
     protected $rulesBannerService;
     protected $rulesMaintenanceService;
     protected $rulesBannerIsActiveService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services and sets up permission middlewares.
      *
@@ -108,7 +92,6 @@ class BannerController extends Controller
         ]);
         $this->middleware("can:delete_banners")->only(["bannersDelete"]);
     }
-    #endregion
 
     /**
      * Lists all available banners.
@@ -117,7 +100,6 @@ class BannerController extends Controller
      */
     public function bannersList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_BANNERS;
             $parameters = $this->crudParameterService->findById(1);
@@ -152,7 +134,6 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -163,7 +144,6 @@ class BannerController extends Controller
      */
     public function bannersFilters(Request $request)
     {
-        #region content
         try {
             $listBanners = $this->crudBannerService->getAll(
                 ["active" => $request->selFilterStatus],
@@ -195,7 +175,6 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -206,7 +185,6 @@ class BannerController extends Controller
      */
     public function getBannersHistory($bannersId)
     {
-        #region content
         try {
             Utils::maxOptimizations();
             $bannerAudit = $this->crudLogAuditService->getAll(
@@ -237,7 +215,6 @@ class BannerController extends Controller
                 $e->getMessage()
             );
         }
-        #endregion
     }
 
     /**
@@ -248,7 +225,6 @@ class BannerController extends Controller
      */
     public function bannersStoreOrder(Request $request)
     {
-        #region content
         try {
             $bannersId = explode(",", $request->banner_ids);
             $this->crudBannerService->updateOrder($bannersId);
@@ -277,7 +253,6 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -288,7 +263,6 @@ class BannerController extends Controller
      */
     public function bannersMaintenance($id = 0)
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_BANNERS;
             $subTitle = "Novo Cadastro";
@@ -321,7 +295,6 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -333,7 +306,6 @@ class BannerController extends Controller
 
     public function bannersStore(SaveBannersRequest $request)
     {
-        #region content
         try {
             $order = $this->crudBannerService->defineOrder(1, "order");
 
@@ -390,7 +362,6 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -402,7 +373,6 @@ class BannerController extends Controller
      */
     public function bannersUpdate(UpdateBannersRequest $request, $id)
     {
-        #region content
         try {
             $this->crudBannerService->beginTransaction();
             $banner = $this->crudBannerService->findById($id);
@@ -474,7 +444,6 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -486,7 +455,6 @@ class BannerController extends Controller
 
     public function bannersDelete($id)
     {
-        #region content
         try {
             $myDateTime = $this->crudBannerService->getNowDateTime();
             $banner = $this->crudBannerService->findById($id);
@@ -522,7 +490,6 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -535,7 +502,6 @@ class BannerController extends Controller
      */
     public function bannersActiveOrDesactive(Request $request, $id, $decision = EnumDecision::ACTIVE)
     {
-        #region content
         try {
             $myDateTime = $this->crudBannerService->getNowDateTime();
             $newOrder = $this->crudBannerService->defineOrder($decision, "order");
@@ -574,6 +540,5 @@ class BannerController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

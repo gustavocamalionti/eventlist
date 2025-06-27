@@ -69,7 +69,7 @@ $(document).ready(function () {
         {
             objNameClass: ".btn-history",
             function: function (id) {
-                history("panel/links-history", id);
+                history("admin/links-history", id);
             },
         },
     ];

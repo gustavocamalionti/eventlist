@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Libs\Utils;
 use App\Libs\Errors;
 use App\Libs\Actions;
@@ -13,39 +12,28 @@ use App\Libs\Enums\EnumStatus;
 use App\Libs\Enums\EnumOrderBy;
 use Yajra\DataTables\DataTables;
 use App\Libs\Enums\EnumErrorsType;
-#endregion
 
-#region Import Requests
 use Illuminate\Support\Facades\Log;
 use App\Services\Crud\CrudBrandService;
-#endregion
 
-#region Import Services
 use App\Services\Crud\CrudCitieService;
 use App\Services\Crud\CrudStateService;
 use App\Services\Crud\CrudStoreService;
 use Illuminate\Database\QueryException;
 use App\Services\Crud\CrudVoucherService;
 use App\Services\Crud\CrudLogAuditService;
-#endregion
 
-#region Import Models
 use App\Services\Crud\CrudParameterService;
 use App\Http\Requests\Panel\SaveStoresRequest;
 use App\Http\Requests\Panel\UpdateStoresRequest;
 use App\Http\Controllers\Controller as Controller;
 use App\Services\Panel\Rules\RulesMaintenanceService;
-#endregion
-
-#region Import Jobs
-#endregion
 
 /**
  * Controller responsible for handling store-related actions in the admin panel.
  */
 class StoreController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudStoreService;
     protected $crudStateService;
@@ -56,9 +44,7 @@ class StoreController extends Controller
 
     protected $rulesArchivedService;
     protected $rulesMaintenanceService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services and middleware for authorization.
      *
@@ -97,7 +83,6 @@ class StoreController extends Controller
         $this->middleware("can:update_stores")->only(["storesMaintenance", "storesUpdate"]);
         $this->middleware("can:delete_stores")->only(["storesDelete"]);
     }
-    #endregion
 
     /**
      * Displays the list of stores in the admin panel.
@@ -106,7 +91,6 @@ class StoreController extends Controller
      */
     public function storesList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_STORES;
             $parameters = $this->crudParameterService->findById(1);
@@ -133,7 +117,6 @@ class StoreController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -144,7 +127,6 @@ class StoreController extends Controller
      */
     public function storesFilters(Request $request)
     {
-        #region content
         try {
             $query = Store::query()
                 ->where("id", "!=", 1)
@@ -277,7 +259,6 @@ class StoreController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -288,7 +269,6 @@ class StoreController extends Controller
      */
     public function getStoreHistory($storeId)
     {
-        #region content
         try {
             Utils::maxOptimizations();
             $storeAudit = $this->crudLogAuditService->getAll(
@@ -319,7 +299,6 @@ class StoreController extends Controller
                 $e->getMessage()
             );
         }
-        #endregion
     }
 
     /**
@@ -330,7 +309,6 @@ class StoreController extends Controller
      */
     public function storesMaintenance($id = 0)
     {
-        #region content
         try {
             $pageTitle = ViewsModules::PANEL_STORES;
 
@@ -375,7 +353,6 @@ class StoreController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -386,7 +363,6 @@ class StoreController extends Controller
      */
     public function storesStore(SaveStoresRequest $request)
     {
-        #region content
         try {
             $this->crudStoreService->save($request->all());
             return response()->json(["status" => 1]);
@@ -411,7 +387,6 @@ class StoreController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -423,7 +398,6 @@ class StoreController extends Controller
      */
     public function storesUpdate(UpdateStoresRequest $request, $id)
     {
-        #region content
         try {
             $this->crudStoreService->update($id, $request->all());
             return response()->json(["status" => 1]);
@@ -448,7 +422,6 @@ class StoreController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -459,7 +432,6 @@ class StoreController extends Controller
      */
     public function storesDelete($id)
     {
-        #region content
         try {
             $this->crudStoreService->delete($id);
             // $listStores = $this->crudStoreService->getAll([],['name'=> EnumOrderBy::ASC]);
@@ -488,6 +460,5 @@ class StoreController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

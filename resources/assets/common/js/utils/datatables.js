@@ -1,5 +1,5 @@
-import "../plugins_datatables";
-import { Delete, Filter } from "@/js/utils/actions.js";
+import "../../plugins/js/common_datatables";
+import { Delete, Filter } from "@assetsCommon/js/utils/actions.js";
 import { CallComponents } from "./calls";
 
 /**

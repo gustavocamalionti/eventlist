@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -13,12 +12,7 @@ use App\Libs\Actions;
 use App\Libs\ViewsModules;
 use App\Libs\Enums\EnumForms;
 use App\Libs\Enums\EnumErrorsType;
-#endregion
 
-#region Import Requests
-#endregion
-
-#region Import Services
 use App\Services\Crud\CrudLinkService;
 use App\Services\Crud\CrudCitieService;
 use App\Services\Crud\CrudStateService;
@@ -27,24 +21,17 @@ use App\Services\Crud\CrudLogAuditService;
 use App\Services\Crud\CrudParameterService;
 use App\Services\Panel\Rules\RulesFilesService;
 use App\Services\Panel\Rules\RulesMaintenanceService;
-#endregion
 
-#region Import Models
 use App\Models\Citie;
 use App\Models\State;
 use App\Models\Store;
 use App\Models\FormContent;
-#endregion
-
-#region Import Jobs
-#endregion
 
 /**
  * Controller responsible for managing franchise form content in the administrative area.
  */
 class FormContentFranchiseeController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudLinkService;
     protected $crudStoreService;
@@ -55,9 +42,7 @@ class FormContentFranchiseeController extends Controller
     protected $rulesArchivedService;
     protected $rulesFilesService;
     protected $rulesMaintenanceService;
-    #endregion
 
-    #region _construct
     /**
      * Constructor of the class, initializes necessary services, and configures permission middlewares.
      *
@@ -92,7 +77,6 @@ class FormContentFranchiseeController extends Controller
 
         $this->middleware("can:read_form_contents_franchisee")->only(["formFranchiseesList", "formFranchiseesFilters"]);
     }
-    #endregion
 
     /**
      * Lists all franchise form contents.
@@ -101,7 +85,6 @@ class FormContentFranchiseeController extends Controller
      */
     public function formFranchiseesList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::FORM_FRANCHISEE;
             $parameters = $this->crudParameterService->findById(1);
@@ -128,7 +111,6 @@ class FormContentFranchiseeController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -139,7 +121,6 @@ class FormContentFranchiseeController extends Controller
      */
     public function formFranchiseesFilters(Request $request)
     {
-        #region content
         try {
             $query = FormContent::with(["formSubject.form"]) // Corrigido o relacionamento
                 ->whereHas("formSubject.form", function ($q) {
@@ -274,6 +255,5 @@ class FormContentFranchiseeController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Systems\Tenant\Modules\Admin;
 
-#region Import Libraries
 use App\Libs\Utils;
 use App\Models\Buy;
 use App\Libs\Errors;
@@ -13,12 +12,7 @@ use App\Models\Store;
 use App\Libs\ViewsModules;
 use App\Models\FormContent;
 use Illuminate\Http\Request;
-#endregion
 
-#region Import Requests
-#endregion
-
-#region Import Services
 use App\Libs\Enums\EnumForms;
 use App\Libs\Enums\EnumOrderBy;
 use Yajra\DataTables\DataTables;
@@ -27,9 +21,7 @@ use App\Libs\Enums\EnumStatusBuies;
 use Illuminate\Support\Facades\Log;
 use App\Services\Crud\CrudBuyService;
 use App\Services\Crud\CrudLinkService;
-#endregion
 
-#region Import Models
 use App\Services\Crud\CrudBrandService;
 use App\Services\Crud\CrudCitieService;
 use App\Services\Crud\CrudStateService;
@@ -45,17 +37,11 @@ use App\Services\Panel\Rules\RulesFilesService;
 use App\Http\Controllers\Controller as Controller;
 use App\Services\Panel\Rules\RulesMaintenanceService;
 
-#endregion
-
-#region Import Jobs
-#endregion
-
 /**
  * Controller responsible for managing the contact form content in the administration panel.
  */
 class EventBuyController extends Controller
 {
-    #region variables
     protected $crudParameterService;
     protected $crudBuyService;
     protected $crudVoucherService;
@@ -70,9 +56,7 @@ class EventBuyController extends Controller
     protected $rulesArchivedService;
     protected $rulesFilesService;
     protected $rulesMaintenanceService;
-    #endregion
 
-    #region _construct
     /**
      * Class constructor, initializes necessary services and sets up permission middlewares.
      *
@@ -119,7 +103,6 @@ class EventBuyController extends Controller
 
         $this->middleware("can:read_event_buys")->only(["eventBuysList", "eventBuysFilters"]);
     }
-    #endregion
 
     /**
      * Lists all available contact form contents.
@@ -128,7 +111,6 @@ class EventBuyController extends Controller
      */
     public function eventBuysList()
     {
-        #region content
         try {
             $pageTitle = ViewsModules::EVENT_BUY;
             $parameters = $this->crudParameterService->findById(1);
@@ -155,7 +137,6 @@ class EventBuyController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -166,7 +147,6 @@ class EventBuyController extends Controller
      */
     public function eventBuysFilters(Request $request)
     {
-        #region content
         try {
             /**
              * OS campos "add column" não será afetado pela caixa de pesquisa,
@@ -318,7 +298,6 @@ class EventBuyController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 
     /**
@@ -371,6 +350,5 @@ class EventBuyController extends Controller
                 $e->getCode()
             );
         }
-        #endregion
     }
 }

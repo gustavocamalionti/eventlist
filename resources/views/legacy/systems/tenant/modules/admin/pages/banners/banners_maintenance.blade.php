@@ -1,4 +1,4 @@
-@extends("panel.layouts.master_panel")
+@extends("legacy.systems.tenant.modules.admin.layouts.main")
 
 @section("styles")
     @vite(["resources/assets/panel/pages/banners/css/banners_maintenance.css"])

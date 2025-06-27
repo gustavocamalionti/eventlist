@@ -91,7 +91,6 @@ return new class extends Migration {
             ["permissions_id" => 30, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_buys
             ["permissions_id" => 31, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_vouchers
             ["permissions_id" => 32, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_log_webhooks
-
         ]);
     }
 

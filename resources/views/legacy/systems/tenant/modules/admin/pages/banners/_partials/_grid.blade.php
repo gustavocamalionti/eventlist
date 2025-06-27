@@ -30,7 +30,8 @@
                                                 <i class="fas fa-history"></i>
                                             </button>
                                             <!-- Modal -->
-                                            @include("panel.layouts._modal_history", $item)
+                                            @include(
+                                            "legacy.systems.tenant.modules.admin.layouts._modal_history", $item                                            )
                                         @endcan
 
                                         @if ($item->active == 1)
@@ -123,7 +124,7 @@
                                                     - {{ $item->active ? "Desarquivado" : "Arquivado" }}
                                                 </strong>
                                             </p>
-                                            @if (Auth::user()->roles->id == App\Libs\Enums\EnumPermissionsLevel::ADMIN)
+                                            @if (Auth::user()->roles->id == App\Libs\Enums\Systems\Tenant\EnumTenantRoles::ADMIN)
                                                 <p class="">
                                                     <strong>Arquivo Mobile:</strong>
                                                     {{ $item->image_mobile }}
