@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Systems\Master\Modules\Admin;
 
 use Illuminate\Validation\Rule;
-use App\Models\Systems\Master\User;
+use App\Models\Systems\Master\MasterUser;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileUpdateRequest extends FormRequest

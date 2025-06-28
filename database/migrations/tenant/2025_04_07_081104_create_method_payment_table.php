@@ -4,8 +4,8 @@ use App\Libs\Enums\EnumStatus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use App\Models\Systems\Tenant\MethodPayment;
 use Illuminate\Database\Migrations\Migration;
+use App\Models\Systems\Tenant\TenantMethodPayment;
 
 return new class extends Migration {
     /**
@@ -27,7 +27,7 @@ return new class extends Migration {
             "ALTER TABLE method_payments COMMENT 'Tabela que armazena os métodos de pagamento para realizar cobranças.' "
         );
 
-        MethodPayment::create([
+        TenantMethodPayment::create([
             "id" => 1,
             "name" => "PIX",
             "asaas" => "PIX",
@@ -35,7 +35,7 @@ return new class extends Migration {
             "created_at" => now(),
             "updated_at" => now(),
         ]);
-        MethodPayment::create([
+        TenantMethodPayment::create([
             "id" => 2,
             "name" => "Cartão de Crédito",
             "asaas" => "CREDIT_CARD",
@@ -43,7 +43,7 @@ return new class extends Migration {
             "created_at" => now(),
             "updated_at" => now(),
         ]);
-        MethodPayment::create([
+        TenantMethodPayment::create([
             "id" => 3,
             "name" => "Boleto",
             "asaas" => "BOLETO",

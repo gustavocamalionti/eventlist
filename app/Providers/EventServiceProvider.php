@@ -2,19 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\Link;
-use App\Models\Systems\Master\User;
-use App\Models\Store;
-use App\Models\Banner;
-use App\Models\Parameter;
-use App\Models\FormConfig;
-use App\Observers\LinkObserver;
-use App\Observers\UserObserver;
-use App\Observers\StoreObserver;
-use App\Observers\BannerObserver;
-use App\Observers\ParameterObserver;
-use App\Observers\FormConfigObserver;
 use Illuminate\Auth\Events\Registered;
+use App\Models\Systems\Master\MasterUser;
+use App\Models\Systems\Tenant\TenantUser;
+use App\Observers\Systems\Master\MasterUserObserver;
+use App\Observers\Systems\Tenant\TenantUserObserver;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -27,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [SendEmailVerificationNotification::class],
+        \Stancl\Tenancy\Events\TenancyBootstrapped::class => [\App\Listeners\RegisterTenantPermissions::class],
     ];
 
     /**
@@ -34,7 +27,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // User::observe(UserObserver::class);
+        TenantUser::observe(TenantUserObserver::class);
+        MasterUser::observe(MasterUserObserver::class);
         // Parameter::observe(ParameterObserver::class);
         // Banner::observe(BannerObserver::class);
         // Store::observe(StoreObserver::class);

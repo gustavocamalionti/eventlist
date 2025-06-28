@@ -11,6 +11,7 @@ use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        ResetPassword::createUrlUsing(function ($notifiable, $token) {
+            $isTenant = tenancy()->initialized;
+            $routePrefix = $isTenant ? "tenant.auth" : "master.auth";
+            return URL::route($routePrefix . "." . "password.reset", [
+                "token" => $token,
+                "email" => $notifiable->getEmailForPasswordReset(),
+            ]);
+        });
         // \URL::forceScheme("https");
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new CustomValidator($translator, $data, $rules, $messages);

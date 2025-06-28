@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/system_master/general/layouts/AuthenticatedLayout";
+import AuthenticatedLayout from "@reactMaster/general/layouts/AuthenticatedLayout";
 import DeleteUserForm from "./partials/DeleteUserForm";
 import UpdatePasswordForm from "./partials/UpdatePasswordForm";
 import UpdateProfileInformationForm from "./partials/UpdateProfileInformationForm";

@@ -19,6 +19,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = "/admin";
 
+    public static function homeRoute(): string
+    {
+        if (tenancy()->initialized) {
+            return "tenant.admin.dashboard";
+        }
+
+        return "master.admin.dashboard";
+    }
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */

@@ -3,7 +3,7 @@
 namespace App\Services\Systems\Tenant\Crud;
 
 use App\Repositories\FormRepository;
-use App\Services\Bases\BaseCrudService;
+use App\Services\BaseCrudService;
 
 class CrudFormService extends BaseCrudService
 {

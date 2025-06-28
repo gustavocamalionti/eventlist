@@ -4,7 +4,7 @@ namespace App\Services\Crud;
 
 use App\Libs\Enums\EnumLinkType;
 use App\Repositories\LinkRepository;
-use App\Services\Bases\BaseCrudService;
+use App\Services\BaseCrudService;
 use App\Services\Panel\Rules\RulesFilesService;
 
 class CrudLinkService extends BaseCrudService

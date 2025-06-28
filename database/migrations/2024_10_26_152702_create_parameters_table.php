@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Systems\Master\Parameter;
+use App\Models\Systems\Master\MasterParameter;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -30,7 +30,7 @@ class CreateParametersTable extends Migration
             $table->timestamp("updated_at")->nullable()->comment("Data da última atualização do registro");
         });
 
-        Parameter::create([
+        MasterParameter::create([
             "id" => 1,
             "official_site" => "https://www.example.com",
             "facebook_link" => "https://www.facebook.com/example",

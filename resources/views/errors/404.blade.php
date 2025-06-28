@@ -11,5 +11,5 @@
 @endsection
 
 @section("scripts")
-    @vite(["resources/assets/common/errors/js/errors.js"])
+    @vite(["resources/assets/common/errors/js/errors.js"], "legacy")
 @endsection

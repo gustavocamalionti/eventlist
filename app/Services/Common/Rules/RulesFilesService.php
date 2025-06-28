@@ -3,9 +3,9 @@
 namespace App\Services\Common\Rules;
 
 use Illuminate\Support\Str;
+use App\Services\BaseRulesService;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use App\Services\Bases\BaseRulesService;
 
 class RulesFilesService extends BaseRulesService
 {

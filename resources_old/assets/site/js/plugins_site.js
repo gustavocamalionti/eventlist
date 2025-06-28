@@ -1,3 +1,0 @@
-/**
- * Inicialização de plugins
- */

@@ -7,10 +7,12 @@
         <title>{{ env("APP_NAME") }}</title>
         <meta name="description" content="{{ env("APP_NAME") }}" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <link
+        {{--
+            <link
             rel="shortcut icon"
             href="{{ Vite::asset("resources/assets/common/images/content/favicon.png") }}"
             type="image/x-icon" />
+        --}}
         <link
             href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css"
             rel="stylesheet"

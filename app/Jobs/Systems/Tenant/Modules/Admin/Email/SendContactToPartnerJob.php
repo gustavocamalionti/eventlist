@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Email\Forms;
 
-use App\Jobs\Email\BaseEmailJob;
+use App\Jobs\Common\BaseEmailJob;
 use App\Mail\Forms\SendContactToPartnerMail;
 
 class SendContactToPartnerJob extends BaseEmailJob

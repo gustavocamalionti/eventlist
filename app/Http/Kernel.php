@@ -38,12 +38,18 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+            // \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
         ],
 
         "api" => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class . ":api",
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        "tenant" => [
+            \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
+            // outros middlewares específicos do tenant
         ],
     ];
 
@@ -66,7 +72,7 @@ class Kernel extends HttpKernel
         "precognitive" => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
         "signed" => \App\Http\Middleware\ValidateSignature::class,
         "throttle" => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        "verified" => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        "verified" => \App\Http\Middleware\EnsureEmailIsVerified::class,
         "asaas.ip" => \App\Http\Middleware\VerifyAsaasIp::class,
         "webhook.auth" => \App\Http\Middleware\VerifyWebhookAccessToken::class,
     ];

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Libs\Enums\Systems\Master\EnumMasterRoles;
 
 return new class extends Migration {
     /**
@@ -29,6 +30,7 @@ return new class extends Migration {
 
         DB::table("roles")->insert([
             [
+                "id" => EnumMasterRoles::ADMIN,
                 "name" => "Administrador",
                 "label" => "Usuário com acesso total ao sistema.",
                 "dashboard_rel" => 1,
@@ -36,16 +38,10 @@ return new class extends Migration {
                 "updated_at" => now(),
             ],
             [
-                "name" => "Gestor",
+                "id" => EnumMasterRoles::MANAGER,
+                "name" => "Gerente",
                 "label" =>
                     "Usuário responsável com todos os acessos do analista e com CRUD de usuários e histórico de auditoria.",
-                "dashboard_rel" => 1,
-                "created_at" => now(),
-                "updated_at" => now(),
-            ],
-            [
-                "name" => "Analista",
-                "label" => "Usuário com acesso analítico, relatórios e CRUD.",
                 "dashboard_rel" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),

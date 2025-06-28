@@ -3,7 +3,7 @@
 namespace App\Services\Common\Rules;
 
 use stdClass;
-use App\Services\Bases\BaseRulesService;
+use App\Services\BaseRulesService;
 
 class RulesDateTimeService extends BaseRulesService
 {

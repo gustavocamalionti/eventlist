@@ -10,6 +10,6 @@ class Citie extends Model
 
     public function states()
     {
-        return $this->hasOne("App\Models\State", "id", "states_id");
+        return $this->hasOne("App\Models\Common\State", "id", "states_id");
     }
 }

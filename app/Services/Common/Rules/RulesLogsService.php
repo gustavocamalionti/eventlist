@@ -5,10 +5,10 @@ namespace App\Services\Common\Rules;
 use stdClass;
 use App\Libs\Enums\EnumLogs;
 use App\Libs\Enums\EnumStatus;
-use App\Services\Bases\BaseRulesService;
-use App\Services\Crud\CrudLogAuditService;
+use App\Services\BaseRulesService;
 use App\Services\Crud\CrudLogErrorService;
 use App\Services\Crud\CrudLogActionService;
+use App\Services\Systems\Tenant\Crud\CrudLogAuditService;
 
 class RulesLogsService extends BaseRulesService
 {

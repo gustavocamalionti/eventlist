@@ -266,6 +266,31 @@ return new class extends Migration {
                 "created_at" => now(),
                 "updated_at" => now(),
             ],
+            [
+                "name" => "read_event_buys",
+                "label" => "Permissão para visualizar vendas",
+                "order" => 1,
+                "flag" => "event",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+            [
+                "name" => "read_event_vouchers",
+                "label" => "Permissão para visualizar os convidados",
+                "order" => 2,
+                "flag" => "event",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+
+            [
+                "name" => "read_log_webhooks",
+                "label" => "Permissão para visualizar logs de webhooks do sistema",
+                "order" => 4,
+                "flag" => "logs",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
         ]);
     }
 

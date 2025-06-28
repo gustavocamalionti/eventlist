@@ -3,7 +3,7 @@
 namespace App\Jobs\Email\Release;
 
 use App\Mail\ReleaseMail;
-use App\Jobs\Email\BaseEmailJob;
+use App\Jobs\Common\BaseEmailJob;
 
 class ReleaseEmailJob extends BaseEmailJob
 {

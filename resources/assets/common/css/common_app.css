@@ -1,0 +1,53 @@
+@import url("./base/effects.css");
+@import url("./base/sweetalert2-custom.css");
+/*
+    Msg error: Forms
+--------------------------
+*/
+button.error,
+input.error,
+input.error:focus,
+select.error,
+span.error,
+select.error:focus,
+select.error,
+select.error:focus,
+textarea.error,
+textarea.error:focus {
+    border-color: #a94442 !important;
+    background-color: #f1cfcf !important;
+    color: #a94442 !important;
+}
+
+small.error {
+    font-size: 11px !important;
+    color: #790000 !important;
+    margin: 0 !important;
+    font-family: var(--neoversesans-regular-font) !important;
+    letter-spacing: 2px !important;
+}
+
+.error + span .select2-selection--single,
+.error + span .select2-selection--single:active {
+    border-color: #a94442 !important;
+    background-color: #f1cfcf !important;
+    color: #a94442 !important;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    overflow: hidden;
+    z-index: 999 !important;
+}
+.form-label {
+    margin-bottom: 0.1rem !important;
+}

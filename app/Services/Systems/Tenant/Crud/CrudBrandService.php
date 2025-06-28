@@ -3,8 +3,8 @@
 namespace App\Services\Systems\Tenant\Crud;
 
 use App\Libs\Enums\EnumOrderBy;
+use App\Services\BaseCrudService;
 use App\Repositories\BrandRepository;
-use App\Services\Bases\BaseCrudService;
 use App\Services\Crud\CrudStoreService;
 
 class CrudBrandService extends BaseCrudService

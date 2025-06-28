@@ -2,9 +2,9 @@
 
 namespace App\Libs;
 
+use App\Models\Common\LogError;
+
 use App\Libs\Enums\EnumErrorsType;
-use App\Models\Master\LogError;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

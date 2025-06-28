@@ -2,12 +2,8 @@
 
 namespace App\Observers;
 
-use App\Models\LogAudits;
-use App\Models\LogCustomer;
+use App\Models\Common\LogAudits;
 use App\Exceptions\NotTitleDefined;
-use App\Models\LogAction;
-use App\Models\LogLibraryImage;
-use App\Models\LogProduction;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
 

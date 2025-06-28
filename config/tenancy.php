@@ -1,10 +1,11 @@
 <?php
 
-use App\Models\Systems\Master\Tenant;
+use App\Utilitaries\RootUrlBootstrapper;
 use Stancl\Tenancy\Database\Models\Domain;
+use App\Models\Systems\Master\MasterTenant;
 
 return [
-    "tenant_model" => Tenant::class,
+    "tenant_model" => MasterTenant::class,
     "id_generator" => Stancl\Tenancy\UUIDGenerator::class,
 
     "domain_model" => Domain::class,
@@ -27,6 +28,8 @@ return [
         Stancl\Tenancy\Bootstrappers\CacheTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\FilesystemTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\QueueTenancyBootstrapper::class,
+        RootUrlBootstrapper::class,
+
         // Stancl\Tenancy\Bootstrappers\RedisTenancyBootstrapper::class, // Note: phpredis is needed
     ],
 

@@ -4,7 +4,7 @@ use App\Libs\Enums\EnumStatus;
 use Illuminate\Support\Facades\DB;
 use App\Libs\Enums\EnumStatusBuies;
 use Illuminate\Support\Facades\Schema;
-use App\Libs\Enums\EnumPermissionsLevel;
+use App\Libs\Enums\Systems\Tenant\EnumTenantRoles;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 

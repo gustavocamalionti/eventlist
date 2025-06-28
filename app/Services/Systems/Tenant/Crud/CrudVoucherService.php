@@ -3,7 +3,7 @@
 namespace App\Services\Systems\Tenant\Crud;
 
 use App\Repositories\VoucherRepository;
-use App\Services\Bases\BaseCrudService;
+use App\Services\BaseCrudService;
 
 class CrudVoucherService extends BaseCrudService
 {

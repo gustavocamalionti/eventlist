@@ -7,9 +7,17 @@ use Stancl\Tenancy\Events;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Middleware;
 use Stancl\JobPipeline\JobPipeline;
+use Stancl\Tenancy\Contracts\Tenant;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
+use App\Utilitaries\SingleDomainTenant;
 use Illuminate\Support\ServiceProvider;
+use Stancl\Tenancy\Events\TenancyEnded;
+use App\Utilitaries\RootUrlBootstrapper;
+use App\Models\Systems\Master\MasterUser;
+use App\Models\Systems\Tenant\TenantUser;
+use Stancl\Tenancy\Events\TenancyBootstrapped;
 use App\Jobs\Systems\Master\General\TenantCreated\CreateUsersJob;
 
 class TenancyServiceProvider extends ServiceProvider
@@ -87,17 +95,47 @@ class TenancyServiceProvider extends ServiceProvider
         ];
     }
 
-    public function register()
+    public function register() {}
+
+    // NOTA: AGUARDAR V4 de stancl/tenancy
+    protected function overrideUrlInTenantContext(): void
     {
-        //
+        RootUrlBootstrapper::$rootUrlOverride = function (Tenant $tenant, string $originalRootUrl) {
+            $tenantDomain = $tenant instanceof SingleDomainTenant ? $tenant->domain : $tenant->domains->first()->domain;
+
+            // Parse a URL usando parse_url
+            $parsedUrl = parse_url($originalRootUrl);
+            $scheme = $parsedUrl["scheme"] ?? "http";
+            $host = $parsedUrl["host"] ?? "";
+            $port = isset($parsedUrl["port"]) ? ":" . $parsedUrl["port"] : "";
+            $path = $parsedUrl["path"] ?? "/";
+
+            if (str_contains($tenantDomain, ".")) {
+                // Domínio direto (ex: empresa.com)
+                return "{$scheme}://{$tenantDomain}{$port}/";
+            } else {
+                // Subdomínio (ex: empresa.localhost)
+                return "{$scheme}://{$tenantDomain}.{$host}{$port}/";
+            }
+        };
     }
 
     public function boot()
     {
         $this->bootEvents();
         $this->mapRoutes();
-
         $this->makeTenancyMiddlewareHighestPriority();
+
+        // NOTA: AGUARDAR V4 de stancl/tenancy
+        $this->overrideUrlInTenantContext();
+
+        Event::listen(TenancyBootstrapped::class, function () {
+            Config::set("auth.providers.users.model", TenantUser::class);
+        });
+
+        Event::listen(TenancyEnded::class, function () {
+            Config::set("auth.providers.users.model", MasterUser::class);
+        });
     }
 
     protected function bootEvents()
@@ -117,9 +155,9 @@ class TenancyServiceProvider extends ServiceProvider
     {
         $this->app->booted(function () {
             if (file_exists(base_path("routes/systems/tenant/general/routes-tenant.php"))) {
-                Route::namespace(static::$controllerNamespace)->group(
-                    base_path("routes/systems/tenant/general/routes-tenant.php")
-                );
+                Route::middleware(["web", "tenant"])
+                    ->namespace(static::$controllerNamespace)
+                    ->group(base_path("routes/systems/tenant/general/routes-tenant.php"));
             }
         });
     }

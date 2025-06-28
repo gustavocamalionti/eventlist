@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Common\Auth;
 
 use Inertia\Inertia;
-use Inertia\Response;
+use Inertia\Response as InertiaResponse;
+use Illuminate\Http\Response as BladeResponse;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Password;
@@ -15,9 +17,13 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      */
-    public function create(): Response
+    public function create(): InertiaResponse
     {
-        return Inertia::render("systems/master/modules/auth/pages/ForgotPassword", [
+        $pathRender = "systems/master/modules/auth/pages/ForgotPassword";
+        if (tenancy()->initialized) {
+            $pathRender = "systems/tenant/modules/auth/pages/ForgotPassword";
+        }
+        return Inertia::render($pathRender, [
             "status" => session("status"),
         ]);
     }

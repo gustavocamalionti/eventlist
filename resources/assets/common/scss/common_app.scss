@@ -1,0 +1,34 @@
+// Fonts
+// @import '../fonts/veneer/stylesheet.css';
+@import url("https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+// @import "variables";
+
+// Helpers
+// @import "helpers";
+
+// Icons
+$fa-font-path: "@fortawesome/fontawesome-free/webfonts" !default;
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/regular";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/brands";
+
+//DATETIMEPICKER
+// @import "@eonasdan/tempus-dominus/src/scss/_variables";
+// @import "@eonasdan/tempus-dominus/src/scss/tempus-dominus";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Bootstrap - Popover
+.custom-popover {
+    --bs-popover-max-width: 350px !important;
+    --bs-popover-border-color: var(--primary-color) !important;
+    --bs-popover-header-bg: var(--primary-color) !important;
+    --bs-popover-header-color: #fff !important;
+    --bs-popover-body-padding-x: 1rem !important;
+    --bs-popover-body-padding-y: 0.5rem !important;
+}
