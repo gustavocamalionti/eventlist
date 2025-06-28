@@ -23,7 +23,8 @@
             $canReadAudit = Auth::user()->can("read_stores_audit");
         @endphp
 
-        <div class="{{ ! $canReadAudit ? "offset-2" : "" }} col-4 d-flex justify-content-center align-items-center p-0">
+        <div
+            class="{{ ! $canReadAudit ? "offset-2" : "" }} col-4 d-flex justify-content-center align-items-center p-0">
             <div class="dropdown h-100 w-100">
                 <a
                     class="btn-menu-dropdown dropdown-toggle d-flex justify-content-center align-items-center"

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>{{ env('APP_NAME') }}</title>
-    <meta name="description" content="{{ env('APP_NAME') }}" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    {{-- <link
+        <title>{{ env("APP_NAME") }}</title>
+        <meta name="description" content="{{ env("APP_NAME") }}" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        {{--
+            <link
             rel="shortcut icon"
             href="{{ Vite::asset("resources/assets/common/images/content/favicon.png") }}"
-            type="image/x-icon" /> --}}
-    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
-    {{--
+            type="image/x-icon" />
+        --}}
+        <link
+            href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css"
+            rel="stylesheet"
+            crossorigin="anonymous" />
+        {{--
             @vite([
             /**
             * COMMON CSS
@@ -31,26 +34,28 @@
             'resources/assets/site/css/app_site.css',
             ])
         --}}
-    {!! $customizations['styles'] !!}
-    @yield('styles')
-</head>
+        {!! $customizations["styles"] !!}
+        @yield("styles")
+    </head>
 
-<body>
-    <header>
-        @include('legacy.common.layouts._header')
-    </header>
+    <body>
+        <header>
+            @include("legacy.common.layouts._header")
+        </header>
 
-    <main>
-        @yield('content')
-    </main>
+        <main>
+            @yield("content")
+        </main>
 
-    <footer class="">
-        @include('legacy.common.layouts._footer')
-    </footer>
+        <footer class="">
+            @include("legacy.common.layouts._footer")
+        </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
-        defer></script>
-    {{--
+        <script
+            src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js"
+            crossorigin="anonymous"
+            defer></script>
+        {{--
             @vite([
             /**
             * COMMON JS
@@ -66,7 +71,6 @@
             ])
         --}}
 
-    @yield('scripts')
-</body>
-
+        @yield("scripts")
+    </body>
 </html>

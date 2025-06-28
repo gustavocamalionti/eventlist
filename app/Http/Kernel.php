@@ -47,7 +47,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
-        'tenant' => [
+        "tenant" => [
             \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
             // outros middlewares específicos do tenant
         ],
