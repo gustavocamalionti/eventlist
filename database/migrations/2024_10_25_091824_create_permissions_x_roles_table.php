@@ -63,6 +63,9 @@ return new class extends Migration {
             ["permissions_id" => 27, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_log_audits
             ["permissions_id" => 28, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_log_emails
             ["permissions_id" => 29, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_log_errors
+            ["permissions_id" => 30, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_event_buys
+            ["permissions_id" => 31, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_event_vouchers
+            ["permissions_id" => 32, "roles_id" => 1, "created_at" => now(), "updated_at" => now()], // read_log_webhooks
 
             // Gestor (sem acesso a logs)
             ["permissions_id" => 1, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // create_users
@@ -86,6 +89,8 @@ return new class extends Migration {
             ["permissions_id" => 24, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // update_stores
             ["permissions_id" => 25, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // delete_stores
             ["permissions_id" => 26, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_stores_audit
+            ["permissions_id" => 30, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_buys
+            ["permissions_id" => 31, "roles_id" => 2, "created_at" => now(), "updated_at" => now()], // read_event_vouchers
         ]);
     }
 
