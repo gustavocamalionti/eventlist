@@ -38,13 +38,18 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
-            \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
+            // \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
         ],
 
         "api" => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class . ":api",
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        'tenant' => [
+            \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
+            // outros middlewares específicos do tenant
         ],
     ];
 
