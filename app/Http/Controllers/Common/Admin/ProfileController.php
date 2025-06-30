@@ -8,9 +8,7 @@ use App\Libs\Actions;
 use App\Libs\ViewsModules;
 use Illuminate\Http\Request;
 
-
 use App\Libs\Enums\EnumOrderBy;
-
 
 use App\Libs\Enums\EnumErrorsType;
 use Illuminate\Support\Facades\Log;
@@ -32,13 +30,11 @@ use App\Http\Requests\Systems\Tenant\Modules\Admin\ProfileUpdatePasswordRequest;
  */
 class ProfileController extends Controller
 {
-
     protected $crudParameterService;
     protected $crudUserService;
     protected $crudRoleService;
     protected $crudStateService;
     protected $crudCitieService;
-
 
     public function __construct(
         CrudParameterService $crudParameterService,
@@ -46,7 +42,6 @@ class ProfileController extends Controller
         CrudRoleService $crudRoleService,
         CrudStateService $crudStateService,
         CrudCitieService $crudCitieService
-
     ) {
         $this->crudParameterService = $crudParameterService;
         $this->crudUserService = $crudUserService;
@@ -55,7 +50,6 @@ class ProfileController extends Controller
         $this->crudCitieService = $crudCitieService;
     }
 
-
     /**
      * Displays the user profile edit page.
      *
@@ -63,9 +57,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-
         try {
-
             $pageTitle = ViewsModules::SITE_HOME;
             $parameters = $this->crudParameterService->findById(1);
             $user = auth()->user();
@@ -74,7 +66,10 @@ class ProfileController extends Controller
             $roles = $this->crudRoleService->getAll([], ["id" => EnumOrderBy::DESC]);
 
             $path = $this->isTenant() ? "tenant" : "master";
-            return view("legacy.systems.{$path}.modules.admin.pages.profile.profile", compact("parameters", "pageTitle", "user", "states", "cities", "roles"));
+            return view(
+                "legacy.systems.{$path}.modules.admin.pages.profile.profile",
+                compact("parameters", "pageTitle", "user", "states", "cities", "roles")
+            );
         } catch (QueryException $e) {
             Log::info($e);
             return Errors::GetMessageError(
@@ -98,7 +93,6 @@ class ProfileController extends Controller
         }
     }
 
-
     /**
      * Update the user's profile information.
      */
@@ -110,9 +104,8 @@ class ProfileController extends Controller
             $user = $this->crudUserService->findById($request->id);
 
             if ($newEmail != $user->email) {
-                $data['email_verified_at'] = null;
+                $data["email_verified_at"] = null;
             }
-
 
             $user->fill($data)->save();
             return response()->json(["status" => 1]);
@@ -179,7 +172,7 @@ class ProfileController extends Controller
     {
         try {
             $requestData = json_decode($request->getContent(), true);
-            $user = $this->crudUserService->findById($requestData['id']);
+            $user = $this->crudUserService->findById($requestData["id"]);
             Auth::logout();
 
             $user->delete();

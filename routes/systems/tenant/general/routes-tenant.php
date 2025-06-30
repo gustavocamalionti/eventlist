@@ -38,7 +38,6 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
             ->group(function () {
                 require __DIR__ . "../../../../common/admin/profile.php";
 
-
                 Route::controller(AdminController::class)->group(function () {
                     Route::get("/home", "index");
                     Route::get("/dashboard", "index");
