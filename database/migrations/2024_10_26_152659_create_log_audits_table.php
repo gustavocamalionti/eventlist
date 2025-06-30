@@ -17,6 +17,7 @@ class CreateLogAuditsTable extends Migration
         Schema::create("log_audits", function (Blueprint $table) {
             $table->id();
             $table->string("route", 255)->comment("Rota associada ao log");
+            $table->string("route_name", 100)->comment("Nome da rota");
             $table->string("title", 100)->comment("Título do log");
             $table->string("table_name", 100)->nullable()->comment("Nome da tabela relacionada");
             $table->string("action", 100)->comment("Ação realizada");

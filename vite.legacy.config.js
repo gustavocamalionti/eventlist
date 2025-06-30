@@ -68,6 +68,8 @@ const especific = [
 
     "systems/tenant/modules/admin/pages/users/js/users_list.js",
     "systems/tenant/modules/admin/pages/users/js/users_maintenance.js",
+
+    "systems/tenant/modules/admin/pages/profile/js/profile_maintenance.js",
 ];
 //  plugins: [
 //         laravel({

@@ -29,6 +29,7 @@ class BaseObserver
             $users_name = $user->name . " " . $user->last_name;
             LogAudits::create([
                 "route" => "/" . Route::getFacadeRoot()->current()->uri(),
+                "route_name" => Route::currentRouteName(),
                 "title" => $this->title,
                 "action" => "created",
                 "method" => Route::getFacadeRoot()->current()->methods()[0],
@@ -74,6 +75,7 @@ class BaseObserver
 
             LogAudits::create([
                 "route" => "/" . Route::getFacadeRoot()->current()->uri(),
+                "route_name" => Route::currentRouteName(),
                 "title" => $this->title,
                 "action" => "updated",
                 "method" => Route::getFacadeRoot()->current()->methods()[0],
@@ -105,6 +107,7 @@ class BaseObserver
             $users_name = $user->name . " " . $user->last_name;
             LogAudits::create([
                 "route" => "/" . Route::getFacadeRoot()->current()->uri(),
+                "route_name" => Route::currentRouteName(),
                 "title" => $this->title,
                 "action" => "deleted",
                 "method" => Route::getFacadeRoot()->current()->methods()[0],

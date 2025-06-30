@@ -46,6 +46,7 @@ class ViewsModules
     const PANEL_MENU_SUBCATEGORIES = "Cardápio - Subcategorias";
     const PANEL_MENU_PRODUCTS = "Cardápio - Produtos";
     const PANEL_PARAMETERS = "Parâmetros";
+    const PANEL_PROFILE = "Perfil";
     const PANEL_LOG_AUDIT = "Log - Auditoria";
     const PANEL_LOG_ERRORS = "Log - Erros";
     const PANEL_LOG_EMAILS = "Log - Emails";

@@ -33,6 +33,8 @@ export async function Save(
     includeData = null,
     btnTitle = "Salvar",
     btnIcon = "fas fa-check",
+    msgCustomSuccess = MSG_SUCCESS,
+    msgCustomError = MSG_ERROR_GENERAL,
 ) {
     // Resgatando todos os dados do form
     let data = form.serialize();
@@ -130,9 +132,9 @@ export async function Save(
                 loadingBtnStop(btn, btnIcon, btnTitle);
 
                 if (backToList) {
-                    await msgDefault("fa fa-check", "Sucesso!", MSG_SUCCESS, form.attr("attr-list"));
+                    await msgDefault("fa fa-check", "Sucesso!", msgCustomSuccess, form.attr("attr-list"));
                 } else {
-                    await msgDefault("fa fa-check", "Sucesso!", MSG_SUCCESS, "reload");
+                    await msgDefault("fa fa-check", "Sucesso!", msgCustomSuccess, "reload");
                 }
                 removeErrorsAll();
             } else if (data.status >= 2) {
@@ -160,7 +162,7 @@ export async function Save(
             loadingBtnStop(btn, btnIcon, btnTitle);
 
             if (data.status == 500) {
-                await msgError("Erro!", MSG_ERROR_GENERAL);
+                await msgError("Erro!", msgCustomError);
             } else {
                 var errors = data.responseJSON.errors;
                 removeErrorsAll();
@@ -338,7 +340,7 @@ export function Filter(dataTable, callMethods, routeName = null) {
  * @param {dataTable} dataTable
  * @param {String} urlDelete
  */
-export function Delete(dataTable = null, urlDelete, callMethods) {
+export function Delete(dataTable = null, urlDelete, callMethods, id = null) {
     Swal.fire({
         title: '<i class="fas fa-trash"></i> Exclusão de registros',
         text: "Deseja realmente excluir esse registro?",
@@ -359,6 +361,7 @@ export function Delete(dataTable = null, urlDelete, callMethods) {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
                 method: "delete",
+                data: JSON.stringify({ id: id }),
             }).fail(function (data) {
                 msgError("Erro", MSG_ERROR_DELETING);
             });
