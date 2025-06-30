@@ -376,7 +376,7 @@ export function Delete(dataTable = null, urlDelete, callMethods, id = null) {
                     $("#divGrid").html(data.value.grid);
                     callMethods();
                 }
-                msgDefault("fa fa-check", "Sucesso!", MSG_SUCCESS);
+                msgDefault("fa fa-check", "Sucesso!", MSG_SUCCESS, "reload");
             } else {
                 msgError("Desculpe", data.value.msgerro);
             }

@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Common\Admin;
 
 use App\Libs\Errors;
+use Inertia\Inertia;
 use App\Libs\Actions;
 use App\Libs\ViewsModules;
 use Illuminate\Http\Request;
+
+
 use App\Libs\Enums\EnumOrderBy;
 
 
 use App\Libs\Enums\EnumErrorsType;
-
-
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Common\Controller;
@@ -183,9 +185,8 @@ class ProfileController extends Controller
             $user->delete();
 
             $request->session()->invalidate();
-            $request->session()->regenerateToken();
 
-            return Redirect::to("/");
+            return response()->json(["status" => 1]);
         } catch (QueryException $e) {
             Log::info($e);
             return Errors::GetMessageError(
