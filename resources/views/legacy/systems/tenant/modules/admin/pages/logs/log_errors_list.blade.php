@@ -57,5 +57,5 @@
 @endsection
 
 @section("scripts")
-    @vite(["resources/assets/systems/tenant/modules/admin/pages/logs/js/log_errors_list.js", "resources/assets/common/js/utils/filters.js"], "legacy")
+    @vite(["resources/assets/systems/tenant/modules/admin/pages/logs/js/log_errors_list.js", "resources/assets/common/js/utils/filters.js"])
 @endsection

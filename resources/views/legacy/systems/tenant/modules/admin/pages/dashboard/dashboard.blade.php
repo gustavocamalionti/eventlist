@@ -1,7 +1,7 @@
 @extends("legacy.systems.tenant.modules.admin.layouts.main")
 
 @section("styles")
-    @vite(["resources/assets/systems/tenant/modules/admin/pages/dashboard/css/dashboard.css"], "legacy")
+    @vite(["resources/assets/systems/tenant/modules/admin/pages/dashboard/css/dashboard.css"])
 @endsection
 
 @section("content")
@@ -85,5 +85,5 @@
 @endsection
 
 @section("scripts")
-    @vite(["resources/assets/systems/tenant/modules/admin/pages/dashboard/js/dashboard.js"], "legacy")
+    @vite(["resources/assets/systems/tenant/modules/admin/pages/dashboard/js/dashboard.js"])
 @endsection

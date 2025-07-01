@@ -145,7 +145,7 @@ export function initInputMask() {
     $("[data-mask-cpf]").inputmask({
         mask: "999.999.999-99",
         placeholder: "___.___.___-__",
-        clearIncomplete: false,
+        clearIncomplete: true,
     });
     $("[data-mask-cnpj]").inputmask({
         mask: "99.999.999/9999-99",

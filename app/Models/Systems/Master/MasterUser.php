@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Systems\Master\MasterRole;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +16,7 @@ use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendResetPassword;
 
 class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
     protected $table = "users";
     /**
      * The attributes that are mass assignable.

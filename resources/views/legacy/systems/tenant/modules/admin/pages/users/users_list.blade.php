@@ -70,5 +70,5 @@
 @endsection
 
 @section("scripts")
-    @vite(["resources/assets/systems/tenant/modules/admin/pages/users/js/users_list.js", "resources/assets/common/js/utils/filters.js"], "legacy")
+    @vite(["resources/assets/systems/tenant/modules/admin/pages/users/js/users_list.js", "resources/assets/common/js/utils/filters.js"])
 @endsection

@@ -11,10 +11,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendVerifyEmail;
 use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TenantUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
     protected $table = "users";
     /**
      * The attributes that are mass assignable.
@@ -39,6 +40,7 @@ class TenantUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
         "permission_accept",
         "news_accept",
         "password",
+        "email_verified_at",
         "active",
     ];
 

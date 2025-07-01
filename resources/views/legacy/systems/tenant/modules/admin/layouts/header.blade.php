@@ -22,7 +22,7 @@
             <ul class="navbar-nav me-auto w-100 d-flex justify-content-evenly align-items-center flex-grow-1 flex-wrap">
                 <li class="nav-item effect-reveal-opacity">
                     <a
-                        class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is("tenant.admin.tenant.admin.dashboard") ? "active" : "" }}"
+                        class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is("tenant.admin.dashboard") ? "active" : "" }}"
                         href="{{ route("tenant.admin.dashboard") }}">
                         <i class="fas fa-chart-bar"></i>
                         Dashboard
@@ -240,11 +240,11 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            {{--
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                {{ __('Informações Pessoais') }}
-                                </a>
-                            --}}
+                            <a
+                                class="dropdown-item {{ Route::is("tenant.admin.profile.edit") ? "active" : "" }}"
+                                href="{{ route("tenant.admin.profile.edit") }}">
+                                {{ __("Perfil") }}
+                            </a>
 
                             <a
                                 class="dropdown-item"
@@ -254,6 +254,10 @@
                                 {{ __("Sair") }}
                             </a>
 
+                            <a class="dropdown-item" style="font-size: 11px">
+                                <i class="fas fa-info-circle me-1"></i>
+                                {{ "Versão " . Config::get("app.version") . "." . Config::get("app.build") }}
+                            </a>
                             <form
                                 id="logout-form"
                                 action="{{ route("tenant.auth.logout") }}"

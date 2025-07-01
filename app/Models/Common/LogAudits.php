@@ -9,6 +9,7 @@ class LogAudits extends Model
     protected $table = "log_audits";
     protected $fillable = [
         "route",
+        "route_name",
         "title",
         "action",
         "method",

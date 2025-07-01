@@ -46,15 +46,18 @@ O sistema será futuramente comercializado como produto SaaS no domínio [eventl
     ```bash
     nvm use
     ```
-5. Instale e rode:
+5. No .env, Altere o usuário do banco de `sail` para `root`.
+
+6. Instale e rode:
     ```bash
     ./vendor/bin/sail artisan migrate
     ./vendor/bin/sail npm install
-    ./vendor/bin/sail npm run dev:legacy
+    ./vendor/bin/sail composer install
+    ./vendor/bin/sail npm run build
     ```
-6. Acesse: `http://localhost:6001`
+7. Acesse: `http://localhost:6001`
 
----
+## OBS: Se der algum erro, pare o container da aplicação e inicie novamente `sail stop && sail up -d`
 
 ## 🧱 Estrutura de Exemplos
 
