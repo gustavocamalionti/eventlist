@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Common\LogEmail;
 use App\Models\Common\CustomColor;
 use App\Validator\CustomValidator;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Queue\Events\JobFailed;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
             $isTenant = tenancy()->initialized;
             $routePrefix = $isTenant ? "tenant.auth" : "master.auth";
@@ -44,15 +46,26 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
-            $getEvent = LogEmail::where("uuid", $event->job->payload()["uuid"]);
+            $job = unserialize($event->job->payload()['data']['command']);
+
+            if ($job->tenantId != null) {
+                tenancy()->initialize($job->tenantId);
+            }
+
+            $getEvent = LogEmail::where("uuid", $event->job->payload()["uuid"])->first();
             if (!$event->job->hasFailed()) {
                 $getEvent->update(["status" => "Success", "details" => "O e-mail foi enviado."]);
             }
         });
 
         Queue::failing(function (JobFailed $event) {
+            $job = unserialize($event->job->payload()['data']['command']);
+
+            if ($job->tenantId != null) {
+                tenancy()->initialize($job->tenantId);
+            }
             $exception = $event->exception->getMessage();
-            $getEvent = LogEmail::where("uuid", $event->job->payload()["uuid"]);
+            $getEvent = LogEmail::where("uuid", $event->job->payload()["uuid"])->first();
             $getEvent->update(["status" => "Error", "details" => $exception]);
         });
 
@@ -74,7 +87,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 "customizations" => [
                     "styles" =>
-                        "
+                    "
                     <style>
                         :root{
                             " .

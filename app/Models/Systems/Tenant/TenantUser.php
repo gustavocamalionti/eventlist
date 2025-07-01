@@ -9,8 +9,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendVerifyEmail;
-use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendResetPassword;
+use App\Jobs\Systems\Tenant\Modules\Auth\Email\JobSendVerifyEmail;
+use App\Jobs\Systems\Tenant\Modules\Auth\Email\JobSendResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TenantUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
@@ -81,28 +81,32 @@ class TenantUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function sendEmailVerificationNotification()
     {
-        TenantJobSendVerifyEmail::dispatch(
+        JobSendVerifyEmail::dispatch(
             [$this->email],
             [
                 "user_id" => $this->id,
                 "name" => $this->name,
                 "users_id" => $this->id,
                 "email" => $this->email,
-            ]
+            ],
+            null,
+            tenant()->getTenantKey()
         );
     }
 
     public function sendPasswordResetNotification($token)
     {
         // Aqui você pode disparar um job ou usar sua própria lógica
-        TenantJobSendResetPassword::dispatch(
+        JobSendResetPassword::dispatch(
             [$this->email],
             [
                 "token" => $token,
                 "user_id" => $this->id,
                 "name" => $this->name,
                 "email" => $this->email,
-            ]
+            ],
+            null,
+            tenant()->getTenantKey()
         );
     }
 

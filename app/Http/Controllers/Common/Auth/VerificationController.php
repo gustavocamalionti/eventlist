@@ -10,8 +10,8 @@ use App\Models\Systems\Master\MasterUser;
 use App\Models\Systems\Tenant\TenantUser;
 use App\Http\Controllers\Common\Controller;
 use App\Services\Systems\Tenant\Crud\CrudParameterService;
-use App\Jobs\Systems\Tenant\Modules\Auth\Email\SuccessVerifyEmailJob;
-use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSuccessVerifyEmail;
+use App\Jobs\Systems\Tenant\Modules\Auth\Email\JobSuccessVerifyEmail as TenantJobSuccessVerifyEmail;
+use App\Jobs\Systems\Master\Modules\Auth\Email\JobSuccessVerifyEmail as MasterJobSuccessVerifyEmail;
 
 /**
  * Controller responsible for handling user email verification.
@@ -49,6 +49,7 @@ class VerificationController extends Controller
     {
         $user = null;
         $isTenant = tenancy()->initialized;
+
         if ($isTenant) {
             $user = TenantUser::findOrFail($id);
         } else {
@@ -62,11 +63,11 @@ class VerificationController extends Controller
                 TenantJobSuccessVerifyEmail::dispatch($user->email, [
                     "email" => $user->email,
                     "users_id" => $user->id,
-                ]);
+                ], null, tenant()->getTenantKey());
                 return Inertia::location(route(RouteServiceProvider::homeRoute()));
             }
 
-            TenantJobSuccessVerifyEmail::dispatch($user->email, [
+            MasterJobSuccessVerifyEmail::dispatch($user->email, [
                 "email" => $user->email,
                 "users_id" => $user->id,
             ]);

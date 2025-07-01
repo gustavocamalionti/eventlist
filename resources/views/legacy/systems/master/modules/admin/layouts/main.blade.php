@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>{{ $parameters->page_title }} | {{ $pageTitle }}</title>
+    {{--
+            <link rel="shortcut icon" href="{{ Vite::asset('resources/assets/common/images/content/favicon.png') }}"
+            type="image/x-icon" />
+        --}}
+    @vite([
+        /**
+         * COMMON CSS
+         */
+        'resources/assets/common/scss/common_app.scss',
+        'resources/assets/common/css/common_app.css',
+        'resources/assets/common/fonts/common_fonts.css',
+
+        /**
+         * PANEL GENERAL/ESPECIFIC CSS
+         */
+        'resources/assets/systems/master/modules/admin/fonts/fonts.css',
+        'resources/assets/systems/master/modules/admin/css/admin.css',
+    ])
+    {!! $customizations['styles'] !!}
+
+    @yield('styles')
+</head>
+
+<body>
+    <header>
+        @include('legacy.systems.master.modules.admin.layouts.header')
+    </header>
+
+    <main class="container mt-4 mb-4">
+        @yield('content')
+    </main>
+
+    <footer>
+        @include('legacy.systems.master.modules.admin.layouts.footer')
+    </footer>
+
+    @vite([
+        /**
+         * COMMON JS
+         */
+        'resources/assets/common/js/common_app.js',
+        'resources/assets/common/plugins/js/common_plugins.js',
+        'resources/assets/common/plugins/js/common_datatables.js',
+        /**
+         * PANEL GENERAL/ESPECIFIC JS
+         */
+        'resources/assets/systems/master/modules/admin/js/admin.js',
+        'resources/assets/systems/master/modules/admin/plugins/plugins.js',
+    ])
+    @yield('scripts')
+</body>
+
+</html>

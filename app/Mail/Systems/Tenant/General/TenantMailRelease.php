@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Config;
 
-class TenantMailRelease extends Mailable
+class MailRelease extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;

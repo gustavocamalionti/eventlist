@@ -24,8 +24,8 @@
         /**
          * PANEL GENERAL/ESPECIFIC CSS
          */
-        'resources/assets/systems/tenant/modules/admin/fonts/tenant_admin_fonts.css',
-        'resources/assets/systems/tenant/modules/admin/css/tenant_admin.css',
+        'resources/assets/systems/tenant/modules/admin/fonts/fonts.css',
+        'resources/assets/systems/tenant/modules/admin/css/admin.css',
     ])
     {!! $customizations['styles'] !!}
 
@@ -55,8 +55,8 @@
         /**
          * PANEL GENERAL/ESPECIFIC JS
          */
-        'resources/assets/systems/tenant/modules/admin/js/tenant_admin.js',
-        'resources/assets/systems/tenant/modules/admin/plugins/tenant_admin_plugins.js',
+        'resources/assets/systems/tenant/modules/admin/js/admin.js',
+        'resources/assets/systems/tenant/modules/admin/plugins/plugins.js',
     ])
     @yield('scripts')
 </body>

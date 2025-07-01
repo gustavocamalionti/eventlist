@@ -9,8 +9,8 @@ use Illuminate\Validation\Rules\Password;
 use App\Http\Controllers\Common\Controller;
 use App\Models\Systems\Master\MasterParameter;
 use App\Models\Systems\Tenant\TenantParameter;
-use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendResetPassword;
-use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSendResetPassword;
+use App\Jobs\Systems\Master\Modules\Auth\Email\JobSendResetPassword as MasterJobSendResetPassword;
+use App\Jobs\Systems\Tenant\Modules\Auth\Email\JobSendResetPassword as TenantJobSendResetPassword;
 
 class PasswordController extends Controller
 {
@@ -33,7 +33,7 @@ class PasswordController extends Controller
             TenantJobSendResetPassword::dispatch($request->email, [
                 "parameters" => TenantParameter::find(1),
                 "email" => $request->email,
-            ]);
+            ], null, tenant()->getTenantKey());
         } else {
             MasterJobSendResetPassword::dispatch($request->email, [
                 "parameters" => MasterParameter::find(1),

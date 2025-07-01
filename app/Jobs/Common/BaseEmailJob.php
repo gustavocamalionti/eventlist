@@ -19,14 +19,17 @@ class BaseEmailJob implements ShouldQueue
     protected $emailObject;
     protected $arrayEmailTo;
     protected $arrayEmailBcc;
+
+    public $tenantId;
     /**
      * Create a new job instance.
      */
-    public function __construct($arrayEmailTo, $dataForEmail, $arrayEmailBcc = null)
+    public function __construct($arrayEmailTo, $dataForEmail, $arrayEmailBcc = null, $tenantId = null)
     {
         $this->arrayEmailTo = $arrayEmailTo;
         $this->emailObject = $this->resolveEmailObject($dataForEmail);
         $this->arrayEmailBcc = $arrayEmailBcc;
+        $this->tenantId = $tenantId;
     }
 
     /**
@@ -34,6 +37,9 @@ class BaseEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
+        if ($this->tenantId != null) {
+            tenancy()->initialize($this->tenantId);
+        }
         $event_exists = LogEmail::where("uuid", $this->job->payload()["uuid"]);
         if ($event_exists->count() == 0) {
             $logEvent = new LogEmail();

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Systems\Master\MasterUser;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Libs\Enums\Systems\Master\EnumMasterRoles;
@@ -54,7 +55,7 @@ return new class extends Migration {
                 "email" => "gustavogomes@eventlist.com.br",
                 "phone_cell" => "19982230726",
                 "gender" => "M",
-                "date_birth" => "1999-01-24",
+                "date_birth" => "24/01/1999",
                 "zipcode" => "13348380",
                 "address" => "Rua Antônio Cantelli",
                 "district" => "Morada do Sol",
@@ -72,7 +73,7 @@ return new class extends Migration {
                 "email" => "marianagomes@eventlist.com.br",
                 "phone_cell" => "15998765432",
                 "gender" => "M",
-                "date_birth" => "1970-07-15",
+                "date_birth" => "24/01/1999",
                 "zipcode" => "18035500",
                 "address" => "Avenida São Paulo",
                 "district" => "Jardim Faculdade",
@@ -90,7 +91,7 @@ return new class extends Migration {
                 "email" => "flavianunes@eventlist.com.br",
                 "phone_cell" => "15998765432",
                 "gender" => "M",
-                "date_birth" => "1970-07-15",
+                "date_birth" => "24/01/1999",
                 "zipcode" => "18035500",
                 "address" => "Avenida São Paulo",
                 "district" => "Jardim Faculdade",
@@ -103,7 +104,10 @@ return new class extends Migration {
                 "password" => $passwordManager,
             ],
         ];
-        DB::table("users")->insert($users);
+        foreach ($users as $userData) {
+
+            MasterUser::create($userData);
+        }
     }
 
     // /**
