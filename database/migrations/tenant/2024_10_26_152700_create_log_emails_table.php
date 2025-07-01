@@ -15,6 +15,7 @@ class CreateLogEmailsTable extends Migration
     public function up()
     {
         Schema::create("log_emails", function (Blueprint $table) {
+            $table->id();
             $table->string("uuid", 150)->nullable()->comment("UUID único associado ao log de email");
             $table->string("job_title", 100)->nullable()->comment("Título do trabalho associado ao envio de email");
             $table->string("email", 150)->nullable()->comment("Endereço de email do destinatário");

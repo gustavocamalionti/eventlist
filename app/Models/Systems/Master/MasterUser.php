@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendVerifyEmail;
-use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSendResetPassword;
+use App\Jobs\Systems\Master\Modules\Auth\Email\JobSendVerifyEmail;
+use App\Jobs\Systems\Master\Modules\Auth\Email\JobSendResetPassword;
 
 class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 {
@@ -81,7 +81,7 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function sendEmailVerificationNotification()
     {
-        MasterJobSendVerifyEmail::dispatch(
+        JobSendVerifyEmail::dispatch(
             [$this->email],
             [
                 "user_id" => $this->id,
@@ -95,7 +95,7 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
     public function sendPasswordResetNotification($token)
     {
         // Aqui você pode disparar um job ou usar sua própria lógica
-        MasterJobSendResetPassword::dispatch(
+        JobSendResetPassword::dispatch(
             [$this->email],
             [
                 "token" => $token,
@@ -120,7 +120,11 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function setDateBirthAttribute($value)
     {
-        $this->attributes["date_birth"] = Carbon::createFromFormat("d/m/Y", $value)->format("Y-m-d");
+        if ($value != null) {
+            $this->attributes["date_birth"] = Carbon::createFromFormat("d/m/Y", $value)->format("Y-m-d");
+        } else {
+            $this->attributes["date_birth"] = $value;
+        }
     }
 
     public function getAccessEndAttribute()

@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -18,8 +19,8 @@ use App\Models\Systems\Master\MasterParameter;
 use App\Models\Systems\Tenant\TenantParameter;
 use Illuminate\Http\Response as BladeResponse;
 use Illuminate\Validation\ValidationException;
-use App\Jobs\Systems\Master\Modules\Auth\Email\MasterJobSuccessResetPassword;
-use App\Jobs\Systems\Tenant\Modules\Auth\Email\TenantJobSuccessResetPassword;
+use App\Jobs\Systems\Master\Modules\Auth\Email\JobSuccessResetPassword as MasterJobSuccessResetPassword;
+use App\Jobs\Systems\Tenant\Modules\Auth\Email\JobSuccessResetPassword as TenantJobSuccessResetPassword;
 
 class NewPasswordController extends Controller
 {
@@ -77,10 +78,15 @@ class NewPasswordController extends Controller
         if ($status == Password::PASSWORD_RESET) {
             $isTenant = tenancy()->initialized;
             if ($isTenant) {
-                TenantJobSuccessResetPassword::dispatch($request->email, [
-                    "parameters" => TenantParameter::find(1),
-                    "email" => $request->email,
-                ]);
+                TenantJobSuccessResetPassword::dispatch(
+                    $request->email,
+                    [
+                        "parameters" => TenantParameter::find(1),
+                        "email" => $request->email,
+                    ],
+                    null,
+                    tenant()->getTenantKey()
+                );
             } else {
                 MasterJobSuccessResetPassword::dispatch($request->email, [
                     "parameters" => MasterParameter::find(1),

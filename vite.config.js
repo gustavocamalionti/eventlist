@@ -15,13 +15,13 @@ const commonLegacyInputs = [
 ];
 
 const tenantAdminInputs = [
-    "systems/tenant/modules/admin/fonts/tenant_admin_fonts.css",
-    "systems/tenant/modules/admin/css/tenant_admin.css",
-    "systems/tenant/modules/admin/js/tenant_admin.js",
-    "systems/tenant/modules/admin/plugins/tenant_admin_plugins.js",
+    "systems/tenant/modules/admin/fonts/fonts.css",
+    "systems/tenant/modules/admin/css/admin.css",
+    "systems/tenant/modules/admin/js/admin.js",
+    "systems/tenant/modules/admin/plugins/plugins.js",
 ];
 
-const especificInputs = [
+const tenantEspecificInputs = [
     "systems/tenant/modules/admin/pages/dashboard/css/dashboard.css",
     "systems/tenant/modules/admin/pages/dashboard/js/dashboard.js",
     "systems/tenant/modules/admin/pages/logs/js/log_audits_list.js",
@@ -33,6 +33,25 @@ const especificInputs = [
     "systems/tenant/modules/admin/pages/profile/js/profile_maintenance.js",
 ];
 
+const masterAdminInputs = [
+    "systems/master/modules/admin/fonts/fonts.css",
+    "systems/master/modules/admin/css/admin.css",
+    "systems/master/modules/admin/js/admin.js",
+    "systems/master/modules/admin/plugins/plugins.js",
+];
+
+const masterEspecificInputs = [
+    "systems/master/modules/admin/pages/dashboard/css/dashboard.css",
+    "systems/master/modules/admin/pages/dashboard/js/dashboard.js",
+    "systems/master/modules/admin/pages/logs/js/log_audits_list.js",
+    "systems/master/modules/admin/pages/logs/js/log_emails_list.js",
+    "systems/master/modules/admin/pages/logs/js/log_webhooks_list.js",
+    "systems/master/modules/admin/pages/logs/js/log_errors_list.js",
+    "systems/master/modules/admin/pages/users/js/users_list.js",
+    "systems/master/modules/admin/pages/users/js/users_maintenance.js",
+    "systems/master/modules/admin/pages/profile/js/profile_maintenance.js",
+];
+
 export default defineConfig({
     plugins: [
         laravel({
@@ -40,7 +59,9 @@ export default defineConfig({
                 "resources/views/react/App.jsx",
                 ...commonLegacyInputs,
                 ...tenantAdminInputs,
-                ...especificInputs,
+                ...tenantEspecificInputs,
+                ...masterAdminInputs,
+                ...masterEspecificInputs,
             ].map((file) =>
                 file.startsWith("resources/")
                     ? path.resolve(__dirname, file)
