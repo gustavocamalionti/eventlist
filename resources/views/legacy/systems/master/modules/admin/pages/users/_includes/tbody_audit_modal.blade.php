@@ -12,14 +12,14 @@
             </td>
 
             <td class="text-start align-middle">
-                @include('legacy.systems.master.modules.admin.layouts._details_audit', $item)
+                @include("legacy.systems.master.modules.admin.layouts._details_audit", $item)
             </td>
 
             <td class="text-center align-middle">
                 {{ $item->ip }}
             </td>
             <td class="text-center align-middle">
-                {{ date('d/m/Y H:i:s', strtotime($item->created_at)) }}
+                {{ date("d/m/Y H:i:s", strtotime($item->created_at)) }}
             </td>
         </tr>
     @endforeach

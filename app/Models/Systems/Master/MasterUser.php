@@ -108,10 +108,8 @@ class MasterUser extends Authenticatable implements MustVerifyEmail, ShouldQueue
 
     public function setPasswordAttribute($value)
     {
-
         $this->attributes["password"] = bcrypt($value);
     }
-
 
     public function setImportedAtAttribute($value)
     {

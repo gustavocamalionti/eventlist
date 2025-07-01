@@ -1,17 +1,21 @@
-@extends('legacy.systems.master.modules.admin.layouts.main')
+@extends("legacy.systems.master.modules.admin.layouts.main")
 
-@section('styles')
+@section("styles")
+    
 @endsection
 
-@section('content')
+@section("content")
     <div class="card card-default">
         <div class="card-header">
-            {{ $pageTitle . ' | ' . $subTitle }}
+            {{ $pageTitle . " | " . $subTitle }}
         </div>
         <div class="card-body">
             <div id="bar_buttons" class="inline mb-3">
                 <button id="btnSave" type="button" class="btn btn-success btn-sm">Salvar</button>
-                <a id="btnCancel" href="{{ route('master.admin.users.list') }}" type="button"
+                <a
+                    id="btnCancel"
+                    href="{{ route("master.admin.users.list") }}"
+                    type="button"
                     class="btn btn-secondary btn-sm">
                     Cancelar
                 </a>
@@ -19,9 +23,11 @@
 
             <div class="card mb-0 border-top">
                 <div class="card-body table-responsive divElementGridFather p-1">
-                    <form id="userForm" class="form-horizontal"
-                        attr-save="{{ $user != null ? route('master.admin.users.update', ['id' => $user->id]) : route('master.admin.users.store') }}"
-                        attr-list="{{ route('master.admin.users.list') }}">
+                    <form
+                        id="userForm"
+                        class="form-horizontal"
+                        attr-save="{{ $user != null ? route("master.admin.users.update", ["id" => $user->id]) : route("master.admin.users.store") }}"
+                        attr-list="{{ route("master.admin.users.list") }}">
                         <div class="card-body">
                             {{ csrf_field() }}
                             <input type="hidden" value="{{ $parameters->apicep }}" id="apicep" />
@@ -29,18 +35,27 @@
                                 <div class="col-lg-4">
                                     <div class="mb-4">
                                         <label for="cpf" class="form-label">CPF</label>
-                                        <input type="text" name="cpf" id="cpf"
-                                            class="form-control @error('cpf') is-invalid @enderror" data-mask-cpf
-                                            value="{{ isset($user) ? MaskFields($user->cpf, '###.###.###-##') : '' }}"
-                                            autocomplete="cpf" autofocus />
+                                        <input
+                                            type="text"
+                                            name="cpf"
+                                            id="cpf"
+                                            class="form-control @error("cpf") is-invalid @enderror"
+                                            data-mask-cpf
+                                            value="{{ isset($user) ? MaskFields($user->cpf, "###.###.###-##") : "" }}"
+                                            autocomplete="cpf"
+                                            autofocus />
                                     </div>
                                 </div>
                                 <div class="col-lg-8">
                                     <div class="mb-4">
                                         <label for="email" class="form-label">E-mail *</label>
-                                        <input id="email" type="email"
-                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                            value="{{ isset($user) ? $user->email : '' }}" autocomplete="email"
+                                        <input
+                                            id="email"
+                                            type="email"
+                                            class="form-control @error("email") is-invalid @enderror"
+                                            name="email"
+                                            value="{{ isset($user) ? $user->email : "" }}"
+                                            autocomplete="email"
                                             maxlength="255" />
                                     </div>
                                 </div>
@@ -51,9 +66,13 @@
                                 <div class="col-lg-5">
                                     <div class="mb-4">
                                         <label for="name" class="form-label">Nome Completo *</label>
-                                        <input id="name" type="text"
-                                            class="form-control @error('name') is-invalid @enderror" name="name"
-                                            value="{{ isset($user) ? $user->name : '' }}" autocomplete="name"
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            class="form-control @error("name") is-invalid @enderror"
+                                            name="name"
+                                            value="{{ isset($user) ? $user->name : "" }}"
+                                            autocomplete="name"
                                             maxlength="255" />
                                     </div>
                                 </div>
@@ -63,20 +82,29 @@
                                         <label for="date_birth" class="form-label">Data de Nascimento</label>
 
                                         <div id="datepicker" class="input-group" style="float: left">
-                                            <input id="date_birth" type="text"
-                                                value="{{ isset($user->date_birth) ? date('d/m/Y', strtotime($user->date_birth)) : '' }}"
-                                                class="form-control @error('date_birth') is-invalid @enderror"
-                                                name="date_birth" data-mask-date date />
+                                            <input
+                                                id="date_birth"
+                                                type="text"
+                                                value="{{ isset($user->date_birth) ? date("d/m/Y", strtotime($user->date_birth)) : "" }}"
+                                                class="form-control @error("date_birth") is-invalid @enderror"
+                                                name="date_birth"
+                                                data-mask-date
+                                                date />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="mb-4">
                                         <label for="phone_cell" class="form-label">Telefone</label>
-                                        <input id="phone_cell" type="text"
-                                            class="form-control @error('phone_cell') is-invalid @enderror" name="phone_cell"
-                                            value="{{ isset($user) ? $user->phone_cell : '' }}" autocomplete="phone_cell"
-                                            maxlength="20" data-mask-phone-cell />
+                                        <input
+                                            id="phone_cell"
+                                            type="text"
+                                            class="form-control @error("phone_cell") is-invalid @enderror"
+                                            name="phone_cell"
+                                            value="{{ isset($user) ? $user->phone_cell : "" }}"
+                                            autocomplete="phone_cell"
+                                            maxlength="20"
+                                            data-mask-phone-cell />
                                     </div>
                                 </div>
                             </div>
@@ -86,28 +114,40 @@
                                     <!-- Campo CEP -->
                                     <div class="mb-4">
                                         <label for="zipcode" class="form-label">CEP</label>
-                                        <input id="zipcode" type="text"
-                                            class="form-control @error('zipcode') is-invalid @enderror" name="zipcode"
-                                            data-mask-cep value="{{ isset($user) ? $user->zipcode : '' }}" />
+                                        <input
+                                            id="zipcode"
+                                            type="text"
+                                            class="form-control @error("zipcode") is-invalid @enderror"
+                                            name="zipcode"
+                                            data-mask-cep
+                                            value="{{ isset($user) ? $user->zipcode : "" }}" />
                                     </div>
                                 </div>
                                 <!-- Campo Endereço -->
                                 <div class="col-lg-6">
                                     <div class="mb-4">
                                         <label for="address" class="form-label">Endereço</label>
-                                        <input id="address" type="text"
-                                            class="form-control @error('address') is-invalid @enderror" name="address"
-                                            maxlength="255" value="{{ isset($user) ? $user->address : '' }}" />
+                                        <input
+                                            id="address"
+                                            type="text"
+                                            class="form-control @error("address") is-invalid @enderror"
+                                            name="address"
+                                            maxlength="255"
+                                            value="{{ isset($user) ? $user->address : "" }}" />
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <!-- Campo Número -->
                                     <div class="mb-4">
                                         <label for="number" class="form-label">Número</label>
-                                        <input id="number" type="text"
-                                            class="form-control @error('number') is-invalid @enderror" name="number"
-                                            data-only-numbers maxlength="15"
-                                            value="{{ isset($user) ? $user->number : '' }}" />
+                                        <input
+                                            id="number"
+                                            type="text"
+                                            class="form-control @error("number") is-invalid @enderror"
+                                            name="number"
+                                            data-only-numbers
+                                            maxlength="15"
+                                            value="{{ isset($user) ? $user->number : "" }}" />
                                     </div>
                                 </div>
                             </div>
@@ -116,19 +156,26 @@
                                 <div class="col-lg-8">
                                     <div class="mb-4">
                                         <label for="district" class="form-label">Bairro</label>
-                                        <input id="district" type="text"
-                                            class="form-control @error('district') is-invalid @enderror" name="district"
-                                            maxlength="255" value="{{ isset($user) ? $user->district : '' }}" />
+                                        <input
+                                            id="district"
+                                            type="text"
+                                            class="form-control @error("district") is-invalid @enderror"
+                                            name="district"
+                                            maxlength="255"
+                                            value="{{ isset($user) ? $user->district : "" }}" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <!-- Campo Complemento -->
                                     <div class="mb-4">
                                         <label for="complement" class="form-label">Complemento</label>
-                                        <input id="complement" type="text"
-                                            class="form-control @error('complement') is-invalid @enderror"
-                                            name="complement" maxlength="255"
-                                            value="{{ isset($user) ? $user->complement : '' }}" />
+                                        <input
+                                            id="complement"
+                                            type="text"
+                                            class="form-control @error("complement") is-invalid @enderror"
+                                            name="complement"
+                                            maxlength="255"
+                                            value="{{ isset($user) ? $user->complement : "" }}" />
                                     </div>
                                 </div>
                             </div>
@@ -183,16 +230,23 @@
                                 <div class="col-lg-4">
                                     <div class="mb-2">
                                         <label for="password" class="form-label">Senha</label>
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                        <input
+                                            id="password"
+                                            type="password"
+                                            class="form-control @error("password") is-invalid @enderror"
+                                            name="password"
                                             autocomplete="new-password" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="mb-2">
                                         <label for="password-confirm" class="form-label">Confirmar Senha</label>
-                                        <input id="password-confirm" type="password" class="form-control"
-                                            name="password_confirmation" autocomplete="new-password" />
+                                        <input
+                                            id="password-confirm"
+                                            type="password"
+                                            class="form-control"
+                                            name="password_confirmation"
+                                            autocomplete="new-password" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -201,13 +255,17 @@
                                             Nível de Permissão *
                                         </label>
                                         <div class="input-group">
-                                            <select id="roles_id" name="roles_id" class="select2 form-control"
+                                            <select
+                                                id="roles_id"
+                                                name="roles_id"
+                                                class="select2 form-control"
                                                 style="width: 100%; height: 36px">
                                                 <option value="" selected>Selecione...</option>
                                                 @foreach ($roles as $item)
                                                     @if (auth()->user()->roles->id != App\Libs\Enums\Systems\Tenant\EnumTenantRoles::OWNER)
-                                                        <option value="{{ $item->id }}"
-                                                            {{ isset($user->roles_id) && $user->roles_id == $item->id ? 'selected' : '' }}>
+                                                        <option
+                                                            value="{{ $item->id }}"
+                                                            {{ isset($user->roles_id) && $user->roles_id == $item->id ? "selected" : "" }}>
                                                             {{ $item->name }}
                                                         </option>
                                                     @endif
@@ -225,10 +283,18 @@
                                             <label for="active" class="control-label col-form-label">Status</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox" id="active" name="active" class="toggle-input"
-                                                data-onvalue="1" data-offvalue="0" data-toggle="toggle"
-                                                data-onlabel="Ativo" data-offlabel="Inativo" data-onstyle="primary"
-                                                {{ !isset($user) || $user->active == 1 ? 'checked' : null }} />
+                                            <input
+                                                type="checkbox"
+                                                id="active"
+                                                name="active"
+                                                class="toggle-input"
+                                                data-onvalue="1"
+                                                data-offvalue="0"
+                                                data-toggle="toggle"
+                                                data-onlabel="Ativo"
+                                                data-offlabel="Inativo"
+                                                data-onstyle="primary"
+                                                {{ ! isset($user) || $user->active == 1 ? "checked" : null }} />
                                         </div>
                                     </div>
                                 </div>
@@ -238,12 +304,16 @@
                                 <div class="col-12">
                                     <div class="mb-2">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                name="permission_accept" id="permission_accept"
-                                                {{ isset($user) && $user->permission_accept ? 'checked' : '' }} />
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="permission_accept"
+                                                id="permission_accept"
+                                                {{ isset($user) && $user->permission_accept ? "checked" : "" }} />
                                             <label class="form-check-label" for="permission_accept">
                                                 Concordo com a coleta e o uso dos meus dados pessoais conforme a
-                                                <a href="{{ route('master.site.privacy.policy') }}">
+                                                <a href="{{ route("master.site.privacy.policy") }}">
                                                     Política de Privacidade.
                                                 </a>
                                             </label>
@@ -254,9 +324,13 @@
                                     <!-- Campo Complemento -->
                                     <div class="mb-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                name="news_accept" id="news_accept"
-                                                {{ isset($user) && $user->news_accept ? 'checked' : '' }} />
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="news_accept"
+                                                id="news_accept"
+                                                {{ isset($user) && $user->news_accept ? "checked" : "" }} />
                                             <label class="form-check-label" for="news_accept">
                                                 Quero receber notícias, ofertas e atualizações por e-mail.
                                             </label>
@@ -272,6 +346,6 @@
     </div>
 @endsection
 
-@section('scripts')
-    @vite(['resources/assets/systems/master/modules/admin/pages/users/js/users_maintenance.js'])
+@section("scripts")
+    @vite(["resources/assets/systems/master/modules/admin/pages/users/js/users_maintenance.js"])
 @endsection

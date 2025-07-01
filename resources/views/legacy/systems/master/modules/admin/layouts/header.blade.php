@@ -6,8 +6,14 @@
             style="max-width: 90px" />
             </a>
         --}}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="{{ __("Toggle navigation") }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -15,8 +21,9 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto w-100 d-flex justify-content-evenly align-items-center flex-grow-1 flex-wrap">
                 <li class="nav-item effect-reveal-opacity">
-                    <a class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is('master.admin.dashboard') ? 'active' : '' }}"
-                        href="{{ route('master.admin.dashboard') }}">
+                    <a
+                        class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is("master.admin.dashboard") ? "active" : "" }}"
+                        href="{{ route("master.admin.dashboard") }}">
                         <i class="fas fa-chart-bar"></i>
                         Dashboard
                     </a>
@@ -61,7 +68,7 @@
                     <i class="fas fa-envelope"></i>
                     Formulários
                     </a>
-
+                    
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLog">
                     @can('read_form_contents_contact', Auth::user())
                     <a
@@ -70,7 +77,7 @@
                     Fale Conosco
                     </a>
                     @endcan
-
+                    
                     @can('read_form_configs', Auth::user())
                     <a
                     class="dropdown-item {{ Route::is("form.configs.list") ? "active" : "" }}"
@@ -98,7 +105,7 @@
                     <i class="fas fa-envelope"></i>
                     Evento
                     </a>
-
+                    
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLog">
                     @can('read_event_buys', Auth::user())
                     <a
@@ -107,7 +114,7 @@
                     Vendas
                     </a>
                     @endcan
-
+                    
                     @can('read_event_vouchers', Auth::user())
                     <a
                     class="dropdown-item {{ Route::is("event.vouchers.list") ? "active" : "" }}"
@@ -118,7 +125,7 @@
                     </div>
                     </li>
                     @endcan
-
+                    
                     @can('read_stores', Auth::user())
                     <li class="nav-item effect-reveal-opacity">
                     <a
@@ -131,51 +138,61 @@
                     @endcan
                 --}}
 
-                @can('read_users', Auth::user())
+                @can("read_users", Auth::user())
                     <li class="nav-item effect-reveal-opacity">
-                        <a class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is('master.admin.users.*') || Route::is('master.admin.users.*') ? 'active' : '' }}"
-                            href="{{ route('master.admin.users.list') }}">
+                        <a
+                            class="nav-link text-nowrap text-truncate text-decoration-none {{ Route::is("master.admin.users.*") || Route::is("master.admin.users.*") ? "active" : "" }}"
+                            href="{{ route("master.admin.users.list") }}">
                             <i class="fas fa-users"></i>
                             Usuários
                         </a>
                     </li>
                 @endcan
 
-                @can('read_log_emails', Auth::user())
+                @can("read_log_emails", Auth::user())
                     <li class="nav-item dropdown effect-reveal-opacity">
-                        <a id="navbarDropdownLog"
-                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle {{ Route::is('master.admin.log.*') ? 'active' : '' }}"
-                            href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" v-pre>
+                        <a
+                            id="navbarDropdownLog"
+                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle {{ Route::is("master.admin.log.*") ? "active" : "" }}"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            v-pre>
                             <i class="fas fa-exclamation-triangle"></i>
                             Log
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLog">
-                            @can('read_log_emails', Auth::user())
-                                <a class="dropdown-item {{ Route::is('master.admin.master.admin.log.emails.list') ? 'active' : '' }}"
-                                    href="{{ route('master.admin.log.emails.list') }}">
+                            @can("read_log_emails", Auth::user())
+                                <a
+                                    class="dropdown-item {{ Route::is("master.admin.master.admin.log.emails.list") ? "active" : "" }}"
+                                    href="{{ route("master.admin.log.emails.list") }}">
                                     Envio de Emails
                                 </a>
                             @endcan
 
-                            @can('read_log_audits', Auth::user())
-                                <a class="dropdown-item {{ Route::is('master.admin.log.audits.list') ? 'active' : '' }}"
-                                    href="{{ route('master.admin.log.audits.list') }}">
+                            @can("read_log_audits", Auth::user())
+                                <a
+                                    class="dropdown-item {{ Route::is("master.admin.log.audits.list") ? "active" : "" }}"
+                                    href="{{ route("master.admin.log.audits.list") }}">
                                     Auditoria
                                 </a>
                             @endcan
 
-                            @can('read_log_errors', Auth::user())
-                                <a class="dropdown-item {{ Route::is('master.admin.log.errors.list') ? 'active' : '' }}"
-                                    href="{{ route('master.admin.log.errors.list') }}">
+                            @can("read_log_errors", Auth::user())
+                                <a
+                                    class="dropdown-item {{ Route::is("master.admin.log.errors.list") ? "active" : "" }}"
+                                    href="{{ route("master.admin.log.errors.list") }}">
                                     Erros
                                 </a>
                             @endcan
 
-                            @can('read_log_webhooks', Auth::user())
-                                <a class="dropdown-item {{ Route::is('master.admin.log.webhooks.list') ? 'active' : '' }}"
-                                    href="{{ route('master.admin.log.webhooks.list') }}">
+                            @can("read_log_webhooks", Auth::user())
+                                <a
+                                    class="dropdown-item {{ Route::is("master.admin.log.webhooks.list") ? "active" : "" }}"
+                                    href="{{ route("master.admin.log.webhooks.list") }}">
                                     Webhooks
                                 </a>
                             @endcan
@@ -189,47 +206,62 @@
                 class="navbar-nav d-flex flex-row justify-content-center align-items-center gap-3 flex-shrink-0 effect-reveal-to-left">
                 <!-- Authentication Links -->
                 @guest
-                    @if (Route::has('master.auth.login'))
+                    @if (Route::has("master.auth.login"))
                         <li class="nav-item">
-                            <a class="nav-link text-nowrap text-truncate text-decoration-none" href="{{ route('login') }}">
-                                {{ __('Login') }}
+                            <a
+                                class="nav-link text-nowrap text-truncate text-decoration-none"
+                                href="{{ route("login") }}">
+                                {{ __("Login") }}
                             </a>
                         </li>
                     @endif
 
-                    @if (Route::has('master.auth.register'))
+                    @if (Route::has("master.auth.register"))
                         <li class="nav-item">
-                            <a class="nav-link text-nowrap text-truncate text-decoration-none"
-                                href="{{ route('register') }}">
-                                {{ __('Registrar-se') }}
+                            <a
+                                class="nav-link text-nowrap text-truncate text-decoration-none"
+                                href="{{ route("register") }}">
+                                {{ __("Registrar-se") }}
                             </a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown"
-                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle" href="#"
-                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a
+                            id="navbarDropdown"
+                            class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item {{ Route::is('master.admin.profile.edit') ? 'active' : '' }}"
-                                href="{{ route('master.admin.profile.edit') }}">
-                                {{ __('Perfil') }}
+                            <a
+                                class="dropdown-item {{ Route::is("master.admin.profile.edit") ? "active" : "" }}"
+                                href="{{ route("master.admin.profile.edit") }}">
+                                {{ __("Perfil") }}
                             </a>
 
-                            <a class="dropdown-item" href="{{ route('tenant.auth.logout') }}"
+                            <a
+                                class="dropdown-item"
+                                href="{{ route("tenant.auth.logout") }}"
                                 onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ __('Sair') }}
+                                {{ __("Sair") }}
                             </a>
 
                             <a class="dropdown-item" style="font-size: 11px">
                                 <i class="fas fa-info-circle me-1"></i>
-                                {{ 'Versão ' . Config::get('app.version') . '.' . Config::get('app.build') }}
+                                {{ "Versão " . Config::get("app.version") . "." . Config::get("app.build") }}
                             </a>
-                            <form id="logout-form" action="{{ route('tenant.auth.logout') }}" method="POST"
+                            <form
+                                id="logout-form"
+                                action="{{ route("tenant.auth.logout") }}"
+                                method="POST"
                                 class="d-none">
                                 @csrf
                             </form>

@@ -30,10 +30,15 @@ class PasswordController extends Controller
 
         $isTenant = tenancy()->initialized;
         if ($isTenant) {
-            TenantJobSendResetPassword::dispatch($request->email, [
-                "parameters" => TenantParameter::find(1),
-                "email" => $request->email,
-            ], null, tenant()->getTenantKey());
+            TenantJobSendResetPassword::dispatch(
+                $request->email,
+                [
+                    "parameters" => TenantParameter::find(1),
+                    "email" => $request->email,
+                ],
+                null,
+                tenant()->getTenantKey()
+            );
         } else {
             MasterJobSendResetPassword::dispatch($request->email, [
                 "parameters" => MasterParameter::find(1),

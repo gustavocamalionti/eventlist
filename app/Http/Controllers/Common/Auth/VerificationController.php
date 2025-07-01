@@ -60,10 +60,15 @@ class VerificationController extends Controller
             $user->email_verified_at = now();
             $user->save();
             if ($isTenant) {
-                TenantJobSuccessVerifyEmail::dispatch($user->email, [
-                    "email" => $user->email,
-                    "users_id" => $user->id,
-                ], null, tenant()->getTenantKey());
+                TenantJobSuccessVerifyEmail::dispatch(
+                    $user->email,
+                    [
+                        "email" => $user->email,
+                        "users_id" => $user->id,
+                    ],
+                    null,
+                    tenant()->getTenantKey()
+                );
                 return Inertia::location(route(RouteServiceProvider::homeRoute()));
             }
 

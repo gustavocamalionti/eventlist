@@ -31,7 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
             $isTenant = tenancy()->initialized;
             $routePrefix = $isTenant ? "tenant.auth" : "master.auth";
@@ -46,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
-            $job = unserialize($event->job->payload()['data']['command']);
+            $job = unserialize($event->job->payload()["data"]["command"]);
 
             if ($job->tenantId != null) {
                 tenancy()->initialize($job->tenantId);
@@ -59,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::failing(function (JobFailed $event) {
-            $job = unserialize($event->job->payload()['data']['command']);
+            $job = unserialize($event->job->payload()["data"]["command"]);
 
             if ($job->tenantId != null) {
                 tenancy()->initialize($job->tenantId);
@@ -87,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 "customizations" => [
                     "styles" =>
-                    "
+                        "
                     <style>
                         :root{
                             " .

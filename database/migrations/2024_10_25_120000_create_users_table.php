@@ -105,7 +105,6 @@ return new class extends Migration {
             ],
         ];
         foreach ($users as $userData) {
-
             MasterUser::create($userData);
         }
     }
