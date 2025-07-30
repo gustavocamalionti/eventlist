@@ -151,16 +151,15 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
                 // });
             });
 
-        Route::name("tenant.site.")->group(function () {            
+        Route::name("tenant.site.")->group(function () {
             Route::controller(SiteController::class)->group(function () {
                 Route::get("/home", "index");
                 Route::get("/dashboard", "index");
                 Route::get("/", "index")->name("dashboard");
                 Route::get("/politica-privacidade", "politicaPrivacidade")->name("privacy.policy");
-
             });
 
-             Route::controller(FaleConoscoController::class)->group(function () {
+            Route::controller(FaleConoscoController::class)->group(function () {
                 Route::get("/faleconosco", "index");
             });
         });

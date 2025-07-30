@@ -9,7 +9,5 @@ use App\Http\Controllers\Common\Controller;
 
 class FaleConoscoController extends Controller
 {
-    public function index(){
-
-    }
+    public function index() {}
 }

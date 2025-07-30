@@ -1,5 +1,5 @@
 import { Link, Head } from "@inertiajs/react";
-import NavbarSimple from "@reactTenant/modules/site/components/Navbar"
+import NavbarSimple from "@reactTenant/modules/site/components/Navbar";
 
 export default function Welcome({ text }) {
     return (
