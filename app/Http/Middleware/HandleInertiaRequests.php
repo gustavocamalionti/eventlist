@@ -32,12 +32,11 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $style = '';
+        $style = "";
         $colors = collect();
 
-
-        $colors = Customization::where('type', 'style')->get();
-        $contents = Customization::where('type', 'content')->get();
+        $colors = Customization::where("type", "style")->get();
+        $contents = Customization::where("type", "content")->get();
         $parameters = collect();
         $ifTenant = tenancy()->initialized;
 
@@ -50,26 +49,26 @@ class HandleInertiaRequests extends Middleware
         $customColors = collect();
         foreach ($colors as $color) {
             // Ex: 'primary_color' => '#ff0000' vira 'primaryColor' => '#ff0000'
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $color->key))));
+            $key = lcfirst(str_replace(" ", "", ucwords(str_replace("_", " ", $color->key))));
             $customColors[$key] = $color->value;
         }
 
         $customContents = collect();
         foreach ($contents as $content) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $content->key))));
+            $key = lcfirst(str_replace(" ", "", ucwords(str_replace("_", " ", $content->key))));
             $customContents[$key] = $content->value;
         }
 
         return [
             ...parent::share($request),
-            'auth' => [
-                'user' => $request->user(),
+            "auth" => [
+                "user" => $request->user(),
             ],
-            'customizations' => [
-                'styles' => $customColors,
-                'contents' => $customContents
+            "customizations" => [
+                "styles" => $customColors,
+                "contents" => $customContents,
             ],
-            'parameters' => $parameters
+            "parameters" => $parameters,
         ];
     }
 }
