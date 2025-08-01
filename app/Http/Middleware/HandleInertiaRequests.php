@@ -2,8 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Illuminate\Http\Request;
+use App\Models\Common\Customization;
+use App\Models\Systems\Master\MasterParameter;
+use App\Models\Systems\Tenant\TenantParameter;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -29,11 +32,44 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $style = '';
+        $colors = collect();
+
+
+        $colors = Customization::where('type', 'style')->get();
+        $contents = Customization::where('type', 'content')->get();
+        $parameters = collect();
+        $ifTenant = tenancy()->initialized;
+
+        if ($ifTenant) {
+            $parameters = TenantParameter::find(1);
+        } else {
+            $parameters = MasterParameter::find(1);
+        }
+
+        $customColors = collect();
+        foreach ($colors as $color) {
+            // Ex: 'primary_color' => '#ff0000' vira 'primaryColor' => '#ff0000'
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $color->key))));
+            $customColors[$key] = $color->value;
+        }
+
+        $customContents = collect();
+        foreach ($contents as $content) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $content->key))));
+            $customContents[$key] = $content->value;
+        }
+
         return [
             ...parent::share($request),
-            "auth" => [
-                "user" => $request->user(),
+            'auth' => [
+                'user' => $request->user(),
             ],
+            'customizations' => [
+                'styles' => $customColors,
+                'contents' => $customContents
+            ],
+            'parameters' => $parameters
         ];
     }
 }

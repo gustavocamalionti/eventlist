@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomColorsTable extends Migration
+class CreateCustomizationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateCustomColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create("custom_colors", function (Blueprint $table) {
+        Schema::create("customizations", function (Blueprint $table) {
             $table->id()->autoIncrement()->comment("Identificador único para cores personalizadas");
             $table->string("key")->comment("Chave da configuração");
             $table->string("value")->default("#000000")->comment("Valor da configuração");
@@ -23,9 +23,9 @@ class CreateCustomColorsTable extends Migration
             $table->timestamp("updated_at")->nullable()->comment("Data da última atualização do registro");
         });
 
-        DB::statement("ALTER TABLE custom_colors COMMENT = 'Tabela para armazenar cores personalizadas'");
+        DB::statement("ALTER TABLE customizations COMMENT = 'Tabela para armazenar cores personalizadas'");
 
-        DB::table("custom_colors")->insert([
+        DB::table("customizations")->insert([
             ["key" => "black_color", "value" => "#000000", "type" => "style"],
             ["key" => "white_color", "value" => "#ffffff", "type" => "style"],
             ["key" => "primary_color", "value" => "#11202b", "type" => "style"],

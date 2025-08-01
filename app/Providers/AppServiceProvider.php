@@ -3,15 +3,17 @@
 namespace App\Providers;
 
 use App\Models\Common\LogEmail;
-use App\Models\Common\CustomColor;
 use App\Validator\CustomValidator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
+use App\Models\Common\Customization;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Systems\Master\MasterParameter;
+use App\Models\Systems\Tenant\TenantParameter;
 use Illuminate\Auth\Notifications\ResetPassword;
 
 class AppServiceProvider extends ServiceProvider
@@ -75,18 +77,26 @@ class AppServiceProvider extends ServiceProvider
 
             // Rever lógica, entender se estamos em um subdominio tenant ou não
             // Importar CustomColor correto
-            $colors = CustomColor::where("type", "style")->get();
+            $colors = Customization::where("type", "style")->get();
+            $contents = Customization::where("type", "content")->get();
 
             foreach ($colors as $reg) {
                 $style = $style . "--" . str_replace("_", "-", $reg->key) . ":" . $reg->value . ";";
             }
+
+            // $ifTenant = tenancy()->initialized;
+            // if ($ifTenant) {
+            //     $parameters = TenantParameter::find(1);
+            // } else {
+            //     $parameters = MasterParameter::find(1);
+            // }
 
             $content = [];
 
             $view->with([
                 "customizations" => [
                     "styles" =>
-                        "
+                    "
                     <style>
                         :root{
                             " .
@@ -95,7 +105,7 @@ class AppServiceProvider extends ServiceProvider
                         }
                     </style>
                     ",
-                    "contents" => $content,
+                    "contents" => $contents,
                 ],
             ]);
         });
