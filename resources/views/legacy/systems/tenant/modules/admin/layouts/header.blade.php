@@ -199,6 +199,41 @@
                         </div>
                     </li>
                 @endcan
+
+                <li class="nav-item dropdown effect-reveal-opacity">
+                    <a
+                        id="navbarDropdownLog"
+                        class="nav-link text-nowrap text-truncate text-decoration-none dropdown-toggle {{ Route::is("tenant.admin.log.*") ? "active" : "" }}"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        v-pre>
+                        <i class="fas fa-cog"></i>
+                        Configurações
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLog">
+                        <a
+                            class="dropdown-item {{ Route::is("tenant.admin.tenant.admin.log.emails.list") ? "active" : "" }}"
+                            href="{{ route("tenant.admin.config.colors.index") }}">
+                            Cores
+                        </a>
+
+                        <a
+                            class="dropdown-item {{ Route::is("tenant.admin.log.audits.list") ? "active" : "" }}"
+                            href="{{ route("tenant.admin.config.contents.index") }}">
+                            Conteúdos do Site
+                        </a>
+
+                        <a
+                            class="dropdown-item {{ Route::is("tenant.admin.log.errors.list") ? "active" : "" }}"
+                            href="{{ route("tenant.admin.config.parameters.index") }}">
+                            Parâmetros Gerais
+                        </a>
+                    </div>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

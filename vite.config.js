@@ -50,6 +50,10 @@ const masterEspecificInputs = [
     "systems/master/modules/admin/pages/users/js/users_list.js",
     "systems/master/modules/admin/pages/users/js/users_maintenance.js",
     "systems/master/modules/admin/pages/profile/js/profile_maintenance.js",
+
+    "systems/master/modules/admin/pages/configs/js/parameters.js",
+    "systems/master/modules/admin/pages/configs/js/colors.js",
+    "systems/master/modules/admin/pages/configs/js/contents.js",
 ];
 
 export default defineConfig({

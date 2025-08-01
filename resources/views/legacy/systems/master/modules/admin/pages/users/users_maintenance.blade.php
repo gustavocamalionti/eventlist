@@ -27,7 +27,7 @@
                         id="userForm"
                         class="form-horizontal"
                         attr-save="{{ $user != null ? route("master.admin.users.update", ["id" => $user->id]) : route("master.admin.users.store") }}"
-                        attr-list="{{ route("master.admin.users.list") }}">
+                        attr-redirect="{{ route("master.admin.users.list") }}">
                         <div class="card-body">
                             {{ csrf_field() }}
                             <input type="hidden" value="{{ $parameters->apicep }}" id="apicep" />

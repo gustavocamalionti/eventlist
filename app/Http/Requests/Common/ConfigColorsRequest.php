@@ -4,7 +4,7 @@ namespace App\Http\Requests\Systems\Master\Modules\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ParametersRequest extends FormRequest
+class ConfigColorsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class ParametersRequest extends FormRequest
      */
     public function rules()
     {
-        $return = [
+        $rules = [
             "page_title" => "required",
             "facebook_title" => "required",
             "facebook_link" => "required",
@@ -35,6 +35,11 @@ class ParametersRequest extends FormRequest
             "ifood_site" => "required",
         ];
 
-        return $return;
+        $isTenant = tenancy()->initialized;
+
+        if ($isTenant) {
+        }
+
+        return $rules;
     }
 }
