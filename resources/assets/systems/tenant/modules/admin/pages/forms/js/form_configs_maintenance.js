@@ -3,20 +3,19 @@ import { initInputMask, initInputMaskPhoneCell, initInputRulesFields } from "#co
 
 import { EnumTypeMask } from "#common/js/utils/enums/enum_type_mask";
 
-jQuery(function ($) {
+$(window).on("load", function () {
     initInputMask();
     initInputMaskPhoneCell();
     initInputRulesFields();
-    $(window).on("load", function () {
-        $("#btnSave").on("click", function () {
-            Save($("#formConfigForm"), $(this), true, [], [], null, "Salvar", "");
-        });
-    });
-});
 
-/**
- *  Carrega combo de cidades de acordo com a mudança do combo uf
- */
-$("#forms_id").on("change", function () {
-    filterCascade($("#forms_id").val(), null, $("#form_subjects_id"), "cascade-form-subjects", false);
+    $("#btnSave").on("click", function () {
+        Save($("#formConfigForm"), $(this), true, [], [], null, "Salvar", "");
+    });
+
+    /**
+     *  Carrega combo de cidades de acordo com a mudança do combo uf
+     */
+    $("#forms_id").on("change", function () {
+        filterCascade($("#forms_id").val(), null, $("#form_subjects_id"), "cascade-form-subjects", false);
+    });
 });
