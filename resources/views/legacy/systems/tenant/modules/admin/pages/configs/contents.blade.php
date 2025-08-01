@@ -1,48 +1,74 @@
-@extends('legacy.systems.tenant.modules.admin.layouts.main')
-@section('styles')
+@extends("legacy.systems.tenant.modules.admin.layouts.main")
+@section("styles")
+    
 @endsection
 
-@section('content')
+@section("content")
     <div class="card card-default">
         <div class="card-header">
-            {{ $pageTitle . ' | ' . $subTitle }}
+            {{ $pageTitle . " | " . $subTitle }}
         </div>
         <div class="card-body">
             <div id="bar_buttons" class="inline mb-3">
                 <button id="btnSave" type="button" class="btn btn-success btn-sm">Salvar</button>
             </div>
 
-            <form id="formPage" class="form-horizontal" attr-save="{{ route('tenant.admin.config.contents.update') }}"
-                attr-redirect="{{ route('tenant.admin.config.contents.index') }}">
+            <form
+                id="formPage"
+                class="form-horizontal"
+                attr-save="{{ route("tenant.admin.config.contents.update") }}"
+                attr-redirect="{{ route("tenant.admin.config.contents.index") }}">
                 @csrf
 
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Fale
-                            Conosco</button>
-
+                        <button
+                            class="nav-link active"
+                            id="nav-home-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-home"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-home"
+                            aria-selected="true">
+                            Home
+                        </button>
+                        <button
+                            class="nav-link"
+                            id="nav-profile-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-profile"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-profile"
+                            aria-selected="false">
+                            Fale Conosco
+                        </button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active pt-3" id="nav-home" role="tabpanel"
-                        aria-labelledby="nav-home-tab" tabindex="0">
+                    <div
+                        class="tab-pane fade show active pt-3"
+                        id="nav-home"
+                        role="tabpanel"
+                        aria-labelledby="nav-home-tab"
+                        tabindex="0">
                         A
                     </div>
-                    <div class="tab-pane fade pt-3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                    <div
+                        class="tab-pane fade pt-3"
+                        id="nav-profile"
+                        role="tabpanel"
+                        aria-labelledby="nav-profile-tab"
                         tabindex="0">
                         B
                     </div>
                 </div>
             </form>
         </div>
-
-    </div>
     </div>
 @endsection
 
-@section('scripts')
-    @vite(['resources/assets/systems/tenant/modules/admin/pages/configs/js/contents.js'])
+@section("scripts")
+    @vite(["resources/assets/systems/tenant/modules/admin/pages/configs/js/contents.js"])
 @endsection
