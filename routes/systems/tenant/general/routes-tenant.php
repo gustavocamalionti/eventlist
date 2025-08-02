@@ -6,6 +6,7 @@ use App\Http\Controllers\Common\Admin\ConfigController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\Systems\Tenant\Modules\Site\SiteController;
+use App\Http\Controllers\Systems\Tenant\Modules\Site\FaleConoscoController;
 use App\Http\Controllers\Systems\Tenant\Modules\Admin\UserController;
 use App\Http\Controllers\Systems\Tenant\Modules\Admin\AdminController;
 use App\Http\Controllers\Systems\Tenant\Modules\Admin\WebhookController;
@@ -149,6 +150,10 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
                 Route::get("/dashboard", "index");
                 Route::get("/", "index")->name("dashboard");
                 Route::get("/politica-privacidade", "politicaPrivacidade")->name("privacy.policy");
+            });
+
+            Route::controller(FaleConoscoController::class)->group(function () {
+                Route::get("/faleconosco", "index");
             });
         });
     }

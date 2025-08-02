@@ -29,7 +29,9 @@ O sistema será futuramente comercializado como produto SaaS no domínio [eventl
 > Recomendado rodar em ambiente Ubuntu limpo, apenas com `nvm` e `curl` instalados
 
 1. Clone o repositório e crie `.env` com base no `.env.example`
+
 2. Gere `vendor` com:
+
     ```bash
     docker run --rm \
       -u "$(id -u):$(id -g)" \
@@ -38,23 +40,32 @@ O sistema será futuramente comercializado como produto SaaS no domínio [eventl
       laravelsail/php82-composer:latest \
       composer install --ignore-platform-reqs
     ```
+
 3. Suba o ambiente:
+
     ```bash
     ./vendor/bin/sail up -d
     ```
+
 4. Use Node conforme `.nvmrc`:
+
     ```bash
     nvm use
     ```
+
 5. No .env, Altere o usuário do banco de `sail` para `root`.
 
 6. Instale e rode:
+
     ```bash
-    ./vendor/bin/sail artisan migrate
-    ./vendor/bin/sail npm install
-    ./vendor/bin/sail composer install
-    ./vendor/bin/sail npm run build
+    ./vendor/bin/sail artisan migrate #sobe as tabelas do master
+    ./vendor/bin/sail artisan tenants:migrate #atualiza todos os tenants com as novas tabelas
+    ./vendor/bin/sail npm install #instala os pacotes do react
+    ./vendor/bin/sail composer install #instala as dependencias do PHP
+    ./vendor/bin/sail npm run build #monta um pacote do projeto em modo 'produção'
+    ./vendor/bin/sail npm run dev #roda o projeto em modo 'desenvolvimento'
     ```
+
 7. Acesse: `http://localhost:6001`
 
 ## OBS: Se der algum erro, pare o container da aplicação e inicie novamente `sail stop && sail up -d`
