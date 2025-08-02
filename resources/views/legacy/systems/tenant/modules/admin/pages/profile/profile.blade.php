@@ -14,7 +14,7 @@
                         name="editAlterPassword"
                         id="editAlterPassword"
                         attr-save="{{ route("tenant.admin.profile.update.password") }}"
-                        attr-list="{{ route("tenant.admin.profile.edit") }}">
+                        attr-redirect="{{ route("tenant.admin.profile.edit") }}">
                         <div class="card-body">
                             {{ csrf_field() }}
                             <input type="hidden" value="{{ $user->id }}" id="user_id" name="user_id" />
@@ -62,7 +62,7 @@
                         name="editForm"
                         id="editForm"
                         attr-save="{{ route("tenant.admin.profile.update") }}"
-                        attr-list="{{ route("tenant.admin.profile.edit") }}">
+                        attr-redirect="{{ route("tenant.admin.profile.edit") }}">
                         <div class="card-body">
                             {{ csrf_field() }}
                             <input type="hidden" value="{{ $parameters->apicep }}" id="apicep" />

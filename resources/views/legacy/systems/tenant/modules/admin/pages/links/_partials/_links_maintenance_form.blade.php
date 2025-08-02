@@ -8,7 +8,7 @@ $prefixName = isset($prefixName) ? $prefixName : "";
     id="linkForm"
     class="form-horizontal"
     attr-save="{{ isset($link) ? route("links.update", ["id" => $link->id]) : route("links.store") }}"
-    attr-list="{{ $prefixName != "" ? "" : route("links.list") }}">
+    attr-redirect="{{ $prefixName != "" ? "" : route("links.list") }}">
     <div class="card-body">
         {{ csrf_field() }}
         <input type="hidden" id="prefixNameLinks" name="prefixNameLinks" value="{{ $prefixName }}" />

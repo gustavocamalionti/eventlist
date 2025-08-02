@@ -45,11 +45,13 @@ class ViewsModules
     const PANEL_MENU_CATEGORIES = "Cardápio - Categorias";
     const PANEL_MENU_SUBCATEGORIES = "Cardápio - Subcategorias";
     const PANEL_MENU_PRODUCTS = "Cardápio - Produtos";
-    const PANEL_PARAMETERS = "Parâmetros";
     const PANEL_PROFILE = "Perfil";
     const PANEL_LOG_AUDIT = "Log - Auditoria";
     const PANEL_LOG_ERRORS = "Log - Erros";
     const PANEL_LOG_EMAILS = "Log - Emails";
     const PANEL_LOG_WEBHOOKS = "Log - Webhooks";
-    const PANEL_CUSTOM_COLORS = "Personalizações - Cores";
+
+    const PANEL_CONFIG_PARAMETERS = "Configurações - Parâmetros";
+    const PANEL_CONFIG_COLORS = "Configurações - Cores";
+    const PANEL_CONFIG_CONTENTS = "Configurações - Conteúdos";
 }

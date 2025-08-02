@@ -4,9 +4,9 @@ namespace App\Models\Common;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomColor extends Model
+class Customization extends Model
 {
-    protected $table = "custom_colors";
+    protected $table = "customizations";
 
     protected $fillable = [
         "primary_color",
