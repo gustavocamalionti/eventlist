@@ -1,1 +1,0 @@
-Assim que existir algum item dentro da pasta, me exclua!
