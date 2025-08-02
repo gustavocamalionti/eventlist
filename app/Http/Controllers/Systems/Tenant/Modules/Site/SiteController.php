@@ -17,7 +17,7 @@ class SiteController extends Controller
     public function index()
     {
         $text = "OsCumpads";
-        return Inertia::render("systems/tenant/modules/site/pages/Welcome", [
+        return Inertia::render("systems/tenant/modules/site/pages/Home", [
             "text" => $text,
         ]);
     }

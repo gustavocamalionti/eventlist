@@ -31,6 +31,7 @@ O sistema será futuramente comercializado como produto SaaS no domínio [eventl
 1. Clone o repositório e crie `.env` com base no `.env.example`
 
 2. Gere `vendor` com:
+
     ```bash
     docker run --rm \
       -u "$(id -u):$(id -g)" \
@@ -41,11 +42,13 @@ O sistema será futuramente comercializado como produto SaaS no domínio [eventl
     ```
 
 3. Suba o ambiente:
+
     ```bash
     ./vendor/bin/sail up -d
     ```
 
 4. Use Node conforme `.nvmrc`:
+
     ```bash
     nvm use
     ```
@@ -53,6 +56,7 @@ O sistema será futuramente comercializado como produto SaaS no domínio [eventl
 5. No .env, Altere o usuário do banco de `sail` para `root`.
 
 6. Instale e rode:
+
     ```bash
     ./vendor/bin/sail artisan migrate #sobe as tabelas do master
     ./vendor/bin/sail artisan tenants:migrate #atualiza todos os tenants com as novas tabelas
