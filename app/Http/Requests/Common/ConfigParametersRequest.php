@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Panel;
+namespace App\Http\Requests\Common;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ParametersRequest extends FormRequest
+class ConfigParametersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,18 +23,19 @@ class ParametersRequest extends FormRequest
      */
     public function rules()
     {
-        $return = [
+        $rules = [
             "page_title" => "required",
-            "facebook_title" => "required",
             "facebook_link" => "required",
-            "instagram_title" => "required",
             "instagram_link" => "required",
             "official_site" => "required",
             "apicep" => "required",
-            "extranet_site" => "required",
-            "ifood_site" => "required",
         ];
 
-        return $return;
+        $isTenant = tenancy()->initialized;
+
+        if ($isTenant) {
+        }
+
+        return $rules;
     }
 }

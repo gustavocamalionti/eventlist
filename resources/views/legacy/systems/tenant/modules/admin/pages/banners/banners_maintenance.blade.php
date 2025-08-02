@@ -24,7 +24,7 @@
                         class="form-horizontal"
                         enctype="multipart/form-data"
                         attr-save="{{ isset($banner) ? route("banners.update", ["id" => $banner->id]) : route("banners.store") }}"
-                        attr-list="{{ route("banners.list") }}">
+                        attr-redirect="{{ route("banners.list") }}">
                         @csrf
                         <input
                             type="hidden"

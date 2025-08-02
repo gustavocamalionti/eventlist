@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Systems\Tenant\Modules\Site;
 
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\Common\Controller;
+use App\Services\Systems\Tenant\Crud\CrudParameterService;
 
 class SiteController extends Controller
 {
-    public function __construct() {}
+    protected $crudParameterService;
+    public function __construct(CrudParameterService $crudParameterService)
+    {
+        $this->crudParameterService = $crudParameterService;
+    }
 
     public function index()
     {

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Common\Admin\LogController;
+use App\Http\Controllers\Common\Admin\ConfigController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\Systems\Tenant\Modules\Site\SiteController;
@@ -122,8 +123,8 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
                     Route::get("/log-webhooks", "logWebhooksList")->name("log.webhooks.list");
                     Route::post("/log-webhooks-filter", "logWebhooksFilters")->name("log.webhooks.filter");
                 });
+
                 Route::controller(UserController::class)->group(function () {
-                    // Log Emails
                     Route::get("/users", "usersList")->name("users.list");
                     Route::post("/users-filter", "usersFilters")->name("users.filter");
                     Route::get("/users-manut/{id?}", "usersMaintenance")->name("users.maintenance");
@@ -132,23 +133,15 @@ Route::middleware(["web", InitializeTenancyByDomain::class, PreventAccessFromCen
                     Route::delete("/users-delete/{id}", "usersDelete")->name("users.delete");
                     Route::get("/users-history/{userId?}", "getUserHistory")->name("users.history");
                 });
-                // Route::controller(App\Http\Controllers\Panel\LogController::class)->group(function () {
-                //     // Log Emails
-                //     Route::get("/log-emails", "logEmailsList")->name("log.emails.list");
-                //     Route::post("/log-emails-filter", "logEmailsFilters")->name("log.emails.filter");
 
-                //     // Log Audits
-                //     Route::get("/log-audits", "logAuditsList")->name("log.audits.list");
-                //     Route::post("/log-audits-filter", "logAuditsFilters")->name("log.audits.filter");
-                //     Route::get("/log-audits-history/{logId?}", "getLogAuditHistory")->name("log.audits.history");
-
-                //     // Log Errors
-                //     Route::get("/log-errors", "logErrorsList")->name("log.errors.list");
-                //     Route::post("/log-errors-filter", "logErrorsFilters")->name("log.errors.filter");
-
-                //     Route::get("/log-webhooks", "logWebhooksList")->name("log.webhooks.list");
-                //     Route::post("/log-webhooks-filter", "logWebhooksFilters")->name("log.webhooks.filter");
-                // });
+                Route::controller(ConfigController::class)->group(function () {
+                    Route::get("/config/colors", "indexConfigColors")->name("config.colors.index");
+                    Route::get("/config/contents", "indexConfigContents")->name("config.contents.index");
+                    Route::get("/config/parameters", "indexConfigParameters")->name("config.parameters.index");
+                    Route::post("/config/colors", "updateConfigColors")->name("config.colors.update");
+                    Route::post("/config/contents", "updateConfigContents")->name("config.contents.update");
+                    Route::post("/config/parameters", "updateConfigParameters")->name("config.parameters.update");
+                });
             });
 
         Route::name("tenant.site.")->group(function () {

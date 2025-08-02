@@ -132,7 +132,7 @@ export async function Save(
                 loadingBtnStop(btn, btnIcon, btnTitle);
 
                 if (backToList) {
-                    await msgDefault("fa fa-check", "Sucesso!", msgCustomSuccess, form.attr("attr-list"));
+                    await msgDefault("fa fa-check", "Sucesso!", msgCustomSuccess, form.attr("attr-redirect"));
                 } else {
                     await msgDefault("fa fa-check", "Sucesso!", msgCustomSuccess, "reload");
                 }
@@ -143,7 +143,7 @@ export async function Save(
                         "fa fa-check",
                         "Sucesso!",
                         MSG_SUCCESS_USER_REGISTERED_VERIFY,
-                        form.attr("attr-list"),
+                        form.attr("attr-redirect"),
                     );
                 } else {
                     loadingBtnStop(btn, btnIcon, btnTitle);

@@ -27,7 +27,7 @@
                         id="formConfigForm"
                         class="form-horizontal"
                         attr-save="{{ $formConfig != null ? route("form.configs.update", ["id" => $formConfig->id]) : route("form.configs.store") }}"
-                        attr-list="{{ route("form.configs.list") }}">
+                        attr-redirect="{{ route("form.configs.list") }}">
                         <div class="card-body">
                             {{ csrf_field() }}
 

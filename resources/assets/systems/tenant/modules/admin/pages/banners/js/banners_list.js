@@ -4,14 +4,12 @@ import { msgError } from "#common/js/utils/messages";
 import { loadingBodyStart, loadingBodyStop } from "#common/js/utils/loading";
 import { Archive, Filter, Delete, saveOrderAndDraggable } from "#common/js/utils/actions";
 
-jQuery(function ($) {
-    $(window).on("load", function () {
-        applyAll();
-        applyFilter();
+$(window).on("load", function () {
+    applyAll();
+    applyFilter();
 
-        $("#btnUnlock").on("click", function (e) {
-            saveOrderAndDraggable(e, $(this), "/panel/banners-store-order");
-        });
+    $("#btnUnlock").on("click", function (e) {
+        saveOrderAndDraggable(e, $(this), "/panel/banners-store-order");
     });
 });
 
