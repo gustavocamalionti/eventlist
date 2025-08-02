@@ -18,8 +18,14 @@ export default function EventDescription(props) {
                     />
                 </Grid>
                 <Grid size={4}>
-                    <Typography variant="h6" component="div" color="white" style={{ paddingTop: "15px" }}>
+                    <Typography variant="h4" component="div" color="white" style={{ paddingTop: "15px" }}>
                         COSTELÃO DOS CUMPADS
+                    </Typography>
+                    <Typography variant="h8" component="div" color="white" style={{ paddingTop: "15px" }}>
+                        Localização
+                    </Typography>
+                    <Typography variant="h8" component="div" color="white" style={{ paddingTop: "15px" }}>
+                        Data
                     </Typography>
                 </Grid>
             </Grid>

@@ -8,7 +8,7 @@ export default function Footer(props) {
         <Box component="section" sx={{ backgroundColor: props.color, bottom: 0, left: 0 }}>
             <Grid size={12}>
                 <Typography variant="h10" component="div" color="white" sx={{ flexGrow: 1 }}>
-                    Desenvolvido por Among Tech
+                    Todos os direitos reservados | Desenvolvido por Among Tech
                 </Typography>
             </Grid>
         </Box>

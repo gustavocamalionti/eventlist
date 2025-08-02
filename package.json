@@ -14,7 +14,7 @@
         "update:packages": "ncu -i"
     },
     "dependencies": {
-        "@emotion/react": "^11.14.0",
+        "@emotion/react": " 11.14.0",
         "@emotion/styled": "^11.14.1",
         "@eonasdan/tempus-dominus": "^6.10.4",
         "@fontsource/roboto": "^5.2.6",
